@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiếng Anh Lớp 4 - Global Success</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+  :root {
+    --bg-page: #f8fafd;
+    --text-dark: #1e293b;
+    --text-gray: #8898aa;
+    --pink-btn: #ec4899;
+    --blue-btn: #0284c7;
+    --border-card: #f1e8ff;
+    --green: #22c55e;
+    --coral: #ef4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  body {
+    background-color: var(--bg-page);
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-dark);
+    padding-bottom: 60px;
+  }
+  h1, h2, h3, h4, button { font-family: 'Fredoka', sans-serif; }
+
+  /* TOP HEADER NAVIGATION */
+  .app-header {
+    background: #ffffff;
+    border-bottom: 2px solid #eef2f6;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-left-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .brand-logo-pill {
+    background: #fff;
+    border: 2px solid #fed7aa;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 900;
+    color: #ea580c;
+  }
+  .header-btn {
+    border: none;
+    border-radius: 18px;
+    padding: 9px 18px;
+    font-size: 14.5px;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+  }
+  .header-btn.lessons { background: #ec4899; color: #ffffff; box-shadow: 0 4px 12px rgba(236,72,153,0.35); }
+  .header-btn.sub { background: #f1f5f9; color: #475569; }
+  .header-btn.sub:hover { background: #e2e8f0; }
+
+  .header-score-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1.5px solid #e2e8f0;
+    padding: 4px 8px;
+    border-radius: 14px;
+    font-weight: 900;
+    font-size: 13.5px;
+  }
+  .tag-score-true { background: var(--green); color: #fff; padding: 4px 8px; border-radius: 8px; }
+  .tag-score-false { background: var(--coral); color: #fff; padding: 4px 8px; border-radius: 8px; }
+
+  /* BANNER PANORAMA HOẠT HÌNH TRẢI DÀI */
+  .banner-container {
+    max-width: 1080px;
+    margin: 16px auto;
+    padding: 0 16px;
+  }
+  .hero-panorama-banner {
+    position: relative;
+    border-radius: 26px;
+    overflow: hidden;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    border: 3px solid #ffffff;
+    background: linear-gradient(135deg, #a7f3d0 0%, #bae6fd 60%, #fbcfe8 100%);
+  }
+  .banner-bg-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .banner-badge-center {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.45);
+    padding: 10px 24px;
+    border-radius: 30px;
+    backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(255, 255, 255, 0.8);
+  }
+  .banner-bee-img {
+    width: 72px;
+    height: 72px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+  }
+  .banner-title-text {
+    font-size: 32px;
+    font-weight: 900;
+    color: #c026d3;
+    text-shadow: 2px 2px 0px #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .banner-tag-badge {
+    background: #d946ef;
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 800;
+    display: inline-block;
+  }
+
+  /* WORKSPACE */
+  .app-workspace {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* UNITS GRID */
+  .units-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  @media(max-width: 800px) { .units-card-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .unit-glass-card {
+    background: #ffffff;
+    border: 2px solid #eef2f6;
+    border-radius: 20px;
+    padding: 16px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+  }
+  .unit-glass-card.active-unit {
+    border-color: #d946ef;
+    background: #fdf4ff;
+  }
+  .unit-title-head { font-size: 15px; font-weight: 900; color: #1e293b; }
+  .unit-topic-name { font-size: 13px; font-weight: 700; color: #64748b; }
+
+  /* MAIN LESSON CONTAINER */
+  .lesson-view-container {
+    background: #ffffff;
+    border: 2px solid var(--border-card);
+    border-radius: 28px;
+    padding: 24px;
+    box-shadow: 0 6px 20px rgba(147, 51, 234, 0.04);
+  }
+  .lesson-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .lesson-big-title { font-size: 22px; font-weight: 900; color: #1e293b; }
+
+  /* CLEAN TABS - KHÔNG CÓ SỐ TRANG P.XX */
+  .clean-lesson-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    border: none;
+    border-radius: 16px;
+    padding: 9px 18px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    background: #f1f5f9;
+    color: #64748b;
+    transition: all 0.2s;
+  }
+  .tab-btn.active {
+    background: #0284c7;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+  }
+
+  /* 4 SKILLS SECTION CARDS */
+  .skill-block {
+    background: #ffffff;
+    border: 1.5px solid #f1f5f9;
+    border-radius: 22px;
+    padding: 18px;
+    margin-bottom: 20px;
+  }
+  .skill-badge-title {
+    font-size: 13.5px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skill-badge-title.listening { color: #0284c7; }
+  .skill-badge-title.speaking { color: #d946ef; }
+  .skill-badge-title.reading { color: #16a34a; }
+  .skill-badge-title.writing { color: #f59e0b; }
+
+  /* BILINGUAL ROW SONG NGỮ CHUẨN */
+  .bilingual-speech-row {
+    background: #ffffff;
+    border: 1.5px solid #f1f5f9;
+    border-radius: 18px;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+  }
+  .bilingual-speech-row:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+  }
+  .bilingual-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .en-text-bold {
+    font-size: 16.5px;
+    font-weight: 800;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .vi-text-sub {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-gray);
+  }
+
+  /* CẶP NÚT LOA & MICRO TRÒN TINH TẾ */
+  .audio-action-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .action-circle-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .btn-listen {
+    background: #f0f9ff;
+    color: #0284c7;
+  }
+  .btn-listen:hover {
+    background: #0284c7;
+    color: #fff;
+    transform: scale(1.08);
+  }
+  .btn-mic {
+    background: #fdf2f8;
+    color: #db2777;
+  }
+  .btn-mic:hover {
+    background: #db2777;
+    color: #fff;
+    transform: scale(1.08);
+  }
+  .btn-mic.recording {
+    background: #ef4444;
+    color: #fff;
+    animation: pulseMic 1s infinite alternate;
+  }
+  @keyframes pulseMic {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); box-shadow: 0 0 10px rgba(239, 68, 68, 0.6); }
+  }
+
+  /* GRID 2 CỘT GỌN GÀNG, KHÔNG BỊ TRỐNG HOÁC */
+  .quiz-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media(max-width: 680px) { .quiz-cards-grid { grid-template-columns: 1fr; } }
+
+  .quiz-card-compact {
+    background: #ffffff;
+    border: 1.5px solid #eef2f6;
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s;
+  }
+  .quiz-card-compact:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+  .quiz-q-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15.5px;
+    font-weight: 800;
+  }
+  .quiz-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* NÚT VIÊN KẸO GỌN GÀNG, ĐÃ XÓA MÃ AU, MY, US */
+  .quiz-chip-btn {
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 20px;
+    padding: 7px 16px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #334155;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+  }
+  .quiz-chip-btn:hover {
+    border-color: #0284c7;
+    background: #f0f9ff;
+    transform: translateY(-2px);
+  }
+  .quiz-chip-btn.correct {
+    background: #dcfce7;
+    border-color: #22c55e;
+    color: #15803d;
+  }
+  .quiz-chip-btn.wrong {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #b91c1c;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="app-header">
+    <div class="header-left-nav">
+      <div class="brand-logo-pill">
+        <span>🐝 Tiếng Anh 4</span>
+      </div>
+      <button class="header-btn sub">Explore</button>
+      <button class="header-btn lessons">Lessons</button>
+      <button class="header-btn sub" onclick="selectTab('sbt')">Exercises</button>
+      <button class="header-btn sub">Review</button>
+      <button class="header-btn sub">Exams</button>
+      <button class="header-btn sub">Mini Games</button>
+    </div>
+
+    <!-- SCORE BOX -->
+    <div class="header-right-meta">
+      <div class="score-true-false-box">
+        <span class="tag-score-true">★ True <span id="score-true-num">0</span></span>
+        <span class="tag-score-false">★ False <span id="score-false-num">0</span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= BANNER PANORAMA ================= -->
+  <div class="banner-container">
+    <div class="hero-panorama-banner">
+      <div class="banner-badge-center">
+        <img class="banner-bee-img" src="https://api.dicebear.com/7.x/bottts/svg?seed=HappyBee&backgroundColor=ffdf00" alt="Bee Mascot">
+        <div>
+          <div class="banner-title-text">Tiếng Anh 4</div>
+          <div class="banner-tag-badge">Tiến bộ từng ngày bé nhé! 🌟</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= WORKSPACE ================= -->
+  <div class="app-workspace">
+
+    <!-- LƯỚI UNITS -->
+    <div class="units-card-grid">
+      <div class="unit-glass-card active-unit" onclick="selectTab('l1')">
+        <div>
+          <div class="unit-title-head">Unit 1</div>
+          <div class="unit-topic-name">My friends</div>
+        </div>
+        <div style="font-weight:900; color:#94a3b8;">›</div>
+      </div>
+      <div class="unit-glass-card">
+        <div>
+          <div class="unit-title-head">Unit 2</div>
+          <div class="unit-topic-name">Time and daily routines</div>
+        </div>
+        <div style="font-weight:900; color:#94a3b8;">›</div>
+      </div>
+      <div class="unit-glass-card">
+        <div>
+          <div class="unit-title-head">Unit 3</div>
+          <div class="unit-topic-name">My week</div>
+        </div>
+        <div style="font-weight:900; color:#94a3b8;">›</div>
+      </div>
+      <div class="unit-glass-card">
+        <div>
+          <div class="unit-title-head">Unit 4</div>
+          <div class="unit-topic-name">My birthday party</div>
+        </div>
+        <div style="font-weight:900; color:#94a3b8;">›</div>
+      </div>
+    </div>
+
+    <!-- MAIN LESSON CARD -->
+    <div class="lesson-view-container">
+
+      <!-- CLEAN TABS: ĐÃ XÓA SỐ TRANG P.XX -->
+      <div class="lesson-header-row">
+        <div>
+          <div style="font-size:13px; font-weight:800; color:#d946ef; text-transform:uppercase;">Unit 1: My Friends</div>
+          <h2 class="lesson-big-title" id="lesson-screen-title">Lesson 1</h2>
+        </div>
+        <div class="clean-lesson-tabs">
+          <button class="tab-btn active" id="tab-btn-l1" onclick="selectTab('l1')">Lesson 1</button>
+          <button class="tab-btn" id="tab-btn-l2" onclick="selectTab('l2')">Lesson 2</button>
+          <button class="tab-btn" id="tab-btn-l3" onclick="selectTab('l3')">Lesson 3</button>
+          <button class="tab-btn" id="tab-btn-sbt" onclick="selectTab('sbt')">Workbook</button>
+        </div>
+      </div>
+
+      <!-- ================= VIEW 1: LESSON 1 ================= -->
+      <div id="box-lesson-1">
+
+        <!-- 1. LISTENING & PHONICS -->
+        <div class="skill-block">
+          <div class="skill-badge-title listening">🎧 1. Listening & Phonics (Nghe phát âm)</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <div>
+              <div class="bilingual-speech-row">
+                <div class="bilingual-text-group">
+                  <div class="en-text-bold">America</div>
+                  <div class="vi-text-sub">nước Mỹ (âm đuôi /ə/)</div>
+                </div>
+                <div class="audio-action-group">
+                  <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('America')">🔊</button>
+                  <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'America')">🎤</button>
+                </div>
+              </div>
+
+              <div class="bilingual-speech-row">
+                <div class="bilingual-text-group">
+                  <div class="en-text-bold">Australia</div>
+                  <div class="vi-text-sub">nước Úc (âm đuôi /iə/)</div>
+                </div>
+                <div class="audio-action-group">
+                  <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('Australia')">🔊</button>
+                  <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'Australia')">🎤</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="bilingual-speech-row">
+                <div class="bilingual-text-group">
+                  <div class="en-text-bold">Britain</div>
+                  <div class="vi-text-sub">nước Anh</div>
+                </div>
+                <div class="audio-action-group">
+                  <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('Britain')">🔊</button>
+                  <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'Britain')">🎤</button>
+                </div>
+              </div>
+
+              <div class="bilingual-speech-row">
+                <div class="bilingual-text-group">
+                  <div class="en-text-bold">Viet Nam</div>
+                  <div class="vi-text-sub">nước Việt Nam</div>
+                </div>
+                <div class="audio-action-group">
+                  <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('Viet Nam')">🔊</button>
+                  <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'Viet Nam')">🎤</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SPEAKING -->
+        <div class="skill-block">
+          <div class="skill-badge-title speaking">🗣️ 2. Speaking (Mẫu câu giao tiếp)</div>
+          <div class="bilingual-speech-row">
+            <div class="bilingual-text-group">
+              <div class="en-text-bold" style="font-size:17px;">Where are you from? — I'm from Viet Nam.</div>
+              <div class="vi-text-sub">Bạn đến từ đâu? — Mình đến từ Việt Nam.</div>
+            </div>
+            <div class="audio-action-group">
+              <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('Where are you from? I am from Viet Nam.')">🔊</button>
+              <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'Where are you from? I am from Viet Nam.')">🎤</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. READING -->
+        <div class="skill-block">
+          <div class="skill-badge-title reading">📖 3. Reading (Hội thoại hoàn chỉnh)</div>
+
+          <div class="bilingual-speech-row">
+            <div class="bilingual-text-group">
+              <div class="en-text-bold">Minh: Hello. I'm Minh. I'm from Viet Nam. Where are you from?</div>
+              <div class="vi-text-sub">Xin chào. Mình là Minh. Mình đến từ Việt Nam. Bạn đến từ đâu?</div>
+            </div>
+            <div class="audio-action-group">
+              <button class="action-circle-btn btn-listen" onclick="speak('Hello. I am Minh. I am from Viet Nam. Where are you from?')">🔊</button>
+              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Hello. I am Minh. I am from Viet Nam.')">🎤</button>
+            </div>
+          </div>
+
+          <div class="bilingual-speech-row">
+            <div class="bilingual-text-group">
+              <div class="en-text-bold">Mary: Hello, Minh. I'm Mary. I'm from America.</div>
+              <div class="vi-text-sub">Chào Minh. Mình là Mary. Mình đến từ nước Mỹ.</div>
+            </div>
+            <div class="audio-action-group">
+              <button class="action-circle-btn btn-listen" onclick="speak('Hello, Minh. I am Mary. I am from America.')">🔊</button>
+              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Hello, Minh. I am Mary. I am from America.')">🎤</button>
+            </div>
+          </div>
+
+          <div class="bilingual-speech-row" style="margin-top:12px;">
+            <div class="bilingual-text-group">
+              <div class="en-text-bold">Lucy: Hi. I'm Lucy. I'm from Britain. Where are you from?</div>
+              <div class="vi-text-sub">Chào bạn. Mình là Lucy. Mình đến từ nước Anh. Bạn đến từ đâu?</div>
+            </div>
+            <div class="audio-action-group">
+              <button class="action-circle-btn btn-listen" onclick="speak('Hi. I am Lucy. I am from Britain. Where are you from?')">🔊</button>
+              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Hi. I am Lucy. I am from Britain.')">🎤</button>
+            </div>
+          </div>
+
+          <div class="bilingual-speech-row">
+            <div class="bilingual-text-group">
+              <div class="en-text-bold">Ben: Hi, Lucy. I'm Ben. I'm from Australia.</div>
+              <div class="vi-text-sub">Chào Lucy. Mình là Ben. Mình đến từ nước Úc.</div>
+            </div>
+            <div class="audio-action-group">
+              <button class="action-circle-btn btn-listen" onclick="speak('Hi, Lucy. I am Ben. I am from Australia.')">🔊</button>
+              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Hi, Lucy. I am Ben. I am from Australia.')">🎤</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. WRITING: CHIA 2 CỘT VỪA VẶN, NÚT CHIPS GỌN GÀNG -->
+        <div class="skill-block">
+          <div class="skill-badge-title writing">✍️ 4. Writing (Hoàn thành câu theo SGK Mục 5)</div>
+
+          <div class="quiz-cards-grid">
+            <!-- Câu 1 -->
+            <div class="quiz-card-compact">
+              <div class="quiz-q-title-row">
+                <span>1. I'm Minh. I'm from ________. 🇻🇳</span>
+                <button class="action-circle-btn btn-listen" onclick="speak('I am Minh. I am from Viet Nam.')">🔊</button>
+              </div>
+              <div class="quiz-chips-container">
+                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'Viet Nam')">Viet Nam</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'America')">America</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'Britain')">Britain</button>
+              </div>
+            </div>
+
+            <!-- Câu 2 -->
+            <div class="quiz-card-compact">
+              <div class="quiz-q-title-row">
+                <span>2. I'm Mary. I'm ________. 🇺🇸</span>
+                <button class="action-circle-btn btn-listen" onclick="speak('I am Mary. I am from America.')">🔊</button>
+              </div>
+              <div class="quiz-chips-container">
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'from Viet Nam')">from Viet Nam</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'from America')">from America</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'from Australia')">from Australia</button>
+              </div>
+            </div>
+
+            <!-- Câu 3 -->
+            <div class="quiz-card-compact">
+              <div class="quiz-q-title-row">
+                <span>3. A: ________ are you from? 🇦🇺</span>
+                <button class="action-circle-btn btn-listen" onclick="speak('Where are you from?')">🔊</button>
+              </div>
+              <div class="quiz-chips-container">
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'What')">What</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'Where')">Where</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'Who')">Who</button>
+              </div>
+            </div>
+
+            <!-- Câu 4 -->
+            <div class="quiz-card-compact">
+              <div class="quiz-q-title-row">
+                <span>4. A: Where are you ________? 🇬🇧</span>
+                <button class="action-circle-btn btn-listen" onclick="speak('Where are you from?')">🔊</button>
+              </div>
+              <div class="quiz-chips-container">
+                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'from')">from</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'in')">in</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'to')">to</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= VIEW 2: LESSON 2 ================= -->
+      <div id="box-lesson-2" style="display:none;">
+
+        <div class="skill-block">
+          <div class="skill-badge-title listening">🎧 1. Listening (4 Quốc gia tiếp theo)</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <div>
+              <div class="bilingual-speech-row">
+                <div class="bilingual-text-group">
+                  <div class="en-text-bold">Singapore</div>
+                  <div class="vi-text-sub">nước Xin-ga-po</div>
+                </div>
+                <div class="audio-action-group">
+                  <button class="action-circle-btn btn-listen" onclick="speak('Singapore')">🔊</button>
+                  <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Singapore')">🎤</button>
+                </div>
+              </div>
+
+              <div class="bilingual-speech-row">
+                <div class="bilingual-text-group">
+                  <div class="en-text-bold">Malaysia</div>
+                  <div class="vi-text-sub">nước Ma-lai-xi-a</div>
+                </div>
+                <div class="audio-action-group">
+                  <button class="action-circle-btn btn-listen" onclick="speak('Malaysia')">🔊</button>
+                  <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Malaysia')">🎤</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="bilingual-speech-row">
+                <div class="bilingual-text-group">
+                  <div class="en-text-bold">Thailand</div>
+                  <div class="vi-text-sub">nước Thái Lan</div>
+                </div>
+                <div class="audio-action-group">
+                  <button class="action-circle-btn btn-listen" onclick="speak('Thailand')">🔊</button>
+                  <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Thailand')">🎤</button>
+                </div>
+              </div>
+
+              <div class="bilingual-speech-row">
+                <div class="bilingual-text-group">
+                  <div class="en-text-bold">Japan</div>
+                  <div class="vi-text-sub">nước Nhật Bản</div>
+                </div>
+                <div class="audio-action-group">
+                  <button class="action-circle-btn btn-listen" onclick="speak('Japan')">🔊</button>
+                  <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Japan')">🎤</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-badge-title speaking">🗣️ 2. Speaking (Mẫu câu ngôi thứ ba)</div>
+          <div class="bilingual-speech-row">
+            <div class="bilingual-text-group">
+              <div class="en-text-bold">Where's she from? — She's from Japan.</div>
+              <div class="vi-text-sub">Bạn ấy đến từ đâu? — Bạn ấy đến từ Nhật Bản.</div>
+            </div>
+            <div class="audio-action-group">
+              <button class="action-circle-btn btn-listen" onclick="speak('Where is she from? She is from Japan.')">🔊</button>
+              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Where is she from? She is from Japan.')">🎤</button>
+            </div>
+          </div>
+
+          <div class="bilingual-speech-row">
+            <div class="bilingual-text-group">
+              <div class="en-text-bold">Where's he from? — He's from Singapore.</div>
+              <div class="vi-text-sub">Cậu ấy đến từ đâu? — Cậu ấy đến từ Xin-ga-po.</div>
+            </div>
+            <div class="audio-action-group">
+              <button class="action-circle-btn btn-listen" onclick="speak('Where is he from? He is from Singapore.')">🔊</button>
+              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Where is he from? He is from Singapore.')">🎤</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= VIEW 3: LESSON 3 ================= -->
+      <div id="box-lesson-3" style="display:none;">
+
+        <div class="skill-block">
+          <div class="skill-badge-title listening">🎧 1. Listening & Chant (Bài vè ngữ âm)</div>
+          <div class="bilingual-speech-row">
+            <div class="bilingual-text-group">
+              <div class="en-text-bold">America, America. Mary's from America.</div>
+              <div class="vi-text-sub">Nước Mỹ, nước Mỹ. Mary đến từ nước Mỹ.</div>
+            </div>
+            <div class="audio-action-group">
+              <button class="action-circle-btn btn-listen" onclick="speak('America, America. Mary is from America.')">🔊</button>
+              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Mary is from America')">🎤</button>
+            </div>
+          </div>
+
+          <div class="bilingual-speech-row">
+            <div class="bilingual-text-group">
+              <div class="en-text-bold">Australia, Australia. Ben's from Australia.</div>
+              <div class="vi-text-sub">Nước Úc, nước Úc. Ben đến từ nước Úc.</div>
+            </div>
+            <div class="audio-action-group">
+              <button class="action-circle-btn btn-listen" onclick="speak('Australia, Australia. Ben is from Australia.')">🔊</button>
+              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Ben is from Australia')">🎤</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-badge-title reading">
+            <span>📖 3. Reading (Đọc đoạn văn)</span>
+            <button class="action-circle-btn btn-listen" style="margin-left:auto;" onclick="speak('Hello. I am Minh. I am from Viet Nam. I have two new friends, Tony and Laura. Tony is from America. Laura is from Australia.')">🔊</button>
+          </div>
+
+          <div style="background:#f8fafc; border-radius:14px; padding:14px; margin-bottom:14px; font-size:15px; line-height:1.6;">
+            "Hello. I am Minh. I am from Viet Nam. I have two new friends, Tony and Laura. Tony is from America. Laura is from Australia."
+          </div>
+
+          <div class="quiz-cards-grid">
+            <div class="quiz-card-compact">
+              <div class="quiz-q-title-row">
+                <span>1. Minh is from Viet Nam.</span>
+              </div>
+              <div class="quiz-chips-container">
+                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'True')">True (Đúng) ✔️</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'False')">False (Sai) ❌</button>
+              </div>
+            </div>
+
+            <div class="quiz-card-compact">
+              <div class="quiz-q-title-row">
+                <span>2. Tony is from Australia.</span>
+              </div>
+              <div class="quiz-chips-container">
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'True')">True (Đúng) ✔️</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'False')">False (Sai) ❌</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= VIEW 4: WORKBOOK (ĐÃ LÀM GỌN SẠCH) ================= -->
+      <div id="box-sbt" style="display:none;">
+
+        <div class="skill-block">
+          <div class="skill-badge-title writing">✍️ Workbook Exercises (Sách Bài Tập)</div>
+
+          <!-- LƯỚI 2 CỘT GỌN GÀNG, CHỈ CÓ LOA TRÒN VÀ CHIP TÊN NƯỚC -->
+          <div class="quiz-cards-grid">
+
+            <!-- Câu 1 -->
+            <div class="quiz-card-compact">
+              <div class="quiz-q-title-row">
+                <span>1. She's from ________.</span>
+                <button class="action-circle-btn btn-listen" title="Nghe câu mẫu" onclick="speak('She is from Australia.')">🔊</button>
+              </div>
+              <div class="quiz-chips-container">
+                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'Australia')">Australia</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'Malaysia')">Malaysia</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'America')">America</button>
+              </div>
+            </div>
+
+            <!-- Câu 2 -->
+            <div class="quiz-card-compact">
+              <div class="quiz-q-title-row">
+                <span>2. He's from ________.</span>
+                <button class="action-circle-btn btn-listen" title="Nghe câu mẫu" onclick="speak('He is from America.')">🔊</button>
+              </div>
+              <div class="quiz-chips-container">
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'Malaysia')">Malaysia</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'America')">America</button>
+                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'Australia')">Australia</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<script>
+  let trueScore = 0;
+  let falseScore = 0;
+
+  // PHÁT ÂM CHUẨN
+  function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = 0.85;
+    window.speechSynthesis.speak(u);
+  }
+
+  // MICROPHONE THU ÂM VÀ CHẤM ĐIỂM BẰNG WEB SPEECH API
+  function startSpeechPractice(btn, targetText) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Trình duyệt chưa hỗ trợ ghi âm trực tiếp. Hãy mở trên Google Chrome nhé!");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+
+    btn.classList.add('recording');
+
+    recognition.onresult = function(event) {
+      btn.classList.remove('recording');
+      const spokenText = event.results[0][0].transcript.toLowerCase();
+      const cleanTarget = targetText.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+
+      if (spokenText.includes(cleanTarget) || cleanTarget.includes(spokenText)) {
+        speak("Excellent!");
+        confetti({ particleCount: 35, spread: 60, origin: { y: 0.8 } });
+        btn.textContent = "⭐";
+      } else {
+        speak("Try again!");
+        btn.textContent = "🔄";
+      }
+      setTimeout(() => { btn.textContent = "🎤"; }, 2500);
+    };
+
+    recognition.onerror = function() {
+      btn.classList.remove('recording');
+    };
+
+    recognition.onend = function() {
+      btn.classList.remove('recording');
+    };
+
+    recognition.start();
+  }
+
+  // TRẮC NGHIỆM DẠNG VIÊN KẸO (CHIPS)
+  function checkChip(el, isCorrect, speechText) {
+    speak(speechText);
+    if (isCorrect) {
+      el.classList.add('correct');
+      trueScore++;
+      document.getElementById('score-true-num').textContent = trueScore;
+      confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 } });
+    } else {
+      el.classList.add('wrong');
+      falseScore++;
+      document.getElementById('score-false-num').textContent = falseScore;
+      setTimeout(() => el.classList.remove('wrong'), 800);
+    }
+  }
+
+  // CƠ CHẾ CHUYỂN BÀI ĐỘC LẬP TUYỆT ĐỐI
+  function selectTab(tabKey) {
+    ['l1', 'l2', 'l3', 'sbt'].forEach(k => {
+      document.getElementById('tab-btn-' + k).classList.toggle('active', k === tabKey);
+    });
+
+    document.getElementById('box-lesson-1').style.display = 'none';
+    document.getElementById('box-lesson-2').style.display = 'none';
+    document.getElementById('box-lesson-3').style.display = 'none';
+    document.getElementById('box-sbt').style.display = 'none';
+
+    const titleMap = {
+      'l1': 'Lesson 1',
+      'l2': 'Lesson 2',
+      'l3': 'Lesson 3',
+      'sbt': 'Workbook'
+    };
+    document.getElementById('lesson-screen-title').textContent = titleMap[tabKey];
+
+    if (tabKey === 'l1') document.getElementById('box-lesson-1').style.display = 'block';
+    if (tabKey === 'l2') document.getElementById('box-lesson-2').style.display = 'block';
+    if (tabKey === 'l3') document.getElementById('box-lesson-3').style.display = 'block';
+    if (tabKey === 'sbt') document.getElementById('box-sbt').style.display = 'block';
+  }
+</script>
+</body>
+</html>
