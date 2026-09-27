@@ -235,11 +235,11 @@
     flex-shrink: 0;
   }
   .circle-btn {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     border: none;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -298,6 +298,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    transition: all 0.15s;
   }
   .chip-option-btn.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
   .chip-option-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
@@ -348,43 +349,44 @@
     border-color: #22c55e;
   }
 
-  /* BÀI 6 LESSON 2 LET'S PLAY ĐỐI THOẠI 2 CHIỀU */
+  /* BÀI 6 LESSON 2 LET'S PLAY GỌN GÀNG TỰ NHIÊN */
   .interview-dialog-box {
     background: #ffffff;
     border: 2px solid #fed7aa;
     border-radius: 18px;
-    padding: 16px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 10px;
+    gap: 12px;
   }
   .interviewer-bubble {
     background: #fef3c7;
     border: 2px solid #f59e0b;
     border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 15px;
+    padding: 10px 18px;
+    font-size: 16px;
     font-weight: 900;
     color: #b45309;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
   .student-role-card {
     background: #f8fafc;
     border: 2px solid #cbd5e1;
     border-radius: 14px;
-    padding: 8px 14px;
+    padding: 10px 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
     font-weight: 800;
-    font-size: 13.5px;
+    font-size: 14px;
     transition: all 0.2s;
   }
+  .student-role-card:hover { transform: translateY(-2px); border-color: #0284c7; }
   .student-role-card.active-choice {
     border-color: #0284c7;
     background: #e0f2fe;
@@ -460,21 +462,6 @@
   .slot-input-number:focus { border-color: #0284c7; background: #f0f9ff; }
   .slot-input-number.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
   .slot-input-number.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
-
-  /* KHUNG HÌNH THÁP RÙA & DANH LAM THẮNG CẢNH SVG NGUYÊN VẸN */
-  .landmark-illu-box {
-    width: 100%;
-    height: 80px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    border: 1px solid #cbd5e1;
-  }
-  .landmark-illu-box svg { width: 100%; height: 100%; }
 
   .toggle-trans-btn {
     border: 1.5px solid #cbd5e1;
@@ -762,29 +749,15 @@
         </div>
       </div>
 
-      <!-- 5. Look, complete and read (CHUẨN CHỖ TRỐNG THEO SGK TRANG 11) -->
+      <!-- 5. Look, complete and read (ĐÃ THAY BẰNG QUỐC KỲ CHUẨN TỈ LỆ VÀ SẮC NÉT) -->
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;"><span>✍️ 5. Look, complete and read (SGK Page 11)</span></div>
         <div class="grid-2col">
-          <!-- Picture 1: Minh, Tháp Rùa Hồ Gươm -->
+          <!-- 1. Minh - Viet Nam -->
           <div class="quiz-single-card">
-            <div class="landmark-illu-box" style="background:#e0f2fe;">
-              <svg viewBox="0 0 280 80">
-                <rect width="280" height="55" fill="#bae6fd"/>
-                <rect y="55" width="280" height="25" fill="#38bdf8"/>
-                <ellipse cx="140" cy="58" rx="75" ry="12" fill="#15803d"/>
-                <rect x="122" y="32" width="36" height="24" fill="#d97706" rx="2"/>
-                <rect x="127" y="18" width="26" height="15" fill="#b45309" rx="1"/>
-                <polygon points="120,32 140,16 160,32" fill="#78350f"/>
-                <polygon points="124,18 140,8 156,18" fill="#78350f"/>
-                <rect x="134" y="42" width="12" height="14" fill="#451a03" rx="4"/>
-                <rect x="137" y="24" width="6" height="8" fill="#451a03" rx="2"/>
-                <circle cx="45" cy="30" r="10" fill="#fed7aa"/>
-                <rect x="38" y="40" width="14" height="24" fill="#0284c7" rx="3"/>
-                <rect x="52" y="24" width="22" height="15" fill="#da251d" rx="1"/>
-                <polygon points="63,27 64.5,31 69,31 65.5,33.5 67,37.5 63,35 59,37.5 60.5,33.5 57,31 61.5,31" fill="#ffff00"/>
-                <line x1="52" y1="24" x2="52" y2="55" stroke="#475569" stroke-width="2"/>
-              </svg>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <svg class="flag-svg-icon" style="width:60px; height:40px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg>
+              <span style="font-size:13px; font-weight:900; color:#0f172a;">Minh (Viet Nam)</span>
             </div>
             <div class="q-title-line">
               <span>1. I'm Minh. I'm from <span class="voice-slot-blank" id="slot-l1-5-1">_______</span>.</span>
@@ -796,25 +769,11 @@
             </div>
           </div>
 
-          <!-- Picture 2: Mary, Golden Gate Bridge -->
+          <!-- 2. Mary - America -->
           <div class="quiz-single-card">
-            <div class="landmark-illu-box" style="background:#fed7aa;">
-              <svg viewBox="0 0 280 80">
-                <rect width="280" height="52" fill="#fed7aa"/>
-                <rect y="52" width="280" height="28" fill="#0284c7"/>
-                <rect x="110" y="10" width="12" height="55" fill="#dc2626"/>
-                <rect x="180" y="10" width="12" height="55" fill="#dc2626"/>
-                <line x1="80" y1="35" x2="210" y2="35" stroke="#b91c1c" stroke-width="4"/>
-                <path d="M80,18 Q145,50 210,18" stroke="#991b1b" stroke-width="2.5" fill="none"/>
-                <circle cx="45" cy="30" r="10" fill="#fef08a"/>
-                <rect x="38" y="40" width="14" height="24" fill="#ec4899" rx="3"/>
-                <rect x="52" y="24" width="22" height="15" fill="#fff" rx="1"/>
-                <rect x="52" y="24" width="22" height="3" fill="#b91c1c"/>
-                <rect x="52" y="30" width="22" height="3" fill="#b91c1c"/>
-                <rect x="52" y="36" width="22" height="3" fill="#b91c1c"/>
-                <rect x="52" y="24" width="10" height="8" fill="#1e3a8a"/>
-                <line x1="52" y1="24" x2="52" y2="55" stroke="#475569" stroke-width="2"/>
-              </svg>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <svg class="flag-svg-icon" style="width:60px; height:40px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="3.2" fill="#b22234"/><rect y="6.4" width="64" height="3.2" fill="#b22234"/><rect y="12.8" width="64" height="3.2" fill="#b22234"/><rect y="19.2" width="64" height="3.2" fill="#b22234"/><rect y="25.6" width="64" height="3.2" fill="#b22234"/><rect y="32" width="64" height="3.2" fill="#b22234"/><rect y="38.4" width="64" height="3.2" fill="#b22234"/><rect width="28" height="22.6" fill="#3c3b6e"/><circle cx="14" cy="11.3" r="4" fill="#fff"/></svg>
+              <span style="font-size:13px; font-weight:900; color:#0f172a;">Mary (America)</span>
             </div>
             <div class="q-title-line">
               <span>2. I'm Mary. I'm <span class="voice-slot-blank" id="slot-l1-5-2">_______ _______</span>.</span>
@@ -826,22 +785,11 @@
             </div>
           </div>
 
-          <!-- Picture 3: Lucy, Big Ben (Khuyết cả Where và Britain) -->
+          <!-- 3. Lucy - Britain -->
           <div class="quiz-single-card">
-            <div class="landmark-illu-box" style="background:#e2e8f0;">
-              <svg viewBox="0 0 280 80">
-                <rect width="280" height="55" fill="#e2e8f0"/>
-                <rect y="55" width="280" height="25" fill="#64748b"/>
-                <rect x="145" y="12" width="24" height="50" fill="#ca8a04"/>
-                <polygon points="140,12 157,0 174,12" fill="#854d0e"/>
-                <circle cx="157" cy="24" r="6" fill="#fff" stroke="#713f12" stroke-width="1.5"/>
-                <circle cx="45" cy="30" r="10" fill="#fed7aa"/>
-                <rect x="38" y="40" width="14" height="24" fill="#eab308" rx="3"/>
-                <rect x="52" y="24" width="22" height="15" fill="#012169" rx="1"/>
-                <path d="M52,24 L74,39 M74,24 L52,39" stroke="#fff" stroke-width="2.5"/>
-                <path d="M63,24 V39 M52,31.5 H74" stroke="#c8102e" stroke-width="2.5"/>
-                <line x1="52" y1="24" x2="52" y2="55" stroke="#475569" stroke-width="2"/>
-              </svg>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <svg class="flag-svg-icon" style="width:60px; height:40px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#012169"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/><path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/><path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/></svg>
+              <span style="font-size:13px; font-weight:900; color:#0f172a;">Lucy (Britain)</span>
             </div>
             <div class="q-title-line">
               <div>
@@ -856,22 +804,11 @@
             </div>
           </div>
 
-          <!-- Picture 4: Ben, Sydney Opera House (Khuyết cụm I'm from) -->
+          <!-- 4. Ben - Australia -->
           <div class="quiz-single-card">
-            <div class="landmark-illu-box" style="background:#bfdbfe;">
-              <svg viewBox="0 0 280 80">
-                <rect width="280" height="55" fill="#bfdbfe"/>
-                <rect y="55" width="280" height="25" fill="#1d4ed8"/>
-                <path d="M120,55 C125,25 155,25 160,55 Z" fill="#f8fafc" stroke="#cbd5e1"/>
-                <path d="M145,55 C150,18 185,18 190,55 Z" fill="#ffffff" stroke="#cbd5e1"/>
-                <path d="M175,55 C180,28 205,28 210,55 Z" fill="#f1f5f9" stroke="#cbd5e1"/>
-                <circle cx="45" cy="30" r="10" fill="#fed7aa"/>
-                <rect x="38" y="40" width="14" height="24" fill="#16a34a" rx="3"/>
-                <rect x="52" y="24" width="22" height="15" fill="#00008b" rx="1"/>
-                <circle cx="67" cy="30" r="1.5" fill="#fff"/>
-                <circle cx="64" cy="34" r="1" fill="#fff"/>
-                <line x1="52" y1="24" x2="52" y2="55" stroke="#475569" stroke-width="2"/>
-              </svg>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <svg class="flag-svg-icon" style="width:60px; height:40px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#00008b"/><rect width="32" height="21" fill="#012169"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#fff" stroke-width="3.5"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#c8102e" stroke-width="1.5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#fff" stroke-width="5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#c8102e" stroke-width="3"/><polygon points="16,25 17,29 21,29 18,31 19,35 16,33 13,35 14,31 11,29 15,29" fill="#fff"/><circle cx="48" cy="14" r="2.2" fill="#fff"/><circle cx="54" cy="21" r="2.2" fill="#fff"/><circle cx="48" cy="28" r="2.2" fill="#fff"/><circle cx="42" cy="21" r="2.2" fill="#fff"/></svg>
+              <span style="font-size:13px; font-weight:900; color:#0f172a;">Ben (Australia)</span>
             </div>
             <div class="q-title-line">
               <div>
@@ -888,7 +825,7 @@
         </div>
       </div>
 
-      <!-- 6. Let's sing: Where are you from? -->
+      <!-- 6. Let's sing -->
       <div class="skill-block theme-yellow">
         <div class="skill-badge-header" style="color:#b45309;">
           <span>🎵 6. Let's sing: Where are you from?</span>
@@ -995,45 +932,42 @@
         </div>
       </div>
 
-      <!-- 3. Let's talk (CHUẨN 2 CHIỀU: CÔ HỎI TRƯỚC -> DỨT CÂU MIC TỰ BẬT CHO CON TRẢ LỜI) -->
+      <!-- 3. Let's talk (CÔ HỎI TRƯỚC -> MIC TỰ SÁNG TRÒ TRẢ LỜI) -->
       <div class="skill-block theme-green">
-        <div class="skill-badge-header" style="color:#16a34a;"><span>💬 3. Let's talk (Teacher asks first, then student answers)</span></div>
-        <p style="font-size:13px; font-weight:800; color:#64748b; margin-bottom:10px;">
-          👉 Click a card: The teacher will ask <b>"Where's he / she from?"</b>. When teacher finishes, speak into your mic!
-        </p>
+        <div class="skill-badge-header" style="color:#16a34a;"><span>💬 3. Let's talk</span></div>
         <div class="grid-2col">
           <div class="speech-card-row" onclick="teacherAskThenStudentAnswer('Where is he from?', 'He is from Singapore.', this)">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
-              <div class="text-stack"><div class="en-word-bold">👦 Singapore</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Click to practice</div></div>
+              <div class="text-stack"><div class="en-word-bold">👦 Singapore</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Click to talk with teacher</div></div>
             </div>
             <div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div>
           </div>
           <div class="speech-card-row" onclick="teacherAskThenStudentAnswer('Where is he from?', 'He is from Malaysia.', this)">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>
-              <div class="text-stack"><div class="en-word-bold">👦 Malaysia</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Click to practice</div></div>
+              <div class="text-stack"><div class="en-word-bold">👦 Malaysia</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Click to talk with teacher</div></div>
             </div>
             <div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div>
           </div>
           <div class="speech-card-row" onclick="teacherAskThenStudentAnswer('Where is she from?', 'She is from Thailand.', this)">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>
-              <div class="text-stack"><div class="en-word-bold">👧 Thailand</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Click to practice</div></div>
+              <div class="text-stack"><div class="en-word-bold">👧 Thailand</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Click to talk with teacher</div></div>
             </div>
             <div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div>
           </div>
           <div class="speech-card-row" onclick="teacherAskThenStudentAnswer('Where is she from?', 'She is from Japan.', this)">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>
-              <div class="text-stack"><div class="en-word-bold">👧 Japan</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Click to practice</div></div>
+              <div class="text-stack"><div class="en-word-bold">👧 Japan</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Click to talk with teacher</div></div>
             </div>
             <div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div>
           </div>
         </div>
       </div>
 
-      <!-- 4. Listen and tick (SGK TRANG 13 - NHẬN DIỆN HÌNH ẢNH LÁ CỜ THEO TRACK 12) -->
+      <!-- 4. Listen and tick (SGK TRANG 13 - TRACK 12) -->
       <div class="skill-block theme-purple">
         <div class="skill-badge-header" style="color:#9333ea;">
           <span>✅ 4. Listen and tick (SGK Page 13 - Track 12)</span>
@@ -1118,7 +1052,7 @@
         </div>
       </div>
 
-      <!-- 6. Let's play: ĐỐI THOẠI 2 CHIỀU THỰC SỰ (HỎI -> CHỌN CỜ -> NÓI VÀO MIC) -->
+      <!-- 6. Let's play: TỰ NHIÊN - ĐÃ BỎ TOÀN BỘ CHỮ HƯỚNG DẪN THỪA -->
       <div class="skill-block theme-yellow">
         <div class="skill-badge-header" style="color:#b45309;">
           <span>🎮 6. Let's play: Find someone who is from...</span>
@@ -1126,14 +1060,12 @@
         <div class="interview-dialog-box">
           <div style="font-size:36px;">🧑‍💼</div>
           <div class="interviewer-bubble">
-            <span>Interviewer asks: "Where are you from?"</span>
+            <span>"Where are you from?"</span>
             <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from?')">🔊</button>
           </div>
-          <p style="font-size:13px; font-weight:800; color:#64748b;">
-            👉 Step 1: Click a flag to choose where you are from.<br>
-            👉 Step 2: Speak into the microphone: <b>"I'm from [Country]."</b>
-          </p>
-          <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; width:100%;">
+          
+          <!-- 3 THẺ CỜ TRỰC QUAN ĐỂ HỌC SINH TỰ CHỌN -->
+          <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; width:100%;">
             <div class="student-role-card" onclick="selectPlayRole('Viet Nam', 'I am from Viet Nam.', this)">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg>
               <span>Viet Nam</span>
@@ -1147,6 +1079,7 @@
               <span>Britain</span>
             </div>
           </div>
+          
           <div id="play-answer-panel" style="display:none; margin-top:8px; align-items:center; gap:10px;">
             <span style="font-size:14px; font-weight:900; color:#0284c7;">Say: <b id="play-target-sentence">"I'm from Viet Nam."</b></span>
             <button class="circle-btn btn-audio-mic awaiting-user" onclick="recordPlayAnswer(this)">🎤</button>
@@ -1312,7 +1245,7 @@
       </div>
     </div>
 
-    <!-- ================= VIEW 4: WORKBOOK ĐẦY ĐỦ CẢ A, B, C, D, E, F VÀ NỐI 2 CỘT TƯƠNG TÁC ================= -->
+    <!-- ================= VIEW 4: WORKBOOK ĐẦY ĐỦ CẢ A, B, C, D, E, F VÀ NỐI 2 CỘT ================= -->
     <div id="content-workbook" style="display:none;">
       <div class="skill-block theme-purple">
         <div class="skill-badge-header" style="color:#9333ea;"><span>📚 Workbook Unit 1</span></div>
@@ -1385,8 +1318,7 @@
           </div>
         </div>
 
-        <!-- BÀI 2 NỐI 2 CỘT TƯƠNG TÁC THỰC SỰ (READ AND MATCH) -->
-        <div style="font-weight:800; color:#475569; font-size:13px; margin: 12px 0 6px;">2. Read and match (Click Left question, then click Right answer):</div>
+        <div style="font-weight:800; color:#475569; font-size:13px; margin: 12px 0 6px;">2. Read and match:</div>
         <div class="match-interactive-container">
           <div class="match-column" id="col-questions">
             <div class="match-item-card" data-id="1" onclick="handleMatchClick('left', 1, this)">1. What's your name?</div>
@@ -1515,7 +1447,7 @@
       </div>
     </div>
 
-    <!-- ================= VIEW 7: UNIT TEST 32 CÂU (BỎ CHỮ THỪA, TÍCH TRỰC TIẾP VÀO LÁ CỜ) ================= -->
+    <!-- ================= VIEW 7: UNIT TEST 32 CÂU ================= -->
     <div id="content-test" style="display:none;">
       <div class="skill-block theme-yellow">
         <div class="skill-badge-header" style="color:#b45309;">
@@ -1523,7 +1455,7 @@
           <span style="background:#f59e0b; color:#fff; padding:3px 8px; border-radius:10px; font-size:11px; margin-left:auto;">Target: &ge; 80 to unlock Unit 2</span>
         </div>
 
-        <p style="font-weight:900; color:#0284c7; margin: 8px 0 6px; font-size:13.5px;">Part 1: Listening (Listen to audio & click the correct flag - 25 pts)</p>
+        <p style="font-weight:900; color:#0284c7; margin: 8px 0 6px; font-size:13.5px;">Part 1: Listening (Listen to audio & click the flag - 25 pts)</p>
         <div class="grid-2col">
           <!-- Q1: Viet Nam -->
           <div class="quiz-single-card">
@@ -1691,7 +1623,7 @@
           </div>
         </div>
 
-        <!-- 3. WRITING (Q17 - Q24) -->
+        <!-- 3. WRITING (Q17 - Q24: ĐÃ THAY BẰNG NHẬN DIỆN CỜ CHUẨN ĐỂ CHỌN TỪ ĐÚNG) -->
         <p style="font-weight:900; color:#ea580c; margin: 12px 0 4px; font-size:13px;">Part 3: Writing (8 questions - 25 pts)</p>
         <div class="grid-2col">
           <div class="quiz-single-card">
@@ -1710,50 +1642,167 @@
             <div class="q-title-line"><span>20. (from / She's / America / .)</span><button class="circle-btn btn-audio-listen" onclick="speak('She is from America.')">🔊</button></div>
             <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestChoice(this, 3.125, true)">She's from America.</button><button class="chip-option-btn" onclick="recordTestChoice(this, 0, false)">America from She's.</button></div>
           </div>
+
+          <!-- Q21: Australia -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>21. Correct spelling:</span></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#00008b"/><rect width="32" height="21" fill="#012169"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#fff" stroke-width="3.5"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#c8102e" stroke-width="1.5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#fff" stroke-width="5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#c8102e" stroke-width="3"/><polygon points="16,25 17,29 21,29 18,31 19,35 16,33 13,35 14,31 11,29 15,29" fill="#fff"/><circle cx="48" cy="14" r="2.2" fill="#fff"/><circle cx="54" cy="21" r="2.2" fill="#fff"/><circle cx="48" cy="28" r="2.2" fill="#fff"/><circle cx="42" cy="21" r="2.2" fill="#fff"/></svg>
+                <span>21. He's from ________.</span>
+              </div>
+            </div>
             <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestChoice(this, 3.125, true)">Australia</button><button class="chip-option-btn" onclick="recordTestChoice(this, 0, false)">Austrelia</button></div>
           </div>
+
+          <!-- Q22: Singapore -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>22. Correct spelling:</span></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
+                <span>22. She's from ________.</span>
+              </div>
+            </div>
             <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestChoice(this, 3.125, true)">Singapore</button><button class="chip-option-btn" onclick="recordTestChoice(this, 0, false)">Singapoor</button></div>
           </div>
+
+          <!-- Q23: Malaysia -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>23. Correct spelling:</span></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>
+                <span>23. I'm from ________.</span>
+              </div>
+            </div>
             <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestChoice(this, 3.125, true)">Malaysia</button><button class="chip-option-btn" onclick="recordTestChoice(this, 0, false)">Malaisia</button></div>
           </div>
+
+          <!-- Q24: Britain -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>24. Correct spelling:</span></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#012169"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/><path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/><path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/></svg>
+                <span>24. She's from ________.</span>
+              </div>
+            </div>
             <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestChoice(this, 3.125, true)">Britain</button><button class="chip-option-btn" onclick="recordTestChoice(this, 0, false)">Briten</button></div>
           </div>
         </div>
 
-        <!-- 4. SPEAKING (Q25 - Q32) -->
-        <p style="font-weight:900; color:#db2777; margin: 12px 0 4px; font-size:13px;">Part 4: Speaking (8 questions - 25 pts)</p>
+        <!-- 4. SPEAKING (Q25 - Q32: VẤN ĐÁP 2 CHIỀU THỰC SỰ - ĐÃ BỎ CHỮ SAY) -->
+        <p style="font-weight:900; color:#db2777; margin: 12px 0 4px; font-size:13px;">Part 4: Speaking (Listen to teacher's question and speak your answer - 25 pts)</p>
         <div class="grid-2col">
+          <!-- 25: VN -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>25. Say: "I'm from Viet Nam."</span><button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'I am from Viet Nam')">🎤</button></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg>
+                <span>25. Teacher: "Where are you from?"</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from?')">🔊</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+              <span style="font-size:12px; font-weight:800; color:#64748b;">Answer: I'm from Viet Nam.</span>
+              <button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'I am from Viet Nam')">🎤</button>
+            </div>
           </div>
+
+          <!-- 26: Question -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>26. Say: "Where are you from?"</span><button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'Where are you from')">🎤</button></div>
+            <div class="q-title-line">
+              <span>26. Ask friend where they are from:</span>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from?')">🔊</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+              <span style="font-size:12px; font-weight:800; color:#64748b;">Say: "Where are you from?"</span>
+              <button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'Where are you from')">🎤</button>
+            </div>
           </div>
+
+          <!-- 27: Singapore -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>27. Say: "He's from Singapore."</span><button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'He is from Singapore')">🎤</button></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
+                <span>27. Teacher: "Where's he from?"</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where is he from?')">🔊</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+              <span style="font-size:12px; font-weight:800; color:#64748b;">Answer: He's from Singapore.</span>
+              <button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'He is from Singapore')">🎤</button>
+            </div>
           </div>
+
+          <!-- 28: Japan -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>28. Say: "She's from Japan."</span><button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'She is from Japan')">🎤</button></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>
+                <span>28. Teacher: "Where's she from?"</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where is she from?')">🔊</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+              <span style="font-size:12px; font-weight:800; color:#64748b;">Answer: She's from Japan.</span>
+              <button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'She is from Japan')">🎤</button>
+            </div>
           </div>
+
+          <!-- 29: Question -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>29. Say: "Where's he from?"</span><button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'Where is he from')">🎤</button></div>
+            <div class="q-title-line">
+              <span>29. Ask where a boy is from:</span>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where is he from?')">🔊</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+              <span style="font-size:12px; font-weight:800; color:#64748b;">Say: "Where's he from?"</span>
+              <button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'Where is he from')">🎤</button>
+            </div>
           </div>
+
+          <!-- 30: Thailand -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>30. Say: "She's from Thailand."</span><button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'She is from Thailand')">🎤</button></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>
+                <span>30. Teacher: "Where's she from?"</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where is she from?')">🔊</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+              <span style="font-size:12px; font-weight:800; color:#64748b;">Answer: She's from Thailand.</span>
+              <button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'She is from Thailand')">🎤</button>
+            </div>
           </div>
+
+          <!-- 31: America -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>31. Say: "I'm from America."</span><button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'I am from America')">🎤</button></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="3.2" fill="#b22234"/><rect y="6.4" width="64" height="3.2" fill="#b22234"/><rect y="12.8" width="64" height="3.2" fill="#b22234"/><rect y="19.2" width="64" height="3.2" fill="#b22234"/><rect y="25.6" width="64" height="3.2" fill="#b22234"/><rect y="32" width="64" height="3.2" fill="#b22234"/><rect y="38.4" width="64" height="3.2" fill="#b22234"/><rect width="28" height="22.6" fill="#3c3b6e"/><circle cx="14" cy="11.3" r="4" fill="#fff"/></svg>
+                <span>31. Teacher: "Where are you from?"</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from?')">🔊</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+              <span style="font-size:12px; font-weight:800; color:#64748b;">Answer: I'm from America.</span>
+              <button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'I am from America')">🎤</button>
+            </div>
           </div>
+
+          <!-- 32: Australia -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>32. Say: "I'm from Australia."</span><button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'I am from Australia')">🎤</button></div>
+            <div class="q-title-line">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg class="flag-svg-icon" style="width:36px; height:24px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#00008b"/><rect width="32" height="21" fill="#012169"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#fff" stroke-width="3.5"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#c8102e" stroke-width="1.5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#fff" stroke-width="5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#c8102e" stroke-width="3"/><polygon points="16,25 17,29 21,29 18,31 19,35 16,33 13,35 14,31 11,29 15,29" fill="#fff"/><circle cx="48" cy="14" r="2.2" fill="#fff"/><circle cx="54" cy="21" r="2.2" fill="#fff"/><circle cx="48" cy="28" r="2.2" fill="#fff"/><circle cx="42" cy="21" r="2.2" fill="#fff"/></svg>
+                <span>32. Teacher: "Where are you from?"</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from?')">🔊</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+              <span style="font-size:12px; font-weight:800; color:#64748b;">Answer: I'm from Australia.</span>
+              <button class="circle-btn btn-audio-mic" onclick="testMicTestAns(this, 'I am from Australia')">🎤</button>
+            </div>
           </div>
         </div>
 
@@ -1772,7 +1821,7 @@
   let testScore = 0;
   let bestTeacherVoice = null;
 
-  // GIẢI PHÓNG AUDIO CHỐNG TREO TRÊN GOOGLE CHROME MÁY TÍNH
+  // GIẢI PHÓNG AUDIO TỰ ĐỘNG CHỐNG KẸT TRÊN CHROME MÁY TÍNH
   function unlockAudioEngine() {
     if ('speechSynthesis' in window) {
       if (window.speechSynthesis.paused) {
@@ -1825,7 +1874,7 @@
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
 
-  // LESSON 1 - BÀI 5: ĐIỀN KHUYẾT
+  // LESSON 1 BÀI 5: ĐIỀN KHUYẾT
   function fillInlineBlank(slotId, text, isCorrect, btn) {
     speak(text);
     const slot = document.getElementById(slotId);
@@ -1903,7 +1952,7 @@
     }
   }
 
-  // LESSON 2 - BÀI 6: ĐỐI THOẠI 2 CHIỀU
+  // LESSON 2 - BÀI 6: ĐỐI THOẠI 2 CHIỀU (TỰ CHỌN CỜ VÀ NÓI)
   let curPlayRoleSentence = '';
   function selectPlayRole(country, fullSentence, cardEl) {
     document.querySelectorAll('.student-role-card').forEach(c => c.classList.remove('active-choice'));
