@@ -303,7 +303,7 @@
   .chip-option-btn.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
   .chip-option-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
 
-  /* TRANH QUỐC KỲ BÀI 4 LESSON 2 VÀ UNIT TEST */
+  /* TRANH QUỐC KỲ CHO UNIT TEST */
   .listen-tick-card {
     background: #ffffff;
     border: 2px solid #cbd5e1;
@@ -327,26 +327,6 @@
     border-color: #ef4444;
     background: #fef2f2;
     animation: shake 0.4s ease;
-  }
-  .tick-badge-indicator {
-    position: absolute;
-    top: 6px;
-    right: 8px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 2px solid #cbd5e1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 900;
-    background: #fff;
-  }
-  .listen-tick-card.selected-correct .tick-badge-indicator {
-    background: #22c55e;
-    color: #fff;
-    border-color: #22c55e;
   }
 
   /* BÀI 6 LESSON 2 LET'S PLAY */
@@ -429,7 +409,7 @@
   .match-item-card.selected { border-color: #f59e0b; background: #fef3c7; }
   .match-item-card.matched { border-color: #22c55e; background: #dcfce7; color: #15803d; pointer-events: none; }
 
-  /* BÀI 4 LISTEN AND NUMBER */
+  /* BÀI 4 LISTEN AND NUMBER: DÙNG CHUNG CHO CẢ LESSON 1 VÀ LESSON 2 */
   .grid-4cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -979,50 +959,46 @@
         </div>
       </div>
 
-      <!-- 4. Listen and tick (SGK TRANG 13 - TRACK 12) -->
+      <!-- 4. Listen and number: CHUẨN ĐỒNG BỘ 4 TRANH KÈM Ô ĐIỀN SỐ GIỐNG LESSON 1 BÀI 4 -->
       <div class="skill-block theme-purple">
         <div class="skill-badge-header" style="color:#9333ea;">
-          <span>✅ 4. Listen and tick (SGK Page 13 - Track 12)</span>
+          <span>🔢 4. Listen and number (SGK Page 13 - Track 12)</span>
+          <button class="circle-btn btn-audio-listen" style="margin-left:auto; width:auto; padding:4px 12px; border-radius:14px; gap:4px; display:inline-flex;" onclick="playTrack12()">🔊 Play Conversation (Track 12)</button>
         </div>
-        
-        <!-- Track 1: Malaysia vs Singapore -->
-        <div style="background:#fff; border-radius:14px; padding:12px; margin-bottom:12px; border:2px solid #e2e8f0;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-            <span style="font-weight:900; font-size:14px; color:#0284c7;">1. Track 1</span>
-            <button class="circle-btn btn-audio-listen" style="width:auto; padding:4px 10px; border-radius:12px; font-size:12px; gap:4px; display:inline-flex;" onclick="speak('Where is he from? He is from Malaysia.')">🔊 Play Track 1</button>
+        <p style="font-size:13px; font-weight:800; color:#64748b; margin-bottom:10px;">Listen to the track and write 1, 2, 3, or 4 in the boxes below:</p>
+        <div class="grid-4cards">
+          <!-- a. Singapore -->
+          <div class="pic-number-box">
+            <span class="pic-number-tag">a</span>
+            <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
+            <div style="font-size:13px; font-weight:900; margin-top:4px;">Singapore</div>
+            <input type="text" class="slot-input-number" id="box-num-l2-a" maxlength="1" placeholder="?" onchange="checkOrderNumber(this, '2')">
           </div>
-          <div class="grid-2col">
-            <div class="listen-tick-card" onclick="checkListenTick(this, true, 'He is from Malaysia.')">
-              <div class="tick-badge-indicator">a</div>
-              <svg class="flag-svg-icon" style="width:64px; height:42px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>
-            </div>
-            <div class="listen-tick-card" onclick="checkListenTick(this, false, 'Try again!')">
-              <div class="tick-badge-indicator">b</div>
-              <svg class="flag-svg-icon" style="width:64px; height:42px;" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
-            </div>
+          <!-- b. Malaysia -->
+          <div class="pic-number-box">
+            <span class="pic-number-tag">b</span>
+            <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>
+            <div style="font-size:13px; font-weight:900; margin-top:4px;">Malaysia</div>
+            <input type="text" class="slot-input-number" id="box-num-l2-b" maxlength="1" placeholder="?" onchange="checkOrderNumber(this, '1')">
           </div>
-        </div>
-
-        <!-- Track 2: Thailand vs Japan -->
-        <div style="background:#fff; border-radius:14px; padding:12px; border:2px solid #e2e8f0;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-            <span style="font-weight:900; font-size:14px; color:#0284c7;">2. Track 2</span>
-            <button class="circle-btn btn-audio-listen" style="width:auto; padding:4px 10px; border-radius:12px; font-size:12px; gap:4px; display:inline-flex;" onclick="speak('Where is she from? She is from Japan.')">🔊 Play Track 2</button>
+          <!-- c. Thailand -->
+          <div class="pic-number-box">
+            <span class="pic-number-tag">c</span>
+            <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>
+            <div style="font-size:13px; font-weight:900; margin-top:4px;">Thailand</div>
+            <input type="text" class="slot-input-number" id="box-num-l2-c" maxlength="1" placeholder="?" onchange="checkOrderNumber(this, '4')">
           </div>
-          <div class="grid-2col">
-            <div class="listen-tick-card" onclick="checkListenTick(this, false, 'Try again!')">
-              <div class="tick-badge-indicator">a</div>
-              <svg class="flag-svg-icon" style="width:64px; height:42px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>
-            </div>
-            <div class="listen-tick-card" onclick="checkListenTick(this, true, 'She is from Japan.')">
-              <div class="tick-badge-indicator">b</div>
-              <svg class="flag-svg-icon" style="width:64px; height:42px;" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>
-            </div>
+          <!-- d. Japan -->
+          <div class="pic-number-box">
+            <span class="pic-number-tag">d</span>
+            <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>
+            <div style="font-size:13px; font-weight:900; margin-top:4px;">Japan</div>
+            <input type="text" class="slot-input-number" id="box-num-l2-d" maxlength="1" placeholder="?" onchange="checkOrderNumber(this, '3')">
           </div>
         </div>
       </div>
 
-      <!-- 5. Look, complete and read (ĐÃ BỎ CHỮ 'Picture 1...' VÀ THAY BẰNG ICON HỌC SINH + CỜ) -->
+      <!-- 5. Look, complete and read -->
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;"><span>✍️ 5. Look, complete and read</span></div>
         <div class="grid-2col">
@@ -1507,7 +1483,7 @@
       </div>
     </div>
 
-    <!-- ================= VIEW 7: UNIT TEST 32 CÂU (BỎ CHỮ ANSWER THỪA, DÙNG ICON HỌC SINH 🧑‍🎓) ================= -->
+    <!-- ================= VIEW 7: UNIT TEST 32 CÂU ================= -->
     <div id="content-test" style="display:none;">
       <div class="skill-block theme-yellow">
         <div class="skill-badge-header" style="color:#b45309;">
@@ -1748,7 +1724,7 @@
           </div>
         </div>
 
-        <!-- 4. SPEAKING (Q25 - Q32: ĐÃ BỎ HẲN CHỮ ANSWER, THAY BẰNG ICON HỌC SINH 🧑‍🎓) -->
+        <!-- 4. SPEAKING (Q25 - Q32) -->
         <p style="font-weight:900; color:#db2777; margin: 12px 0 4px; font-size:13px;">Part 4: Speaking (Listen to teacher's question and speak your answer - 25 pts)</p>
         <div class="grid-2col">
           <!-- 25: VN -->
@@ -1995,21 +1971,9 @@
     });
   }
 
-  // LESSON 2 - BÀI 4: TÍCH TRANH CỜ
-  function checkListenTick(card, isCorrect, feedback) {
-    speak(feedback);
-    const parent = card.parentElement;
-    parent.querySelectorAll('.listen-tick-card').forEach(c => c.classList.remove('selected-correct', 'selected-wrong'));
-    if (isCorrect) {
-      card.classList.add('selected-correct');
-      trueCount++;
-      document.getElementById('score-true-num').textContent = trueCount;
-      confetti({ particleCount: 30, spread: 50 });
-    } else {
-      card.classList.add('selected-wrong');
-      falseCount++;
-      document.getElementById('score-false-num').textContent = falseCount;
-    }
+  // TRACK 12 CHO BÀI 4 LESSON 2
+  function playTrack12() {
+    speak("One. Where is he from? He is from Malaysia. Two. Where is he from? He is from Singapore. Three. Where is she from? She is from Japan. Four. Where is she from? She is from Thailand.");
   }
 
   // LESSON 2 - BÀI 6: ĐỐI THOẠI 2 CHIỀU
