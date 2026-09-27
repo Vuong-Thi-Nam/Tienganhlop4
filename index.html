@@ -188,7 +188,7 @@
     gap: 6px;
   }
 
-  /* MODEL BANNER TRÊN ĐẦU MỤC 2 */
+  /* MODEL BANNER TRÊN ĐẦU MỤC 2 & 3 */
   .model-qa-banner {
     background: #ffffff;
     border: 2px solid #f97316;
@@ -313,6 +313,49 @@
   .chip-option-btn.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
   .chip-option-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
 
+  /* BÀI 4 LISTEN AND NUMBER: HÌNH CÓ Ô VUÔNG ĐIỀN SỐ THỨ TỰ (CHUẨN SGK) */
+  .grid-4cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+  }
+  @media(max-width: 640px) { .grid-4cards { grid-template-columns: repeat(2, 1fr); } }
+  .pic-number-box {
+    background: #fff;
+    border: 2px solid #bae6fd;
+    border-radius: 14px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .pic-number-tag {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: 12px;
+    font-weight: 900;
+    color: #0284c7;
+  }
+  .slot-input-number {
+    width: 38px;
+    height: 38px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+    color: #0f172a;
+    margin-top: 8px;
+    outline: none;
+  }
+  .slot-input-number:focus { border-color: #0284c7; background: #f0f9ff; }
+  .slot-input-number.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
+  .slot-input-number.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
+
   /* GHÉP CHỮ PHẦN A */
   .word-fill-container {
     background: #fff;
@@ -381,7 +424,7 @@
     gap: 8px;
   }
 
-  /* MINI GAME CARDS */
+  /* MINI GAME CARDS SẠCH */
   .memory-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -499,9 +542,12 @@
         </div>
       </div>
 
-      <!-- 2. Listen, point and say -->
+      <!-- 2. Listen, point and say (CÔ HỎI Ở TRÊN - HỌC SINH ĐỌC TÊN NƯỚC ĐIỀN KHUYẾT) -->
       <div class="skill-block theme-orange">
-        <div class="skill-badge-header" style="color:#ea580c;"><span>🗣️ 2. Listen, point and say</span></div>
+        <div class="skill-badge-header" style="color:#ea580c;">
+          <span>🗣️ 2. Listen, point and say</span>
+        </div>
+
         <div class="model-qa-banner">
           <div>
             <div class="model-qa-title">👩‍🏫 Teacher asks: "Where are you from?"</div>
@@ -511,6 +557,7 @@
         </div>
 
         <div class="grid-2col">
+          <!-- a. Britain -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#012169"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/><path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/><path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/></svg>
@@ -525,6 +572,7 @@
             </div>
           </div>
 
+          <!-- b. Viet Nam -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg>
@@ -539,6 +587,7 @@
             </div>
           </div>
 
+          <!-- c. America -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="3.2" fill="#b22234"/><rect y="6.4" width="64" height="3.2" fill="#b22234"/><rect y="12.8" width="64" height="3.2" fill="#b22234"/><rect y="19.2" width="64" height="3.2" fill="#b22234"/><rect y="25.6" width="64" height="3.2" fill="#b22234"/><rect y="32" width="64" height="3.2" fill="#b22234"/><rect y="38.4" width="64" height="3.2" fill="#b22234"/><rect width="28" height="22.6" fill="#3c3b6e"/><circle cx="14" cy="11.3" r="4" fill="#fff"/></svg>
@@ -553,6 +602,7 @@
             </div>
           </div>
 
+          <!-- d. Australia -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#00008b"/><rect width="32" height="21" fill="#012169"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#fff" stroke-width="3.5"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#c8102e" stroke-width="1.5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#fff" stroke-width="5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#c8102e" stroke-width="3"/><polygon points="16,25 17,29 21,29 18,31 19,35 16,33 13,35 14,31 11,29 15,29" fill="#fff"/><circle cx="48" cy="14" r="2.2" fill="#fff"/><circle cx="54" cy="21" r="2.2" fill="#fff"/><circle cx="48" cy="28" r="2.2" fill="#fff"/><circle cx="42" cy="21" r="2.2" fill="#fff"/></svg>
@@ -569,35 +619,86 @@
         </div>
       </div>
 
-      <!-- 3. Let's talk -->
+      <!-- 3. Let's talk (ĐỦ 4 LÁ CỜ CỦA 4 BẠN THEO SGK) -->
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 3. Let's talk</span></div>
-        <div class="speech-card-row">
-          <div class="text-stack"><div class="en-word-bold">Where are you from? — I'm from _______.</div></div>
-          <div class="action-audio-btns">
-            <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from? I am from Viet Nam.')">🔊</button>
-            <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Where are you from? I am from Viet Nam.')">🎤</button>
+        <div class="model-qa-banner">
+          <div>
+            <div class="model-qa-title">Where are you from? — I'm from _______.</div>
+            <div class="model-qa-sub">Click a flag to hear the question, then speak your answer!</div>
+          </div>
+        </div>
+        <div class="grid-2col">
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg>
+              <div class="text-stack"><div class="en-word-bold">Minh (Viet Nam)</div></div>
+            </div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where are you from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from Viet Nam.')">🎤</button></div>
+          </div>
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="3.2" fill="#b22234"/><rect y="6.4" width="64" height="3.2" fill="#b22234"/><rect y="12.8" width="64" height="3.2" fill="#b22234"/><rect y="19.2" width="64" height="3.2" fill="#b22234"/><rect y="25.6" width="64" height="3.2" fill="#b22234"/><rect y="32" width="64" height="3.2" fill="#b22234"/><rect y="38.4" width="64" height="3.2" fill="#b22234"/><rect width="28" height="22.6" fill="#3c3b6e"/><circle cx="14" cy="11.3" r="4" fill="#fff"/></svg>
+              <div class="text-stack"><div class="en-word-bold">Mary (America)</div></div>
+            </div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where are you from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from America.')">🎤</button></div>
+          </div>
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#012169"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/><path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/><path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/></svg>
+              <div class="text-stack"><div class="en-word-bold">Lucy (Britain)</div></div>
+            </div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where are you from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from Britain.')">🎤</button></div>
+          </div>
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#00008b"/><rect width="32" height="21" fill="#012169"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#fff" stroke-width="3.5"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#c8102e" stroke-width="1.5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#fff" stroke-width="5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#c8102e" stroke-width="3"/><polygon points="16,25 17,29 21,29 18,31 19,35 16,33 13,35 14,31 11,29 15,29" fill="#fff"/><circle cx="48" cy="14" r="2.2" fill="#fff"/><circle cx="54" cy="21" r="2.2" fill="#fff"/><circle cx="48" cy="28" r="2.2" fill="#fff"/><circle cx="42" cy="21" r="2.2" fill="#fff"/></svg>
+              <div class="text-stack"><div class="en-word-bold">Ben (Australia)</div></div>
+            </div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where are you from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from Australia.')">🎤</button></div>
           </div>
         </div>
       </div>
 
-      <!-- 4. Listen and number -->
+      <!-- 4. Listen and number (CHUẨN 100% SGK: 4 TRANH CÓ Ô VUÔNG ĐIỀN SỐ 1, 2, 3, 4) -->
       <div class="skill-block theme-purple">
-        <div class="skill-badge-header" style="color:#9333ea;"><span>🔢 4. Listen and number</span></div>
-        <div class="grid-2col">
-          <div class="quiz-single-card">
-            <div class="q-title-line"><span>Track 1:</span><button class="circle-btn btn-audio-listen" onclick="speak('1. Hello. I am Minh. I am from Viet Nam.')">🔊</button></div>
-            <div class="chips-options-row">
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Minh, Viet Nam')">a. Minh (Viet Nam)</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Ben')">b. Ben (Australia)</button>
-            </div>
+        <div class="skill-badge-header" style="color:#9333ea;">
+          <span>🔢 4. Listen and number</span>
+          <button class="circle-btn btn-audio-listen" style="margin-left:auto; width:auto; padding:4px 10px; border-radius:12px; gap:4px; display:inline-flex;" onclick="playTrack8()">🔊 Listen Audio</button>
+        </div>
+        <p style="font-size:12.5px; font-weight:800; color:#64748b; margin-bottom:8px;">Listen and enter the correct number (1, 2, 3, or 4) into the boxes below the pictures:</p>
+        
+        <div class="grid-4cards">
+          <!-- a. Viet Nam (Correct: 1) -->
+          <div class="pic-number-box">
+            <span class="pic-number-tag">a</span>
+            <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg>
+            <div style="font-size:13px; font-weight:900; margin-top:4px;">Minh</div>
+            <input type="text" class="slot-input-number" id="box-num-a" maxlength="1" placeholder="?" onchange="checkOrderNumber(this, '1')">
           </div>
-          <div class="quiz-single-card">
-            <div class="q-title-line"><span>Track 2:</span><button class="circle-btn btn-audio-listen" onclick="speak('2. Hi, I am Mary. I am from America.')">🔊</button></div>
-            <div class="chips-options-row">
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Mary, America')">c. Mary (America)</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Lucy')">d. Lucy (Britain)</button>
-            </div>
+
+          <!-- b. Australia (Correct: 4) -->
+          <div class="pic-number-box">
+            <span class="pic-number-tag">b</span>
+            <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#00008b"/><rect width="32" height="21" fill="#012169"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#fff" stroke-width="3.5"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#c8102e" stroke-width="1.5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#fff" stroke-width="5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#c8102e" stroke-width="3"/><polygon points="16,25 17,29 21,29 18,31 19,35 16,33 13,35 14,31 11,29 15,29" fill="#fff"/><circle cx="48" cy="14" r="2.2" fill="#fff"/><circle cx="54" cy="21" r="2.2" fill="#fff"/><circle cx="48" cy="28" r="2.2" fill="#fff"/><circle cx="42" cy="21" r="2.2" fill="#fff"/></svg>
+            <div style="font-size:13px; font-weight:900; margin-top:4px;">Ben</div>
+            <input type="text" class="slot-input-number" id="box-num-b" maxlength="1" placeholder="?" onchange="checkOrderNumber(this, '4')">
+          </div>
+
+          <!-- c. America (Correct: 3) -->
+          <div class="pic-number-box">
+            <span class="pic-number-tag">c</span>
+            <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="3.2" fill="#b22234"/><rect y="6.4" width="64" height="3.2" fill="#b22234"/><rect y="12.8" width="64" height="3.2" fill="#b22234"/><rect y="19.2" width="64" height="3.2" fill="#b22234"/><rect y="25.6" width="64" height="3.2" fill="#b22234"/><rect y="32" width="64" height="3.2" fill="#b22234"/><rect y="38.4" width="64" height="3.2" fill="#b22234"/><rect width="28" height="22.6" fill="#3c3b6e"/><circle cx="14" cy="11.3" r="4" fill="#fff"/></svg>
+            <div style="font-size:13px; font-weight:900; margin-top:4px;">Mary</div>
+            <input type="text" class="slot-input-number" id="box-num-c" maxlength="1" placeholder="?" onchange="checkOrderNumber(this, '3')">
+          </div>
+
+          <!-- d. Britain (Correct: 2) -->
+          <div class="pic-number-box">
+            <span class="pic-number-tag">d</span>
+            <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#012169"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/><path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/><path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/></svg>
+            <div style="font-size:13px; font-weight:900; margin-top:4px;">Lucy</div>
+            <input type="text" class="slot-input-number" id="box-num-d" maxlength="1" placeholder="?" onchange="checkOrderNumber(this, '2')">
           </div>
         </div>
       </div>
@@ -655,7 +756,7 @@
         </div>
       </div>
 
-      <!-- 2. Listen, point and say -->
+      <!-- 2. Listen, point and say (CÔ HỎI NGÔI 3 - HỌC SINH ĐỌC TÊN NƯỚC ĐIỀN KHUYẾT) -->
       <div class="skill-block theme-orange">
         <div class="skill-badge-header" style="color:#ea580c;"><span>🗣️ 2. Listen, point and say</span></div>
         <div class="model-qa-banner">
@@ -667,6 +768,7 @@
         </div>
 
         <div class="grid-2col">
+          <!-- a. Singapore -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
@@ -681,6 +783,7 @@
             </div>
           </div>
 
+          <!-- b. Malaysia -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>
@@ -695,6 +798,7 @@
             </div>
           </div>
 
+          <!-- c. Thailand -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>
@@ -709,6 +813,7 @@
             </div>
           </div>
 
+          <!-- d. Japan -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>
@@ -725,14 +830,43 @@
         </div>
       </div>
 
-      <!-- 3. Let's talk -->
+      <!-- 3. Let's talk (ĐỦ 4 LÁ CỜ CỦA 4 BẠN Ở LESSON 2) -->
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 3. Let's talk</span></div>
-        <div class="speech-card-row">
-          <div class="text-stack"><div class="en-word-bold">Where's he/she from? — He's/She's from _______.</div></div>
-          <div class="action-audio-btns">
-            <button class="circle-btn btn-audio-listen" onclick="speak('Where is she from? She is from Japan.')">🔊</button>
-            <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'She is from Japan.')">🎤</button>
+        <div class="model-qa-banner">
+          <div>
+            <div class="model-qa-title">Where's he / she from? — He's / She's from _______.</div>
+            <div class="model-qa-sub">Click to hear the question, then speak your answer!</div>
+          </div>
+        </div>
+        <div class="grid-2col">
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
+              <div class="text-stack"><div class="en-word-bold">Singapore</div></div>
+            </div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where is he from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'He is from Singapore.')">🎤</button></div>
+          </div>
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>
+              <div class="text-stack"><div class="en-word-bold">Malaysia</div></div>
+            </div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where is he from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'He is from Malaysia.')">🎤</button></div>
+          </div>
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>
+              <div class="text-stack"><div class="en-word-bold">Thailand</div></div>
+            </div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where is she from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'She is from Thailand.')">🎤</button></div>
+          </div>
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>
+              <div class="text-stack"><div class="en-word-bold">Japan</div></div>
+            </div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where is she from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'She is from Japan.')">🎤</button></div>
           </div>
         </div>
       </div>
@@ -1035,13 +1169,14 @@
       </div>
     </div>
 
-    <!-- ================= VIEW 6: MINI GAMES (ĐỦ 8 CẶP NƯỚC) ================= -->
+    <!-- ================= VIEW 6: MINI GAMES (SẠCH, KHÔNG MÃ VÙNG) ================= -->
     <div id="content-games" style="display:none;">
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;">
           <span>🎮 Memory Match: 8 Countries</span>
           <button class="tab-pill-btn" style="margin-left:auto;" onclick="initMemoryGame()">Restart 🔄</button>
         </div>
+        <p style="text-align:center; font-size:13px; font-weight:800; color:#64748b;">Match the Flag with its Country Name:</p>
         <div class="memory-grid" id="memory-board"></div>
       </div>
     </div>
@@ -1054,7 +1189,7 @@
           <span style="background:#f59e0b; color:#fff; padding:3px 8px; border-radius:10px; font-size:11px; margin-left:auto;">Target: &ge; 80 to unlock Unit 2</span>
         </div>
 
-        <!-- 1. LISTENING (8 CÂU) -->
+        <!-- 1. LISTENING (8 CÂU - 8 QUỐC GIA) -->
         <p style="font-weight:900; color:#0284c7; margin: 8px 0 4px; font-size:13px;">Part 1: Listening (8 questions - 25 pts)</p>
         <div class="grid-2col">
           <div class="quiz-single-card">
@@ -1209,6 +1344,7 @@
   let testScore = 0;
   let bestTeacherVoice = null;
 
+  // LỌC TÌM GIỌNG ĐỌC BẢN XỨ MƯỢT NHẤT TRÊN TRÌNH DUYỆT
   function loadBestTeacherVoice() {
     if (!('speechSynthesis' in window)) return;
     const voices = window.speechSynthesis.getVoices();
@@ -1238,7 +1374,7 @@
     window.speechSynthesis.speak(u);
   }
 
-  // ĐIỀN KHUYẾT BẰNG GIỌNG NÓI TẠI MỤC 2
+  // ĐIỀN KHUYẾT BẰNG GIỌNG NÓI TẠI MỤC 2 (LESSON 1 & LESSON 2)
   function testVoiceFill(btn, countryName, slotId, fullSentence) {
     const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRec) {
@@ -1315,6 +1451,33 @@
     }
   }
 
+  // BÀI 4 LISTEN AND NUMBER: ĐỌC ĐOẠN HỘI THOẠI TRACK 8
+  function playTrack8() {
+    const script = "One. Hello. I am Minh. I am from Viet Nam. " +
+                   "Two. Hi. I am Lucy. I am from Britain. " +
+                   "Three. Hello, I am Mary. I am from America. " +
+                   "Four. Hi, I am Ben. I am from Australia.";
+    speak(script);
+  }
+
+  function checkOrderNumber(input, correctVal) {
+    if (input.value.trim() === correctVal) {
+      input.classList.remove('wrong');
+      input.classList.add('correct');
+      speak("Number " + correctVal + ". Correct!");
+      trueCount++;
+      document.getElementById('score-true-num').textContent = trueCount;
+      confetti({ particleCount: 20, spread: 40 });
+    } else {
+      input.classList.remove('correct');
+      input.classList.add('wrong');
+      speak("Try again!");
+      falseCount++;
+      document.getElementById('score-false-num').textContent = falseCount;
+      setTimeout(() => { input.classList.remove('wrong'); input.value = ''; }, 1000);
+    }
+  }
+
   function fillLetter(slotId, letters, fullWord, isCorrect, btn) {
     const slot = document.getElementById(slotId);
     if (isCorrect) {
@@ -1348,7 +1511,7 @@
 
   // TEACHER Q&A (20 CÂU ĐẦY ĐỦ)
   const interviewData = [
-    { q: "Are you from Viet Nam?", a: "Yes, I am." },
+    { q: "Where are you from?", a: "I'm from Viet Nam." },
     { q: "Is Mary from Britain?", a: "No, she isn't. She's from America." },
     { q: "Is Ben from Australia or Malaysia?", a: "He's from Australia." },
     { q: "Is Akiko from Japan?", a: "Yes, she is." },
@@ -1380,28 +1543,37 @@
   }
   function testInterviewMic(btn) { testMic(btn, interviewData[curQIndex].a); }
 
-  // MINI GAME LẬT THẺ (ĐỦ 8 CẶP NƯỚC)
-  const gameCards = [
-    { name: "Viet Nam", flag: "🇻🇳" }, { name: "Viet Nam", flag: "🇻🇳" },
-    { name: "America", flag: "🇺🇸" }, { name: "America", flag: "🇺🇸" },
-    { name: "Britain", flag: "🇬🇧" }, { name: "Britain", flag: "🇬🇧" },
-    { name: "Australia", flag: "🇦🇺" }, { name: "Australia", flag: "🇦🇺" },
-    { name: "Singapore", flag: "🇸🇬" }, { name: "Singapore", flag: "🇸🇬" },
-    { name: "Malaysia", flag: "🇲🇾" }, { name: "Malaysia", flag: "🇲🇾" },
-    { name: "Thailand", flag: "🇹🇭" }, { name: "Thailand", flag: "🇹🇭" },
-    { name: "Japan", flag: "🇯🇵" }, { name: "Japan", flag: "🇯🇵" }
+  // MINI GAME LẬT THẺ (SẠCH, CHỈ CỜ & TÊN NƯỚC, KHÔNG MÃ VÙNG)
+  const cleanGameCards = [
+    { name: "Viet Nam", display: "🇻🇳", key: "vietnam" },
+    { name: "Viet Nam", display: "Viet Nam", key: "vietnam" },
+    { name: "Britain", display: "🇬🇧", key: "britain" },
+    { name: "Britain", display: "Britain", key: "britain" },
+    { name: "America", display: "🇺🇸", key: "america" },
+    { name: "America", display: "America", key: "america" },
+    { name: "Australia", display: "🇦🇺", key: "australia" },
+    { name: "Australia", display: "Australia", key: "australia" },
+    { name: "Singapore", display: "🇸🇬", key: "singapore" },
+    { name: "Singapore", display: "Singapore", key: "singapore" },
+    { name: "Malaysia", display: "🇲🇾", key: "malaysia" },
+    { name: "Malaysia", display: "Malaysia", key: "malaysia" },
+    { name: "Thailand", display: "🇹🇭", key: "thailand" },
+    { name: "Thailand", display: "Thailand", key: "thailand" },
+    { name: "Japan", display: "🇯🇵", key: "japan" },
+    { name: "Japan", display: "Japan", key: "japan" }
   ];
   let flippedCards = [];
   function initMemoryGame() {
     const board = document.getElementById('memory-board');
     if (!board) return;
     board.innerHTML = '';
-    const shuffled = [...gameCards].sort(() => Math.random() - 0.5);
+    const shuffled = [...cleanGameCards].sort(() => Math.random() - 0.5);
     shuffled.forEach((c) => {
       const card = document.createElement('div');
       card.className = 'mem-card';
+      card.dataset.key = c.key;
       card.dataset.name = c.name;
-      card.dataset.flag = c.flag;
+      card.dataset.display = c.display;
       card.textContent = '❓';
       card.onclick = () => flipCard(card);
       board.appendChild(card);
@@ -1410,11 +1582,11 @@
   function flipCard(card) {
     if (flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
     card.classList.add('flipped');
-    card.textContent = card.dataset.flag + " " + card.dataset.name;
+    card.textContent = card.dataset.display;
     speak(card.dataset.name);
     flippedCards.push(card);
     if (flippedCards.length === 2) {
-      if (flippedCards[0].dataset.name === flippedCards[1].dataset.name) {
+      if (flippedCards[0].dataset.key === flippedCards[1].dataset.key) {
         flippedCards[0].classList.add('matched');
         flippedCards[1].classList.add('matched');
         flippedCards = [];
@@ -1423,7 +1595,7 @@
         setTimeout(() => {
           flippedCards.forEach(c => { c.classList.remove('flipped'); c.textContent = '❓'; });
           flippedCards = [];
-        }, 1000);
+        }, 900);
       }
     }
   }
