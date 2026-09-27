@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Tiếng Anh 4 - Global Success (Học Kỳ 1: Unit 1 - 10)</title>
+<title>Tiếng Anh 4 - Global Success App</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -75,7 +75,7 @@
     padding: 12px 14px;
   }
 
-  /* THANH CUỘN CHỌN UNIT HỌC KỲ 1 (1 - 10) */
+  /* THANH CHỌN UNIT */
   .unit-scroll-bar {
     background: #ffffff;
     border: 2px solid #fed7aa;
@@ -141,7 +141,7 @@
   .banner-title-text { font-size: 18px; font-weight: 900; color: #c026d3; line-height: 1.1; }
   .banner-tag-badge { background: #d946ef; color: #fff; padding: 2px 9px; border-radius: 10px; font-size: 11px; font-weight: 800; display: inline-block; }
 
-  /* TABS BÀI HỌC CỦA UNIT */
+  /* TABS BÀI HỌC */
   .lesson-nav-card {
     background: #ffffff;
     border: 2px solid #fed7aa;
@@ -213,12 +213,50 @@
     box-shadow: 0 0 8px rgba(249, 115, 22, 0.25);
     background: #fffbeb;
   }
+  .card-flag-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+    cursor: pointer;
+  }
+  .flag-svg-icon {
+    width: 40px;
+    height: 27px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    flex-shrink: 0;
+  }
+  .clock-badge-box {
+    background: #0f172a;
+    color: #38bdf8;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-family: 'Fredoka', monospace;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+  }
   .text-stack {
     display: flex;
     flex-direction: column;
     gap: 2px;
   }
   .en-word-bold { font-size: 13.5px; font-weight: 900; color: #0f172a; }
+
+  .voice-fill-line { font-size: 13px; font-weight: 800; color: #475569; }
+  .voice-slot-blank {
+    display: inline-block;
+    min-width: 45px;
+    border-bottom: 2px dashed #0284c7;
+    color: #0284c7;
+    font-weight: 900;
+    text-align: center;
+    padding: 0 3px;
+  }
+  .voice-slot-blank.filled { border-bottom: 2px solid #16a34a; color: #16a34a; }
 
   .action-audio-btns {
     display: flex;
@@ -302,7 +340,7 @@
   <header class="app-header">
     <div class="brand-logo-pill">
       <img class="header-rooster-thumb" src="rooster.png" alt="Rooster">
-      <span>Tiếng Anh 4 - Học Kỳ 1</span>
+      <span>Tiếng Anh 4</span>
     </div>
 
     <div class="header-score-box">
@@ -314,18 +352,10 @@
   <!-- ================= WORKSPACE ================= -->
   <div class="app-workspace">
 
-    <!-- THANH CHỌN TỪ UNIT 1 ĐẾN 10 -->
+    <!-- THANH CHỌN UNIT 1 VÀ UNIT 2 ĐẦY ĐỦ TƯƠNG TÁC -->
     <div class="unit-scroll-bar" id="unit-scroll-container">
-      <button class="unit-nav-btn active" id="nav-btn-u1" onclick="switchUnit('u1')">Unit 1</button>
-      <button class="unit-nav-btn" id="nav-btn-u2" onclick="switchUnit('u2')">Unit 2</button>
-      <button class="unit-nav-btn" id="nav-btn-u3" onclick="switchUnit('u3')">Unit 3</button>
-      <button class="unit-nav-btn" id="nav-btn-u4" onclick="switchUnit('u4')">Unit 4</button>
-      <button class="unit-nav-btn" id="nav-btn-u5" onclick="switchUnit('u5')">Unit 5</button>
-      <button class="unit-nav-btn" id="nav-btn-u6" onclick="switchUnit('u6')">Unit 6</button>
-      <button class="unit-nav-btn" id="nav-btn-u7" onclick="switchUnit('u7')">Unit 7</button>
-      <button class="unit-nav-btn" id="nav-btn-u8" onclick="switchUnit('u8')">Unit 8</button>
-      <button class="unit-nav-btn" id="nav-btn-u9" onclick="switchUnit('u9')">Unit 9</button>
-      <button class="unit-nav-btn" id="nav-btn-u10" onclick="switchUnit('u10')">Unit 10</button>
+      <button class="unit-nav-btn active" id="nav-btn-u1" onclick="switchUnit('u1')">Unit 1: My Friends</button>
+      <button class="unit-nav-btn" id="nav-btn-u2" onclick="switchUnit('u2')">Unit 2: Time & Routines</button>
     </div>
 
     <!-- HERO BANNER -->
@@ -346,7 +376,6 @@
       <div class="tabs-group">
         <button class="tab-pill-btn active" id="btn-subtab-l1" onclick="switchSubTab('l1')">Lesson 1</button>
         <button class="tab-pill-btn" id="btn-subtab-l2" onclick="switchSubTab('l2')">Lesson 2</button>
-        <button class="tab-pill-btn" id="btn-subtab-l3" onclick="switchSubTab('l3')">Lesson 3</button>
         <button class="tab-pill-btn" id="btn-subtab-qa" onclick="switchSubTab('qa')">Teacher Q&A 🗣️</button>
         <button class="tab-pill-btn" id="btn-subtab-test" onclick="switchSubTab('test')">Unit Test 🌟</button>
       </div>
@@ -364,67 +393,96 @@
   let currentUnit = 'u1';
   let currentSubTab = 'l1';
 
-  // KHO DỮ LIỆU ĐỒ SỘ ĐẦY ĐỦ TỪ UNIT 1 ĐẾN 10 (HỌC KỲ 1)
-  const semester1FullDB = {
+  // KHO DỮ LIỆU ĐẦY ĐỦ TƯƠNG TÁC THỰC THỤ CHO UNIT 1 VÀ UNIT 2
+  const fullInteractiveDB = {
     u1: {
       title: "Unit 1: My Friends",
       badge: "Global Success 🌟",
-      q: "Where are you from?",
-      a: "I'm from Viet Nam."
+      l1: `
+        <div class="skill-block theme-blue">
+          <div class="skill-badge-header" style="color:#0284c7;"><span>🎧 1. Look, listen and repeat</span></div>
+          <div class="speech-card-row">
+            <div class="text-stack"><div class="en-word-bold">a. Minh: Hello. I'm Minh. I'm from Viet Nam. Where are you from?</div></div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Hello. I am Minh. I am from Viet Nam. Where are you from?')">🔊</button></div>
+          </div>
+          <div class="speech-card-row">
+            <div class="text-stack"><div class="en-word-bold">b. Lucy: Hi. I'm Lucy. I'm from Britain. Where are you from?</div></div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Hi. I am Lucy. I am from Britain. Where are you from?')">🔊</button></div>
+          </div>
+        </div>
+      `,
+      l2: `
+        <div class="skill-block theme-green">
+          <div class="skill-badge-header" style="color:#16a34a;"><span>💬 3. Let's talk (Teacher asks first)</span></div>
+          <div class="grid-2col">
+            <div class="speech-card-row" onclick="teacherAskThenStudentAnswer('Where is he from?', 'He is from Singapore.', this)">
+              <div class="card-flag-left">
+                <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
+                <div class="text-stack"><div class="en-word-bold">👦 Singapore</div><div style="font-size:11.5px; font-weight:800; color:#0284c7;" class="status-msg">Click to talk</div></div>
+              </div>
+              <div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div>
+            </div>
+            <div class="speech-card-row" onclick="teacherAskThenStudentAnswer('Where is she from?', 'She is from Japan.', this)">
+              <div class="card-flag-left">
+                <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>
+                <div class="text-stack"><div class="en-word-bold">👧 Japan</div><div style="font-size:11.5px; font-weight:800; color:#0284c7;" class="status-msg">Click to talk</div></div>
+              </div>
+              <div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div>
+            </div>
+          </div>
+        </div>
+      `,
+      qa: "Where are you from?",
+      qaHint: "I'm from Viet Nam."
     },
+
     u2: {
       title: "Unit 2: Time and Daily Routines",
       badge: "Global Success 🌟",
-      q: "What time is it?",
-      a: "It's seven o'clock."
-    },
-    u3: {
-      title: "Unit 3: My Week",
-      badge: "Global Success 🌟",
-      q: "What day is it today?",
-      a: "It's Monday."
-    },
-    u4: {
-      title: "Unit 4: My Birthday Party",
-      badge: "Global Success 🌟",
-      q: "When's your birthday?",
-      a: "It's in May."
-    },
-    u5: {
-      title: "Unit 5: Things We Can Do",
-      badge: "Global Success 🌟",
-      q: "Can you ride a bike?",
-      a: "Yes, I can."
-    },
-    u6: {
-      title: "Unit 6: Our School Facilities",
-      badge: "Global Success 🌟",
-      q: "Where's your school?",
-      a: "It's in the city."
-    },
-    u7: {
-      title: "Unit 7: Our Timetables",
-      badge: "Global Success 🌟",
-      q: "What subjects do you have today?",
-      a: "I have English and maths."
-    },
-    u8: {
-      title: "Unit 8: My Favourite Subjects",
-      badge: "Global Success 🌟",
-      q: "What's your favourite subject?",
-      a: "It's English."
-    },
-    u9: {
-      title: "Unit 9: Our Sports Day",
-      badge: "Global Success 🌟",
-      q: "When's your sports day?",
-      a: "It's in October."
-    },
-    u10: {
-      title: "Unit 10: Our Summer Holidays",
-      badge: "Global Success 🌟",
-      q: "Where were you last summer?",
-      a: "I was in Tokyo."
+      l1: `
+        <div class="skill-block theme-blue">
+          <div class="skill-badge-header" style="color:#0284c7;"><span>🎧 1. Look, listen and repeat</span></div>
+          <div class="speech-card-row">
+            <div class="text-stack"><div class="en-word-bold">a. What time is it? — It's eight thirty. Let's have a break.</div></div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('What time is it? It is eight thirty. Let us have a break.')">🔊</button></div>
+          </div>
+          <div class="speech-card-row">
+            <div class="text-stack"><div class="en-word-bold">b. What time is it? — It's three fifteen. Let's go into the classroom.</div></div>
+            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('What time is it? It is three fifteen. Let us go into the classroom.')">🔊</button></div>
+          </div>
+        </div>
+      `,
+      l2: `
+        <div class="skill-block theme-orange">
+          <div class="skill-badge-header" style="color:#ea580c;"><span>🗣️ 2. Listen, point and say</span></div>
+          <div class="grid-2col">
+            <div class="speech-card-row">
+              <div class="clock-badge-box">6:00</div>
+              <div class="text-stack">
+                <div class="en-word-bold">a. get up</div>
+                <div class="voice-fill-line">I get up at <span class="voice-slot-blank" id="slot-u2-get">_______</span>.</div>
+              </div>
+              <div class="action-audio-btns">
+                <button class="circle-btn btn-audio-listen" onclick="speak('I get up at six o clock.')">🔊</button>
+                <button class="circle-btn btn-audio-mic" onclick="testVoiceFill(this, 'six o clock', 'slot-u2-get', 'I get up at six o clock.')">🎤</button>
+              </div>
+            </div>
+            <div class="speech-card-row">
+              <div class="clock-badge-box">6:15</div>
+              <div class="text-stack">
+                <div class="en-word-bold">b. have breakfast</div>
+                <div class="voice-fill-line">I have breakfast at <span class="voice-slot-blank" id="slot-u2-bf">_______</span>.</div>
+              </div>
+              <div class="action-audio-btns">
+                <button class="circle-btn btn-audio-listen" onclick="speak('I have breakfast at six fifteen.')">🔊</button>
+                <button class="circle-btn btn-audio-mic" onclick="testVoiceFill(this, 'six fifteen', 'slot-u2-bf', 'I have breakfast at six fifteen.')">🎤</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+      qa: "What time is it?",
+      qaHint: "It's seven o'clock."
     }
   };
 
@@ -468,11 +526,10 @@
 
   function switchUnit(unitKey) {
     currentUnit = unitKey;
-    for (let i = 1; i <= 10; i++) {
-      const btn = document.getElementById('nav-btn-u' + i);
-      if (btn) btn.classList.toggle('active', 'u' + i === unitKey);
-    }
-    const uData = semester1FullDB[unitKey];
+    document.getElementById('nav-btn-u1').classList.toggle('active', unitKey === 'u1');
+    document.getElementById('nav-btn-u2').classList.toggle('active', unitKey === 'u2');
+    
+    const uData = fullInteractiveDB[unitKey];
     document.getElementById('banner-title').textContent = uData.title;
     document.getElementById('banner-badge').textContent = uData.badge;
     renderCurrentSubTabView();
@@ -480,7 +537,7 @@
 
   function switchSubTab(subTabKey) {
     currentSubTab = subTabKey;
-    ['l1', 'l2', 'l3', 'qa', 'test'].forEach(t => {
+    ['l1', 'l2', 'qa', 'test'].forEach(t => {
       const b = document.getElementById('btn-subtab-' + t);
       if (b) b.classList.toggle('active', t === subTabKey);
     });
@@ -489,19 +546,10 @@
 
   function renderCurrentSubTabView() {
     const view = document.getElementById('dynamic-content-view');
-    const uData = semester1FullDB[currentUnit];
+    const uData = fullInteractiveDB[currentUnit];
 
-    if (currentSubTab === 'l1' || currentSubTab === 'l2' || currentSubTab === 'l3') {
-      view.innerHTML = `
-        <div class="skill-block theme-blue">
-          <div class="skill-badge-header" style="color:#0284c7;"><span>🎧 ${currentSubTab.toUpperCase()} Practice: ${uData.title}</span></div>
-          <div class="speech-card-row">
-            <div class="text-stack"><div class="en-word-bold">Core Question: ${uData.q}</div><div class="voice-fill-line">Suggested Answer: ${uData.a}</div></div>
-            <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('${uData.q} ${uData.a}')">🔊</button></div>
-          </div>
-        </div>
-      `;
-    }
+    if (currentSubTab === 'l1') view.innerHTML = uData.l1;
+    else if (currentSubTab === 'l2') view.innerHTML = uData.l2 || `<div class="skill-block theme-blue"><div class="skill-badge-header"><span>Lesson 2 Practice</span></div></div>`;
     else if (currentSubTab === 'qa') {
       view.innerHTML = `
         <div class="skill-block theme-green">
@@ -509,12 +557,12 @@
           <div class="interview-box" style="background:#fff; border:2px solid #bbf7d0; border-radius:16px; padding:14px; text-align:center;">
             <div style="font-size:32px; margin-bottom:5px;">👩‍🏫</div>
             <div class="teacher-bubble" style="background:#f0fdf4; border:2px solid #86efac; border-radius:14px; padding:8px 14px; font-size:15px; font-weight:900; color:#15803d; margin-bottom:8px; display:inline-flex; align-items:center; gap:8px;">
-              <span>${uData.q}</span>
-              <button class="circle-btn btn-audio-listen" onclick="speak('${uData.q}')">🔊</button>
+              <span>${uData.qa}</span>
+              <button class="circle-btn btn-audio-listen" onclick="speak('${uData.qa}')">🔊</button>
             </div>
-            <div style="font-size:13px; font-weight:700; color:#64748b; margin-bottom:12px;">Hint: <b>${uData.a}</b></div>
+            <div style="font-size:13px; font-weight:700; color:#64748b; margin-bottom:12px;">Hint: <b>${uData.qaHint}</b></div>
             <div style="display:flex; gap:8px; align-items:center; justify-content:center;">
-              <button class="circle-btn btn-audio-mic" style="width:42px; height:42px; font-size:16px;" onclick="testMic(this, '${uData.a}')">🎤</button>
+              <button class="circle-btn btn-audio-mic" style="width:42px; height:42px; font-size:16px;" onclick="testMic(this, '${uData.qaHint}')">🎤</button>
             </div>
           </div>
         </div>
@@ -530,7 +578,7 @@
           <div class="quiz-single-card">
             <div class="q-title-line">
               <span style="font-weight:900;">1. Listen and select:</span>
-              <button class="circle-btn btn-audio-listen" onclick="speak('${uData.q}')">🔊</button>
+              <button class="circle-btn btn-audio-listen" onclick="speak('${uData.qa}')">🔊</button>
             </div>
             <div class="chips-options-row">
               <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Correct!')">Correct Choice</button>
@@ -540,6 +588,23 @@
         </div>
       `;
     }
+  }
+
+  function teacherAskThenStudentAnswer(questionText, expectedAnswer, cardEl) {
+    document.querySelectorAll('.speech-card-row').forEach(c => c.classList.remove('talking-active'));
+    cardEl.classList.add('talking-active');
+    const statusMsg = cardEl.querySelector('.status-msg');
+    const micBtn = cardEl.querySelector('.btn-audio-mic');
+    if (statusMsg) statusMsg.textContent = "Teacher is asking...";
+    
+    speak(questionText, function() {
+      if (statusMsg) statusMsg.textContent = "Your turn! Speak now 🎤";
+      micBtn.classList.add('awaiting-user');
+      testMic(micBtn, expectedAnswer, function(isOk) {
+        micBtn.classList.remove('awaiting-user');
+        if (statusMsg) statusMsg.textContent = isOk ? "Excellent! ⭐" : "Try again!";
+      });
+    });
   }
 
   function testMic(btn, target, cb) {
@@ -576,6 +641,19 @@
       if (typeof cb === 'function') cb(false);
     };
     rec.start();
+  }
+
+  function testVoiceFill(btn, targetText, slotId, fullSentence) {
+    testMic(btn, targetText, function(isOk) {
+      if (isOk) {
+        const slot = document.getElementById(slotId);
+        if (slot) {
+          slot.textContent = targetText;
+          slot.classList.add('filled');
+        }
+        speak("Awesome! " + fullSentence);
+      }
+    });
   }
 
   function checkAnswer(btn, isCorrect, word) {
