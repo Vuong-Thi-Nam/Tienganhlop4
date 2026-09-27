@@ -213,20 +213,6 @@
     box-shadow: 0 0 8px rgba(249, 115, 22, 0.25);
     background: #fffbeb;
   }
-  .card-flag-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-grow: 1;
-    cursor: pointer;
-  }
-  .flag-svg-icon {
-    width: 40px;
-    height: 27px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-    flex-shrink: 0;
-  }
   .text-stack {
     display: flex;
     flex-direction: column;
@@ -308,25 +294,6 @@
   }
   .chip-option-btn.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
   .chip-option-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
-
-  /* INPUT & DỊCH NGHĨA */
-  .student-text-input {
-    border: none;
-    border-bottom: 2px dashed #0284c7;
-    background: #f8fafc;
-    font-family: inherit;
-    font-size: 13.5px;
-    font-weight: 800;
-    color: #0284c7;
-    padding: 2px 5px;
-    outline: none;
-    border-radius: 4px;
-    text-align: center;
-    transition: all 0.2s;
-  }
-  .student-text-input.field-error { border-bottom: 2px solid #ef4444 !important; background: #fee2e2 !important; animation: shake 0.4s ease; }
-  .student-text-input.field-success { border-bottom: 2px solid #22c55e !important; background: #dcfce7 !important; color: #15803d; }
-  @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
 </style>
 </head>
 <body>
@@ -347,7 +314,7 @@
   <!-- ================= WORKSPACE ================= -->
   <div class="app-workspace">
 
-    <!-- THANH CHỌN UNIT HỌC KỲ 1 (TỪ 1 ĐẾN 10) -->
+    <!-- THANH CHỌN TỪ UNIT 1 ĐẾN 10 -->
     <div class="unit-scroll-bar" id="unit-scroll-container">
       <button class="unit-nav-btn active" id="nav-btn-u1" onclick="switchUnit('u1')">Unit 1</button>
       <button class="unit-nav-btn" id="nav-btn-u2" onclick="switchUnit('u2')">Unit 2</button>
@@ -393,23 +360,72 @@
 <script>
   let trueCount = 0;
   let falseCount = 0;
-  let testScore = 0;
   let bestTeacherVoice = null;
   let currentUnit = 'u1';
   let currentSubTab = 'l1';
 
-  // KHO DỮ LIỆU TỪ UNIT 1 ĐẾN UNIT 10 (HỌC KỲ 1)
-  const semester1Database = {
-    u1: { title: "Unit 1: My Friends", badge: "Global Success 🌟", q: "Where are you from?", a: "I'm from Viet Nam." },
-    u2: { title: "Unit 2: Time and Daily Routines", badge: "Global Success 🌟", q: "What time is it?", a: "It's seven o'clock." },
-    u3: { title: "Unit 3: My Week", badge: "Global Success 🌟", q: "What day is it today?", a: "It's Monday." },
-    u4: { title: "Unit 4: My Birthday Party", badge: "Global Success 🌟", q: "When's your birthday?", a: "It's in May." },
-    u5: { title: "Unit 5: Things We Can Do", badge: "Global Success 🌟", q: "Can you ride a bike?", a: "Yes, I can." },
-    u6: { title: "Unit 6: Our School Facilities", badge: "Global Success 🌟", q: "Where's your school?", a: "It's in the city." },
-    u7: { title: "Unit 7: Our Timetables", badge: "Global Success 🌟", q: "What subjects do you have today?", a: "I have English and maths." },
-    u8: { title: "Unit 8: My Favourite Subjects", badge: "Global Success 🌟", q: "What's your favourite subject?", a: "It's English." },
-    u9: { title: "Unit 9: Our Sports Day", badge: "Global Success 🌟", q: "When's your sports day?", a: "It's in October." },
-    u10: { title: "Unit 10: Our Summer Holidays", badge: "Global Success 🌟", q: "Where were you last summer?", a: "I was in Tokyo." }
+  // KHO DỮ LIỆU ĐỒ SỘ ĐẦY ĐỦ TỪ UNIT 1 ĐẾN 10 (HỌC KỲ 1)
+  const semester1FullDB = {
+    u1: {
+      title: "Unit 1: My Friends",
+      badge: "Global Success 🌟",
+      q: "Where are you from?",
+      a: "I'm from Viet Nam."
+    },
+    u2: {
+      title: "Unit 2: Time and Daily Routines",
+      badge: "Global Success 🌟",
+      q: "What time is it?",
+      a: "It's seven o'clock."
+    },
+    u3: {
+      title: "Unit 3: My Week",
+      badge: "Global Success 🌟",
+      q: "What day is it today?",
+      a: "It's Monday."
+    },
+    u4: {
+      title: "Unit 4: My Birthday Party",
+      badge: "Global Success 🌟",
+      q: "When's your birthday?",
+      a: "It's in May."
+    },
+    u5: {
+      title: "Unit 5: Things We Can Do",
+      badge: "Global Success 🌟",
+      q: "Can you ride a bike?",
+      a: "Yes, I can."
+    },
+    u6: {
+      title: "Unit 6: Our School Facilities",
+      badge: "Global Success 🌟",
+      q: "Where's your school?",
+      a: "It's in the city."
+    },
+    u7: {
+      title: "Unit 7: Our Timetables",
+      badge: "Global Success 🌟",
+      q: "What subjects do you have today?",
+      a: "I have English and maths."
+    },
+    u8: {
+      title: "Unit 8: My Favourite Subjects",
+      badge: "Global Success 🌟",
+      q: "What's your favourite subject?",
+      a: "It's English."
+    },
+    u9: {
+      title: "Unit 9: Our Sports Day",
+      badge: "Global Success 🌟",
+      q: "When's your sports day?",
+      a: "It's in October."
+    },
+    u10: {
+      title: "Unit 10: Our Summer Holidays",
+      badge: "Global Success 🌟",
+      q: "Where were you last summer?",
+      a: "I was in Tokyo."
+    }
   };
 
   function unlockAudioEngine() {
@@ -456,7 +472,7 @@
       const btn = document.getElementById('nav-btn-u' + i);
       if (btn) btn.classList.toggle('active', 'u' + i === unitKey);
     }
-    const uData = semester1Database[unitKey];
+    const uData = semester1FullDB[unitKey];
     document.getElementById('banner-title').textContent = uData.title;
     document.getElementById('banner-badge').textContent = uData.badge;
     renderCurrentSubTabView();
@@ -473,7 +489,7 @@
 
   function renderCurrentSubTabView() {
     const view = document.getElementById('dynamic-content-view');
-    const uData = semester1Database[currentUnit];
+    const uData = semester1FullDB[currentUnit];
 
     if (currentSubTab === 'l1' || currentSubTab === 'l2' || currentSubTab === 'l3') {
       view.innerHTML = `
