@@ -1,941 +1,1478 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tiếng Anh Lớp 4 - Global Success</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiếng Anh Lớp 4 - Unit 1: My Friends</title>
+  
+  <!-- Google Fonts: Fredoka & Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Confetti Celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-<style>
-  :root {
-    --bg-page: #f8fafd;
-    --text-dark: #1e293b;
-    --text-gray: #8898aa;
-    --pink-btn: #ec4899;
-    --blue-btn: #0284c7;
-    --border-card: #f1e8ff;
-    --green: #22c55e;
-    --coral: #ef4444;
-  }
+  <style>
+    :root {
+      --sky-grad: linear-gradient(180deg, #38bdf8 0%, #7dd3fc 35%, #86efac 75%, #22c55e 100%);
+      --board-outer: #fef08a;
+      --board-shadow: #eab308;
+    }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-  body {
-    background-color: var(--bg-page);
-    font-family: 'Nunito', sans-serif;
-    color: var(--text-dark);
-    padding-bottom: 60px;
-  }
-  h1, h2, h3, h4, button { font-family: 'Fredoka', sans-serif; }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
 
-  /* TOP HEADER NAVIGATION */
-  .app-header {
-    background: #ffffff;
-    border-bottom: 2px solid #eef2f6;
-    padding: 10px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .header-left-nav {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-  .brand-logo-pill {
-    background: #fff;
-    border: 2px solid #fed7aa;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 15px;
-    font-weight: 900;
-    color: #ea580c;
-  }
-  .header-btn {
-    border: none;
-    border-radius: 18px;
-    padding: 9px 18px;
-    font-size: 14.5px;
-    font-weight: 800;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s ease;
-  }
-  .header-btn.lessons { background: #ec4899; color: #ffffff; box-shadow: 0 4px 12px rgba(236,72,153,0.35); }
-  .header-btn.sub { background: #f1f5f9; color: #475569; }
-  .header-btn.sub:hover { background: #e2e8f0; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--sky-grad);
+      min-height: 100vh;
+      color: #1e293b;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-  .header-score-box {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border: 1.5px solid #e2e8f0;
-    padding: 4px 8px;
-    border-radius: 14px;
-    font-weight: 900;
-    font-size: 13.5px;
-  }
-  .tag-score-true { background: var(--green); color: #fff; padding: 4px 8px; border-radius: 8px; }
-  .tag-score-false { background: var(--coral); color: #fff; padding: 4px 8px; border-radius: 8px; }
+    h1, h2, h3, h4, .font-fun, button {
+      font-family: 'Fredoka', cursive, sans-serif;
+    }
 
-  /* BANNER PANORAMA CÙNG CHÚ GÀ TRỐNG ROOSTER */
-  .banner-container {
-    max-width: 1080px;
-    margin: 16px auto;
-    padding: 0 16px;
-  }
-  .hero-panorama-banner {
-    position: relative;
-    border-radius: 26px;
-    overflow: hidden;
-    height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-    border: 3px solid #ffffff;
-    background: linear-gradient(135deg, #a7f3d0 0%, #bae6fd 60%, #fbcfe8 100%);
-  }
-  .banner-badge-center {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: rgba(255, 255, 255, 0.65);
-    padding: 10px 24px;
-    border-radius: 35px;
-    backdrop-filter: blur(6px);
-    border: 2px solid rgba(255, 255, 255, 0.85);
-  }
-  .rooster-avatar-wrap {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #f97316;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .rooster-avatar-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 45% 40%;
-    display: block;
-  }
-  .banner-title-text {
-    font-size: 32px;
-    font-weight: 900;
-    color: #c026d3;
-    text-shadow: 2px 2px 0px #fff;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .banner-tag-badge {
-    background: #d946ef;
-    color: #fff;
-    padding: 4px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 800;
-    display: inline-block;
-  }
+    /* Animated background clouds */
+    .cartoon-cloud {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 999px;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.05));
+      animation: cloudDrift linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .cartoon-cloud::before, .cartoon-cloud::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .cloud-1 {
+      width: 130px; height: 38px; top: 30px;
+      animation-duration: 52s;
+    }
+    .cloud-1::before { width: 50px; height: 50px; top: -22px; left: 18px; }
+    .cloud-1::after { width: 62px; height: 62px; top: -30px; right: 20px; }
 
-  /* WORKSPACE */
-  .app-workspace {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 16px;
-  }
+    .cloud-2 {
+      width: 190px; height: 52px; top: 110px;
+      animation-duration: 75s;
+      animation-delay: -28s;
+    }
+    .cloud-2::before { width: 72px; height: 72px; top: -32px; left: 28px; }
+    .cloud-2::after { width: 88px; height: 88px; top: -42px; right: 32px; }
 
-  /* UNITS GRID */
-  .units-card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 22px;
-  }
-  @media(max-width: 800px) { .units-card-grid { grid-template-columns: repeat(2, 1fr); } }
+    @keyframes cloudDrift {
+      0% { transform: translateX(-240px); }
+      100% { transform: translateX(calc(100vw + 240px)); }
+    }
 
-  .unit-glass-card {
-    background: #ffffff;
-    border: 2px solid #eef2f6;
-    border-radius: 20px;
-    padding: 16px 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.2s ease;
-  }
-  .unit-glass-card.active-unit {
-    border-color: #d946ef;
-    background: #fdf4ff;
-  }
-  .unit-title-head { font-size: 15px; font-weight: 900; color: #1e293b; }
-  .unit-topic-name { font-size: 13px; font-weight: 700; color: #64748b; }
+    /* 3D Toy-style learning board */
+    .toy-board {
+      background: #fffdf5;
+      border: 4px solid var(--board-outer);
+      border-radius: 32px;
+      box-shadow: 0 10px 0 var(--board-shadow), 0 20px 30px rgba(0, 0, 0, 0.12);
+    }
 
-  /* MAIN LESSON CONTAINER */
-  .lesson-view-container {
-    background: #ffffff;
-    border: 2px solid var(--border-card);
-    border-radius: 28px;
-    padding: 24px;
-    box-shadow: 0 6px 20px rgba(147, 51, 234, 0.04);
-  }
-  .lesson-header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 22px;
-  }
-  .lesson-big-title { font-size: 22px; font-weight: 900; color: #1e293b; }
+    /* Color-coded Skill Section Cards (No plain white inside) */
+    .skill-card-listening {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+      border: 2.5px solid #7dd3fc;
+      border-radius: 24px;
+      box-shadow: 0 6px 0 #38bdf8;
+    }
+    .skill-card-speaking {
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 50%, #fed7aa 100%);
+      border: 2.5px solid #fdba74;
+      border-radius: 24px;
+      box-shadow: 0 6px 0 #fb923c;
+    }
+    .skill-card-reading {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+      border: 2.5px solid #86efac;
+      border-radius: 24px;
+      box-shadow: 0 6px 0 #4ade80;
+    }
+    .skill-card-writing {
+      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #e9d5ff 100%);
+      border: 2.5px solid #d8b4fe;
+      border-radius: 24px;
+      box-shadow: 0 6px 0 #c084fc;
+    }
+    .skill-card-test {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fde68a 100%);
+      border: 2.5px solid #fcd34d;
+      border-radius: 24px;
+      box-shadow: 0 6px 0 #f59e0b;
+    }
 
-  /* CLEAN TABS */
-  .clean-lesson-tabs {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .tab-btn {
-    border: none;
-    border-radius: 16px;
-    padding: 9px 18px;
-    font-size: 14px;
-    font-weight: 800;
-    cursor: pointer;
-    background: #f1f5f9;
-    color: #64748b;
-    transition: all 0.2s;
-  }
-  .tab-btn.active {
-    background: #0284c7;
-    color: #ffffff;
-    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
-  }
+    /* Sub-card item */
+    .toy-sub-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.16s ease;
+    }
+    .toy-sub-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.09);
+    }
 
-  /* 4 SKILLS SECTION CARDS */
-  .skill-block {
-    background: #ffffff;
-    border: 1.5px solid #f1f5f9;
-    border-radius: 22px;
-    padding: 18px;
-    margin-bottom: 20px;
-  }
-  .skill-badge-title {
-    font-size: 13.5px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .skill-badge-title.listening { color: #0284c7; }
-  .skill-badge-title.speaking { color: #d946ef; }
-  .skill-badge-title.reading { color: #16a34a; }
-  .skill-badge-title.writing { color: #f59e0b; }
+    /* 3D Tactile Buttons */
+    .btn-3d {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      border: none;
+      font-weight: 800;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.1s ease;
+      box-shadow: 0 4px 0 var(--btn-shadow);
+      margin-bottom: 4px;
+    }
+    .btn-3d:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 var(--btn-shadow);
+      margin-bottom: 1px;
+      margin-top: 3px;
+    }
+    .btn-blue {
+      background: #0284c7;
+      color: #ffffff;
+      --btn-shadow: #0369a1;
+    }
+    .btn-green {
+      background: #16a34a;
+      color: #ffffff;
+      --btn-shadow: #15803d;
+    }
+    .btn-orange {
+      background: #f97316;
+      color: #ffffff;
+      --btn-shadow: #ea580c;
+    }
+    .btn-purple {
+      background: #8b5cf6;
+      color: #ffffff;
+      --btn-shadow: #7c3aed;
+    }
+    .btn-tab-inactive {
+      background: #ffffff;
+      color: #64748b;
+      border: 2px solid #e2e8f0;
+      --btn-shadow: #cbd5e1;
+    }
+    .btn-tab-inactive:hover {
+      background: #f8fafc;
+      color: #334155;
+    }
 
-  /* BILINGUAL ROW GỌN GÀNG, NÚT VÀ CHỮ CẠNH NHAU */
-  .bilingual-speech-row {
-    background: #ffffff;
-    border: 1.5px solid #f1f5f9;
-    border-radius: 18px;
-    padding: 12px 18px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    transition: all 0.2s ease;
-  }
-  .bilingual-speech-row:hover {
-    border-color: #cbd5e1;
-    background: #f8fafc;
-  }
-  .bilingual-text-group {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .en-text-bold {
-    font-size: 16.5px;
-    font-weight: 800;
-    color: #1e293b;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .vi-text-sub {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-gray);
-  }
+    /* National Flag Container */
+    .flag-container {
+      width: 100%;
+      height: 94px;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    }
+    .flag-container svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-  /* CẶP NÚT LOA & MICRO TRÒN TINH GỌN */
-  .audio-action-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-  .action-circle-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    font-size: 15px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-  }
-  .btn-listen {
-    background: #f0f9ff;
-    color: #0284c7;
-  }
-  .btn-listen:hover {
-    background: #0284c7;
-    color: #fff;
-    transform: scale(1.08);
-  }
-  .btn-mic {
-    background: #fdf2f8;
-    color: #db2777;
-  }
-  .btn-mic:hover {
-    background: #db2777;
-    color: #fff;
-    transform: scale(1.08);
-  }
-  .btn-mic.recording {
-    background: #ef4444;
-    color: #fff;
-    animation: pulseMic 1s infinite alternate;
-  }
-  @keyframes pulseMic {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.15); box-shadow: 0 0 10px rgba(239, 68, 68, 0.6); }
-  }
+    /* Circular Rooster Mascot Container */
+    .circular-rooster {
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3.5px solid #f97316;
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .circular-rooster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 32%;
+    }
 
-  /* KHUNG 2 CỘT CHO SPEAKING & BÀI TẬP ĐỂ KHÔNG BỊ TRỐNG */
-  .compact-grid-2col {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-  @media(max-width: 768px) { .compact-grid-2col { grid-template-columns: 1fr; } }
+    /* Rooster animation */
+    @keyframes roosterBob {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(2deg); }
+    }
+    .rooster-anim {
+      animation: roosterBob 3s ease-in-out infinite;
+    }
 
-  .quiz-card-compact {
-    background: #ffffff;
-    border: 1.5px solid #eef2f6;
-    border-radius: 18px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.2s;
-  }
-  .quiz-card-compact:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-  }
-  .quiz-q-title-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-    font-size: 15.5px;
-    font-weight: 800;
-  }
-  .quiz-chips-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  /* NÚT CHIPS VIÊN KẸO */
-  .quiz-chip-btn {
-    background: #ffffff;
-    border: 1.5px solid #cbd5e1;
-    border-radius: 20px;
-    padding: 7px 16px;
-    font-size: 14px;
-    font-weight: 800;
-    color: #334155;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s ease;
-  }
-  .quiz-chip-btn:hover {
-    border-color: #0284c7;
-    background: #f0f9ff;
-    transform: translateY(-2px);
-  }
-  .quiz-chip-btn.correct {
-    background: #dcfce7;
-    border-color: #22c55e;
-    color: #15803d;
-  }
-  .quiz-chip-btn.wrong {
-    background: #fee2e2;
-    border-color: #ef4444;
-    color: #b91c1c;
-  }
-</style>
+    /* Microphone pulse glow */
+    @keyframes micGlow {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+      70% { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+    .mic-recording {
+      background: #ef4444 !important;
+      color: #ffffff !important;
+      animation: micGlow 1.2s infinite;
+    }
+  </style>
 </head>
-<body>
+<body class="relative flex flex-col justify-between">
 
-  <!-- ================= TOP HEADER ================= -->
-  <header class="app-header">
-    <div class="header-left-nav">
-      <div class="brand-logo-pill">
-        <span>🐔 Tiếng Anh 4</span>
-      </div>
-      <button class="header-btn sub">Explore</button>
-      <button class="header-btn lessons">Lessons</button>
-      <button class="header-btn sub" onclick="selectTab('sbt')">Exercises</button>
-      <button class="header-btn sub">Review</button>
-      <button class="header-btn sub">Exams</button>
-      <button class="header-btn sub">Mini Games</button>
-    </div>
+  <!-- Background Clouds -->
+  <div class="cartoon-cloud cloud-1" style="left: 4%;"></div>
+  <div class="cartoon-cloud cloud-2" style="right: 6%;"></div>
 
-    <div class="header-right-meta">
-      <div class="header-score-box">
-        <span class="tag-score-true">★ True <span id="score-true-num">0</span></span>
-        <span class="tag-score-false">★ False <span id="score-false-num">0</span></span>
+  <!-- Top Navigation Bar -->
+  <header class="relative z-30 px-3 sm:px-6 py-3 max-w-6xl mx-auto w-full">
+    <div class="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl border-3 border-amber-300 shadow-[0_5px_0_#f59e0b] px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2">
+      
+      <!-- Circular Rooster Badge -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <div class="circular-rooster w-11 h-11 sm:w-12 sm:h-12 shadow-[0_3px_0_#ea580c]">
+          <img src="rooster.png" alt="Rooster Mascot" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/bottts/svg?seed=RoosterHero&backgroundColor=ffedd5';">
+        </div>
+        <div>
+          <span class="text-base sm:text-xl font-extrabold text-amber-700 tracking-wide block leading-none font-fun">TIẾNG ANH 4</span>
+          <span class="text-[11px] font-black text-emerald-600 uppercase tracking-wider">Global Success</span>
+        </div>
       </div>
+
+      <!-- Score Counters -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="flex items-center gap-1.5 bg-emerald-50 border-2 border-emerald-300 px-3 py-1 rounded-xl text-emerald-700 font-black text-xs sm:text-sm shadow-sm">
+          <span>✔️ Đúng:</span>
+          <span id="score-true-val">0</span>
+        </div>
+        <div class="flex items-center gap-1.5 bg-rose-50 border-2 border-rose-300 px-3 py-1 rounded-xl text-rose-700 font-black text-xs sm:text-sm shadow-sm">
+          <span>❌ Sai:</span>
+          <span id="score-false-val">0</span>
+        </div>
+        <button onclick="toggleAudio()" id="btn-sound-switch" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-sky-50 border-2 border-sky-300 text-sky-700 flex items-center justify-center text-sm font-bold shadow-sm hover:bg-sky-100 transition" title="Bật/Tắt âm thanh">
+          🔊
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- ================= BANNER CÙNG CHÚ GÀ TRỐNG ROOSTER ================= -->
-  <div class="banner-container">
-    <div class="hero-panorama-banner">
-      <div class="banner-badge-center">
-        <!-- AVATAR CHÚ GÀ TRỐNG ROOSTER.PNG -->
-        <div class="rooster-avatar-wrap">
-          <img src="rooster.png" alt="Chú gà trống">
+  <!-- Hero Panorama Banner with Circular Mascot -->
+  <section class="relative z-20 max-w-6xl mx-auto w-full px-3 sm:px-6 my-2">
+    <div class="relative overflow-hidden rounded-3xl border-4 border-amber-300 shadow-[0_8px_0_#d97706,0_16px_25px_rgba(0,0,0,0.12)] bg-gradient-to-r from-amber-300 via-yellow-200 to-sky-300 p-4 sm:p-5 flex items-center justify-between">
+      
+      <div class="relative z-10 flex flex-row items-center gap-4 sm:gap-6 w-full">
+        <!-- Circular Rooster in Hero -->
+        <div class="relative shrink-0 rooster-anim">
+          <div class="circular-rooster w-20 h-20 sm:w-24 sm:h-24 border-4 border-amber-500 shadow-[0_6px_14px_rgba(0,0,0,0.18)]">
+            <img src="rooster.png" alt="Chú gà trống" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/bottts/svg?seed=RoosterHero&backgroundColor=ffedd5';">
+          </div>
+          <span class="absolute -bottom-1 -right-1 bg-red-500 text-white font-black text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full border-2 border-white shadow">
+            UNIT 1
+          </span>
         </div>
-        <div>
-          <div class="banner-title-text">Tiếng Anh 4</div>
-          <div class="banner-tag-badge">Tiến bộ từng ngày bé nhé! 🌟</div>
+
+        <!-- Mascot Speech Bubble -->
+        <div class="flex-1 bg-white/95 backdrop-blur-sm rounded-2xl border-2 border-amber-200 p-3 sm:p-4 shadow-sm">
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl sm:text-2xl font-black text-amber-800 font-fun">Unit 1: My Friends</h1>
+            <span class="text-xl">🌟</span>
+          </div>
+          <p class="text-xs sm:text-sm font-extrabold text-slate-600 mt-1">
+            Bé hãy chọn bài học hoặc làm bài kiểm tra tổng hợp 4 kỹ năng nhé! Chú gà trống luôn đồng hành cùng bé! 🐔🇻🇳
+          </p>
         </div>
       </div>
+
     </div>
-  </div>
+  </section>
 
-  <!-- ================= WORKSPACE ================= -->
-  <div class="app-workspace">
-
-    <!-- LƯỚI UNITS -->
-    <div class="units-card-grid">
-      <div class="unit-glass-card active-unit" onclick="selectTab('l1')">
+  <!-- Main Lesson Workspace -->
+  <main class="relative z-20 max-w-6xl mx-auto w-full px-3 sm:px-6 my-3 flex-1">
+    <div class="toy-board p-4 sm:p-7">
+      
+      <!-- Lesson Tabs (Strict Isolation) -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-5 border-b-3 border-amber-200">
         <div>
-          <div class="unit-title-head">Unit 1</div>
-          <div class="unit-topic-name">My friends</div>
+          <span class="text-xs font-black tracking-wider text-amber-700 uppercase bg-amber-100 px-3 py-1 rounded-full">CHƯƠNG TRÌNH GLOBAL SUCCESS</span>
+          <h2 id="lesson-screen-heading" class="text-2xl sm:text-3xl font-black text-slate-800 font-fun mt-1">Lesson 1: Countries & Flags</h2>
         </div>
-        <div style="font-weight:900; color:#94a3b8;">›</div>
-      </div>
-      <div class="unit-glass-card">
-        <div>
-          <div class="unit-title-head">Unit 2</div>
-          <div class="unit-topic-name">Time and daily routines</div>
-        </div>
-        <div style="font-weight:900; color:#94a3b8;">›</div>
-      </div>
-      <div class="unit-glass-card">
-        <div>
-          <div class="unit-title-head">Unit 3</div>
-          <div class="unit-topic-name">My week</div>
-        </div>
-        <div style="font-weight:900; color:#94a3b8;">›</div>
-      </div>
-      <div class="unit-glass-card">
-        <div>
-          <div class="unit-title-head">Unit 4</div>
-          <div class="unit-topic-name">My birthday party</div>
-        </div>
-        <div style="font-weight:900; color:#94a3b8;">›</div>
-      </div>
-    </div>
 
-    <!-- MAIN LESSON CARD -->
-    <div class="lesson-view-container">
-
-      <!-- CLEAN TABS -->
-      <div class="lesson-header-row">
-        <div>
-          <div style="font-size:13px; font-weight:800; color:#d946ef; text-transform:uppercase;">Unit 1: My Friends</div>
-          <h2 class="lesson-big-title" id="lesson-screen-title">Lesson 1</h2>
-        </div>
-        <div class="clean-lesson-tabs">
-          <button class="tab-btn active" id="tab-btn-l1" onclick="selectTab('l1')">Lesson 1</button>
-          <button class="tab-btn" id="tab-btn-l2" onclick="selectTab('l2')">Lesson 2</button>
-          <button class="tab-btn" id="tab-btn-l3" onclick="selectTab('l3')">Lesson 3</button>
-          <button class="tab-btn" id="tab-btn-sbt" onclick="selectTab('sbt')">Workbook</button>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="switchTab('l1')" id="tab-nav-l1" class="btn-3d btn-blue px-3.5 sm:px-5 py-2 text-xs sm:text-sm">
+            Lesson 1
+          </button>
+          <button onclick="switchTab('l2')" id="tab-nav-l2" class="btn-3d btn-tab-inactive px-3.5 sm:px-5 py-2 text-xs sm:text-sm">
+            Lesson 2
+          </button>
+          <button onclick="switchTab('l3')" id="tab-nav-l3" class="btn-3d btn-tab-inactive px-3.5 sm:px-5 py-2 text-xs sm:text-sm">
+            Lesson 3
+          </button>
+          <button onclick="switchTab('wb')" id="tab-nav-wb" class="btn-3d btn-tab-inactive px-3.5 sm:px-5 py-2 text-xs sm:text-sm">
+            Workbook
+          </button>
+          <button onclick="switchTab('exam')" id="tab-nav-exam" class="btn-3d btn-tab-inactive px-3.5 sm:px-5 py-2 text-xs sm:text-sm border-amber-400 bg-amber-50 text-amber-700">
+            ⭐ Unit Test (Kiểm Tra)
+          </button>
         </div>
       </div>
 
-      <!-- ================= VIEW 1: LESSON 1 ================= -->
-      <div id="box-lesson-1">
+      <!-- ================= TAB 1: LESSON 1 ================= -->
+      <div id="section-lesson-1" class="space-y-6">
+        
+        <!-- 1. Listening & Phonics (Pastel Sky Blue Background) -->
+        <section class="skill-card-listening p-4 sm:p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-black text-sky-900 flex items-center gap-2 font-fun">
+              <span class="w-8 h-8 rounded-xl bg-sky-200 text-sky-800 flex items-center justify-center text-sm shadow-sm">🎧</span>
+              1. Listening & Phonics (Quốc kỳ & Phát âm)
+            </h3>
+            <span class="text-xs font-bold text-sky-700 hidden sm:inline">Bấm 🔊 để nghe, 🎤 để đọc theo</span>
+          </div>
 
-        <!-- 1. LISTENING & PHONICS -->
-        <div class="skill-block">
-          <div class="skill-badge-title listening">🎧 1. Listening & Phonics (Nghe phát âm)</div>
-          <div class="compact-grid-2col">
-            <div>
-              <div class="bilingual-speech-row">
-                <div class="bilingual-text-group">
-                  <div class="en-text-bold">America</div>
-                  <div class="vi-text-sub">nước Mỹ (âm đuôi /ə/)</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            
+            <!-- Viet Nam -->
+            <div class="toy-sub-card p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="flag-container bg-red-600 mb-2.5">
+                  <svg viewBox="0 0 900 600">
+                    <rect width="900" height="600" fill="#da251d"/>
+                    <polygon points="450,135 487,249 607,249 510,319 547,433 450,363 353,433 390,319 293,249 413,249" fill="#ff0"/>
+                  </svg>
                 </div>
-                <div class="audio-action-group">
-                  <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('America')">🔊</button>
-                  <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'America')">🎤</button>
+                <div class="text-center">
+                  <h4 class="text-xl font-black text-slate-800 font-fun">Viet Nam</h4>
+                  <p class="text-xs font-extrabold text-sky-700 mt-0.5">nước Việt Nam</p>
                 </div>
               </div>
-
-              <div class="bilingual-speech-row">
-                <div class="bilingual-text-group">
-                  <div class="en-text-bold">Australia</div>
-                  <div class="vi-text-sub">nước Úc (âm đuôi /iə/)</div>
-                </div>
-                <div class="audio-action-group">
-                  <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('Australia')">🔊</button>
-                  <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'Australia')">🎤</button>
-                </div>
+              <div class="flex items-center gap-2 mt-3.5 pt-2 border-t border-sky-100">
+                <button onclick="speakAudio('Viet Nam')" class="btn-3d btn-blue flex-1 py-1.5 text-xs font-black">🔊 Nghe</button>
+                <button onclick="recordKidVoice(this, 'Viet Nam')" class="btn-3d btn-orange px-3 py-1.5 text-xs font-black">🎤 Đọc</button>
               </div>
             </div>
 
-            <div>
-              <div class="bilingual-speech-row">
-                <div class="bilingual-text-group">
-                  <div class="en-text-bold">Britain</div>
-                  <div class="vi-text-sub">nước Anh</div>
+            <!-- America -->
+            <div class="toy-sub-card p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="flag-container bg-white mb-2.5 relative">
+                  <svg viewBox="0 0 7410 3900">
+                    <rect width="7410" height="3900" fill="#b22234"/>
+                    <path d="M0,450H7410M0,1050H7410M0,1650H7410M0,2250H7410M0,2850H7410M0,3450H7410" stroke="#fff" stroke-width="300"/>
+                    <rect width="2964" height="2100" fill="#3c3b6e"/>
+                    <g fill="#fff">
+                      <polygon points="250,200 280,280 360,280 300,330 320,410 250,360 180,410 200,330 140,280 220,280"/>
+                      <polygon points="750,200 780,280 860,280 800,330 820,410 750,360 680,410 700,330 640,280 720,280"/>
+                      <polygon points="1250,200 1280,280 1360,280 1300,330 1320,410 1250,360 1180,410 1200,330 1140,280 1220,280"/>
+                      <polygon points="1750,200 1780,280 1860,280 1800,330 1820,410 1750,360 1680,410 1700,330 1640,280 1720,280"/>
+                      <polygon points="2250,200 2280,280 2360,280 2300,330 2320,410 2250,360 2180,410 2200,330 2140,280 2220,280"/>
+                      <polygon points="2750,200 2780,280 2860,280 2800,330 2820,410 2750,360 2680,410 2700,330 2640,280 2720,280"/>
+                      <polygon points="500,600 530,680 610,680 550,730 570,810 500,760 430,810 450,730 390,680 470,680"/>
+                      <polygon points="1000,600 1030,680 1110,680 1050,730 1070,810 1000,760 930,810 950,730 890,680 970,680"/>
+                      <polygon points="1500,600 1530,680 1610,680 1550,730 1570,810 1500,760 1430,810 1450,730 1390,680 1470,680"/>
+                      <polygon points="2000,600 2030,680 2110,680 2050,730 2070,810 2000,760 1930,810 1950,730 1890,680 1970,680"/>
+                      <polygon points="2500,600 2530,680 2610,680 2550,730 2570,810 2500,760 2430,810 2450,730 2390,680 2470,680"/>
+                    </g>
+                  </svg>
                 </div>
-                <div class="audio-action-group">
-                  <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('Britain')">🔊</button>
-                  <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'Britain')">🎤</button>
+                <div class="text-center">
+                  <h4 class="text-xl font-black text-slate-800 font-fun">America</h4>
+                  <p class="text-xs font-extrabold text-sky-700 mt-0.5">nước Mỹ (âm đuôi /ə/)</p>
                 </div>
               </div>
+              <div class="flex items-center gap-2 mt-3.5 pt-2 border-t border-sky-100">
+                <button onclick="speakAudio('America')" class="btn-3d btn-blue flex-1 py-1.5 text-xs font-black">🔊 Nghe</button>
+                <button onclick="recordKidVoice(this, 'America')" class="btn-3d btn-orange px-3 py-1.5 text-xs font-black">🎤 Đọc</button>
+              </div>
+            </div>
 
-              <div class="bilingual-speech-row">
-                <div class="bilingual-text-group">
-                  <div class="en-text-bold">Viet Nam</div>
-                  <div class="vi-text-sub">nước Việt Nam</div>
+            <!-- Britain -->
+            <div class="toy-sub-card p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="flag-container bg-blue-900 mb-2.5 relative">
+                  <svg viewBox="0 0 60 30">
+                    <clipPath id="uk-flag-clip"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+                    <clipPath id="uk-sub-clip"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+                    <g clip-path="url(#uk-flag-clip)">
+                      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                      <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#uk-sub-clip)" stroke="#cf142b" stroke-width="4"/>
+                      <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                      <path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6"/>
+                    </g>
+                  </svg>
                 </div>
-                <div class="audio-action-group">
-                  <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('Viet Nam')">🔊</button>
-                  <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'Viet Nam')">🎤</button>
+                <div class="text-center">
+                  <h4 class="text-xl font-black text-slate-800 font-fun">Britain</h4>
+                  <p class="text-xs font-extrabold text-sky-700 mt-0.5">nước Anh</p>
                 </div>
+              </div>
+              <div class="flex items-center gap-2 mt-3.5 pt-2 border-t border-sky-100">
+                <button onclick="speakAudio('Britain')" class="btn-3d btn-blue flex-1 py-1.5 text-xs font-black">🔊 Nghe</button>
+                <button onclick="recordKidVoice(this, 'Britain')" class="btn-3d btn-orange px-3 py-1.5 text-xs font-black">🎤 Đọc</button>
+              </div>
+            </div>
+
+            <!-- Australia -->
+            <div class="toy-sub-card p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="flag-container bg-[#00008b] mb-2.5 relative">
+                  <svg viewBox="0 0 1200 600">
+                    <rect width="1200" height="600" fill="#00008b"/>
+                    <g>
+                      <clipPath id="au-corner-clip"><rect width="600" height="300"/></clipPath>
+                      <g clip-path="url(#au-corner-clip)">
+                        <path d="M0,0 L600,300 M600,0 L0,300" stroke="#fff" stroke-width="60"/>
+                        <path d="M0,0 L600,300 M600,0 L0,300" stroke="#cf142b" stroke-width="40"/>
+                        <path d="M300,0 v300 M0,150 h600" stroke="#fff" stroke-width="100"/>
+                        <path d="M300,0 v300 M0,150 h600" stroke="#cf142b" stroke-width="60"/>
+                      </g>
+                    </g>
+                    <polygon points="300,380 320,440 380,440 330,480 350,540 300,500 250,540 270,480 220,440 280,440" fill="#fff"/>
+                    <circle cx="900" cy="450" r="16" fill="#fff"/>
+                    <circle cx="780" cy="330" r="18" fill="#fff"/>
+                    <circle cx="900" cy="150" r="18" fill="#fff"/>
+                    <circle cx="1020" cy="270" r="18" fill="#fff"/>
+                    <circle cx="960" cy="380" r="12" fill="#fff"/>
+                  </svg>
+                </div>
+                <div class="text-center">
+                  <h4 class="text-xl font-black text-slate-800 font-fun">Australia</h4>
+                  <p class="text-xs font-extrabold text-sky-700 mt-0.5">nước Úc (âm đuôi /iə/)</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 mt-3.5 pt-2 border-t border-sky-100">
+                <button onclick="speakAudio('Australia')" class="btn-3d btn-blue flex-1 py-1.5 text-xs font-black">🔊 Nghe</button>
+                <button onclick="recordKidVoice(this, 'Australia')" class="btn-3d btn-orange px-3 py-1.5 text-xs font-black">🎤 Đọc</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 2. Speaking (Pastel Warm Orange/Coral Background) -->
+        <section class="skill-card-speaking p-4 sm:p-5 space-y-3">
+          <h3 class="text-base sm:text-lg font-black text-amber-900 flex items-center gap-2 font-fun">
+            <span class="w-8 h-8 rounded-xl bg-orange-200 text-orange-800 flex items-center justify-center text-sm shadow-sm">🗣️</span>
+            2. Speaking (Mẫu câu hỏi thăm quê quán)
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <!-- Question card -->
+            <div class="toy-sub-card p-4 flex items-center justify-between gap-3">
+              <div>
+                <span class="text-[11px] font-black text-orange-700 uppercase bg-orange-100 px-2.5 py-0.5 rounded-md">Câu hỏi:</span>
+                <p class="text-base sm:text-lg font-black text-slate-800 mt-1">Where are you from?</p>
+                <p class="text-xs font-extrabold text-slate-500">Bạn đến từ đâu?</p>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="speakAudio('Where are you from?')" class="w-10 h-10 rounded-xl bg-orange-50 text-orange-700 border-2 border-orange-200 flex items-center justify-center text-base hover:bg-orange-100 transition shadow-sm" title="Nghe">🔊</button>
+                <button onclick="recordKidVoice(this, 'Where are you from?')" class="w-10 h-10 rounded-xl bg-pink-50 text-pink-700 border-2 border-pink-200 flex items-center justify-center text-base hover:bg-pink-100 transition shadow-sm" title="Đọc">🎤</button>
+              </div>
+            </div>
+
+            <!-- Answer card -->
+            <div class="toy-sub-card p-4 flex items-center justify-between gap-3">
+              <div>
+                <span class="text-[11px] font-black text-emerald-700 uppercase bg-emerald-100 px-2.5 py-0.5 rounded-md">Trả lời:</span>
+                <p class="text-base sm:text-lg font-black text-slate-800 mt-1">I'm from Viet Nam.</p>
+                <p class="text-xs font-extrabold text-slate-500">Mình đến từ Việt Nam.</p>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="speakAudio('I am from Viet Nam')" class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 border-2 border-emerald-200 flex items-center justify-center text-base hover:bg-emerald-100 transition shadow-sm" title="Nghe">🔊</button>
+                <button onclick="recordKidVoice(this, 'I am from Viet Nam')" class="w-10 h-10 rounded-xl bg-pink-50 text-pink-700 border-2 border-pink-200 flex items-center justify-center text-base hover:bg-pink-100 transition shadow-sm" title="Đọc">🎤</button>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <!-- 2. SPEAKING -->
-        <div class="skill-block">
-          <div class="skill-badge-title speaking">🗣️ 2. Speaking (Mẫu câu giao tiếp)</div>
-          <div class="bilingual-speech-row" style="max-width: 540px;">
-            <div class="bilingual-text-group">
-              <div class="en-text-bold">Where are you from? — I'm from Viet Nam.</div>
-              <div class="vi-text-sub">Bạn đến từ đâu? — Mình đến từ Việt Nam.</div>
-            </div>
-            <div class="audio-action-group">
-              <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('Where are you from? I am from Viet Nam.')">🔊</button>
-              <button class="action-circle-btn btn-mic" title="Đọc lại" onclick="startSpeechPractice(this, 'Where are you from? I am from Viet Nam.')">🎤</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. READING -->
-        <div class="skill-block">
-          <div class="skill-badge-title reading">📖 3. Reading (Hội thoại hoàn chỉnh)</div>
-
-          <div class="bilingual-speech-row">
-            <div class="bilingual-text-group">
-              <div class="en-text-bold">Minh: Hello. I'm Minh. I'm from Viet Nam. Where are you from?</div>
-              <div class="vi-text-sub">Xin chào. Mình là Minh. Mình đến từ Việt Nam. Bạn đến từ đâu?</div>
-            </div>
-            <div class="audio-action-group">
-              <button class="action-circle-btn btn-listen" onclick="speak('Hello. I am Minh. I am from Viet Nam. Where are you from?')">🔊</button>
-              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Hello. I am Minh. I am from Viet Nam.')">🎤</button>
-            </div>
+        <!-- 3. Reading (Pastel Mint Green Background) -->
+        <section class="skill-card-reading p-4 sm:p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-black text-emerald-900 flex items-center gap-2 font-fun">
+              <span class="w-8 h-8 rounded-xl bg-emerald-200 text-emerald-800 flex items-center justify-center text-sm shadow-sm">📖</span>
+              3. Reading (Hội thoại hoàn chỉnh)
+            </h3>
+            <button onclick="speakAudio('Hello. I am Minh. I am from Viet Nam. Where are you from? Hello, Minh. I am Mary. I am from America. Hi. I am Lucy. I am from Britain. Where are you from? Hi, Lucy. I am Ben. I am from Australia.')" class="text-xs font-black text-emerald-800 bg-white border border-emerald-300 px-3 py-1.5 rounded-xl hover:bg-emerald-50 transition shadow-sm">
+              🔊 Nghe cả bài
+            </button>
           </div>
 
-          <div class="bilingual-speech-row">
-            <div class="bilingual-text-group">
-              <div class="en-text-bold">Mary: Hello, Minh. I'm Mary. I'm from America.</div>
-              <div class="vi-text-sub">Chào Minh. Mình là Mary. Mình đến từ nước Mỹ.</div>
-            </div>
-            <div class="audio-action-group">
-              <button class="action-circle-btn btn-listen" onclick="speak('Hello, Minh. I am Mary. I am from America.')">🔊</button>
-              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Hello, Minh. I am Mary. I am from America.')">🎤</button>
-            </div>
-          </div>
-
-          <div class="bilingual-speech-row" style="margin-top:12px;">
-            <div class="bilingual-text-group">
-              <div class="en-text-bold">Lucy: Hi. I'm Lucy. I'm from Britain. Where are you from?</div>
-              <div class="vi-text-sub">Chào bạn. Mình là Lucy. Mình đến từ nước Anh. Bạn đến từ đâu?</div>
-            </div>
-            <div class="audio-action-group">
-              <button class="action-circle-btn btn-listen" onclick="speak('Hi. I am Lucy. I am from Britain. Where are you from?')">🔊</button>
-              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Hi. I am Lucy. I am from Britain.')">🎤</button>
-            </div>
-          </div>
-
-          <div class="bilingual-speech-row">
-            <div class="bilingual-text-group">
-              <div class="en-text-bold">Ben: Hi, Lucy. I'm Ben. I'm from Australia.</div>
-              <div class="vi-text-sub">Chào Lucy. Mình là Ben. Mình đến từ nước Úc.</div>
-            </div>
-            <div class="audio-action-group">
-              <button class="action-circle-btn btn-listen" onclick="speak('Hi, Lucy. I am Ben. I am from Australia.')">🔊</button>
-              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Hi, Lucy. I am Ben. I am from Australia.')">🎤</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. WRITING -->
-        <div class="skill-block">
-          <div class="skill-badge-title writing">✍️ 4. Writing (Hoàn thành câu theo SGK Mục 5)</div>
-
-          <div class="compact-grid-2col">
-            <div class="quiz-card-compact">
-              <div class="quiz-q-title-row">
-                <span>1. I'm Minh. I'm from ________. 🇻🇳</span>
-                <button class="action-circle-btn btn-listen" onclick="speak('I am Minh. I am from Viet Nam.')">🔊</button>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <!-- Minh & Mary -->
+            <div class="toy-sub-card p-4 space-y-3">
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="text-xs font-black text-red-600 uppercase">Minh:</span>
+                  <p class="text-sm sm:text-base font-black text-slate-800">Hello. I'm Minh. I'm from Viet Nam. Where are you from?</p>
+                  <p class="text-xs text-slate-500">Xin chào. Mình là Minh. Mình đến từ Việt Nam. Bạn đến từ đâu?</p>
+                </div>
+                <button onclick="speakAudio('Hello. I am Minh. I am from Viet Nam. Where are you from?')" class="text-emerald-700 p-1">🔊</button>
               </div>
-              <div class="quiz-chips-container">
-                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'Viet Nam')">Viet Nam</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'America')">America</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'Britain')">Britain</button>
+              <div class="flex items-start justify-between pt-2 border-t border-slate-200">
+                <div>
+                  <span class="text-xs font-black text-blue-600 uppercase">Mary:</span>
+                  <p class="text-sm sm:text-base font-black text-slate-800">Hello, Minh. I'm Mary. I'm from America.</p>
+                  <p class="text-xs text-slate-500">Chào Minh. Mình là Mary. Mình đến từ nước Mỹ.</p>
+                </div>
+                <button onclick="speakAudio('Hello, Minh. I am Mary. I am from America.')" class="text-emerald-700 p-1">🔊</button>
               </div>
             </div>
 
-            <div class="quiz-card-compact">
-              <div class="quiz-q-title-row">
-                <span>2. I'm Mary. I'm ________. 🇺🇸</span>
-                <button class="action-circle-btn btn-listen" onclick="speak('I am Mary. I am from America.')">🔊</button>
+            <!-- Lucy & Ben -->
+            <div class="toy-sub-card p-4 space-y-3">
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="text-xs font-black text-indigo-600 uppercase">Lucy:</span>
+                  <p class="text-sm sm:text-base font-black text-slate-800">Hi. I'm Lucy. I'm from Britain. Where are you from?</p>
+                  <p class="text-xs text-slate-500">Chào bạn. Mình là Lucy. Mình đến từ nước Anh. Bạn đến từ đâu?</p>
+                </div>
+                <button onclick="speakAudio('Hi. I am Lucy. I am from Britain. Where are you from?')" class="text-emerald-700 p-1">🔊</button>
               </div>
-              <div class="quiz-chips-container">
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'from Viet Nam')">from Viet Nam</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'from America')">from America</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'from Australia')">from Australia</button>
+              <div class="flex items-start justify-between pt-2 border-t border-slate-200">
+                <div>
+                  <span class="text-xs font-black text-amber-600 uppercase">Ben:</span>
+                  <p class="text-sm sm:text-base font-black text-slate-800">Hi, Lucy. I'm Ben. I'm from Australia.</p>
+                  <p class="text-xs text-slate-500">Chào Lucy. Mình là Ben. Mình đến từ nước Úc.</p>
+                </div>
+                <button onclick="speakAudio('Hi, Lucy. I am Ben. I am from Australia.')" class="text-emerald-700 p-1">🔊</button>
               </div>
             </div>
           </div>
+        </section>
 
-        </div>
+        <!-- 4. Writing (Pastel Lavender Background) -->
+        <section class="skill-card-writing p-4 sm:p-5 space-y-3">
+          <h3 class="text-base sm:text-lg font-black text-purple-900 flex items-center gap-2 font-fun">
+            <span class="w-8 h-8 rounded-xl bg-purple-200 text-purple-800 flex items-center justify-center text-sm shadow-sm">✍️</span>
+            4. Writing (Hoàn thành câu theo SGK Mục 5)
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <!-- Q1 -->
+            <div class="toy-sub-card p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-base font-black text-slate-800">1. I'm Minh. I'm from ________.</span>
+                <button onclick="speakAudio('I am Minh. I am from Viet Nam.')" class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs">🔊</button>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="checkAnswer(this, true, 'Viet Nam')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">Viet Nam</button>
+                <button onclick="checkAnswer(this, false, 'America')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">America</button>
+                <button onclick="checkAnswer(this, false, 'Britain')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">Britain</button>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="toy-sub-card p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-base font-black text-slate-800">2. I'm Mary. I'm ________.</span>
+                <button onclick="speakAudio('I am Mary. I am from America.')" class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs">🔊</button>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="checkAnswer(this, false, 'from Viet Nam')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">from Viet Nam</button>
+                <button onclick="checkAnswer(this, true, 'from America')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">from America</button>
+                <button onclick="checkAnswer(this, false, 'from Australia')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">from Australia</button>
+              </div>
+            </div>
+          </div>
+        </section>
 
       </div>
 
-      <!-- ================= VIEW 2: LESSON 2 ================= -->
-      <div id="box-lesson-2" style="display:none;">
+      <!-- ================= TAB 2: LESSON 2 ================= -->
+      <div id="section-lesson-2" class="space-y-6 hidden">
+        
+        <!-- 1. Listening & Phonics (Pastel Sky Blue Background) -->
+        <section class="skill-card-listening p-4 sm:p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-black text-sky-900 flex items-center gap-2 font-fun">
+              <span class="w-8 h-8 rounded-xl bg-sky-200 text-sky-800 flex items-center justify-center text-sm shadow-sm">🎧</span>
+              1. Listening & Phonics (4 Quốc gia tiếp theo)
+            </h3>
+            <span class="text-xs font-bold text-sky-700 hidden sm:inline">Bấm 🔊 để nghe, 🎤 để đọc theo</span>
+          </div>
 
-        <div class="skill-block">
-          <div class="skill-badge-title listening">🎧 1. Listening (4 Quốc gia tiếp theo)</div>
-          <div class="compact-grid-2col">
-            <div>
-              <div class="bilingual-speech-row">
-                <div class="bilingual-text-group">
-                  <div class="en-text-bold">Singapore</div>
-                  <div class="vi-text-sub">nước Xin-ga-po</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            
+            <!-- Singapore -->
+            <div class="toy-sub-card p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="flag-container bg-white mb-2.5 relative">
+                  <svg viewBox="0 0 720 480">
+                    <rect width="720" height="240" fill="#ee2536"/>
+                    <rect y="240" width="720" height="240" fill="#ffffff"/>
+                    <circle cx="160" cy="120" r="75" fill="#fff"/>
+                    <circle cx="185" cy="120" r="70" fill="#ee2536"/>
+                    <g fill="#fff">
+                      <polygon points="210,75 214,88 226,88 217,95 220,107 210,100 200,107 203,95 194,88 206,88"/>
+                      <polygon points="245,100 249,113 261,113 252,120 255,132 245,125 235,132 238,120 229,113 241,113"/>
+                      <polygon points="230,140 234,153 246,153 237,160 240,172 230,165 220,172 223,160 214,153 226,153"/>
+                      <polygon points="190,140 194,153 206,153 197,160 200,172 190,165 180,172 183,160 174,153 186,153"/>
+                      <polygon points="175,100 179,113 191,113 182,120 185,132 175,125 165,132 168,120 159,113 171,113"/>
+                    </g>
+                  </svg>
                 </div>
-                <div class="audio-action-group">
-                  <button class="action-circle-btn btn-listen" onclick="speak('Singapore')">🔊</button>
-                  <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Singapore')">🎤</button>
+                <div class="text-center">
+                  <h4 class="text-xl font-black text-slate-800 font-fun">Singapore</h4>
+                  <p class="text-xs font-extrabold text-sky-700 mt-0.5">nước Xin-ga-po</p>
                 </div>
               </div>
-
-              <div class="bilingual-speech-row">
-                <div class="bilingual-text-group">
-                  <div class="en-text-bold">Malaysia</div>
-                  <div class="vi-text-sub">nước Ma-lai-xi-a</div>
-                </div>
-                <div class="audio-action-group">
-                  <button class="action-circle-btn btn-listen" onclick="speak('Malaysia')">🔊</button>
-                  <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Malaysia')">🎤</button>
-                </div>
+              <div class="flex items-center gap-2 mt-3.5 pt-2 border-t border-sky-100">
+                <button onclick="speakAudio('Singapore')" class="btn-3d btn-blue flex-1 py-1.5 text-xs font-black">🔊 Nghe</button>
+                <button onclick="recordKidVoice(this, 'Singapore')" class="btn-3d btn-orange px-3 py-1.5 text-xs font-black">🎤 Đọc</button>
               </div>
             </div>
 
-            <div>
-              <div class="bilingual-speech-row">
-                <div class="bilingual-text-group">
-                  <div class="en-text-bold">Thailand</div>
-                  <div class="vi-text-sub">nước Thái Lan</div>
+            <!-- Malaysia -->
+            <div class="toy-sub-card p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="flag-container bg-white mb-2.5 relative">
+                  <svg viewBox="0 0 1400 700">
+                    <rect width="1400" height="700" fill="#cc0000"/>
+                    <path d="M0,50H1400M0,150H1400M0,250H1400M0,350H1400M0,450H1400M0,550H1400M0,650H1400" stroke="#fff" stroke-width="50"/>
+                    <rect width="700" height="400" fill="#000066"/>
+                    <circle cx="280" cy="200" r="140" fill="#ffcc00"/>
+                    <circle cx="310" cy="200" r="120" fill="#000066"/>
+                    <polygon points="460,200 420,230 435,275 390,260 380,305 345,275 320,310 305,268 260,285 275,240 230,230 265,195 230,165 275,155 260,110 305,127 320,85 345,120 380,90 390,135 435,120 420,165" fill="#ffcc00"/>
+                  </svg>
                 </div>
-                <div class="audio-action-group">
-                  <button class="action-circle-btn btn-listen" onclick="speak('Thailand')">🔊</button>
-                  <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Thailand')">🎤</button>
+                <div class="text-center">
+                  <h4 class="text-xl font-black text-slate-800 font-fun">Malaysia</h4>
+                  <p class="text-xs font-extrabold text-sky-700 mt-0.5">nước Ma-lai-xi-a</p>
                 </div>
               </div>
+              <div class="flex items-center gap-2 mt-3.5 pt-2 border-t border-sky-100">
+                <button onclick="speakAudio('Malaysia')" class="btn-3d btn-blue flex-1 py-1.5 text-xs font-black">🔊 Nghe</button>
+                <button onclick="recordKidVoice(this, 'Malaysia')" class="btn-3d btn-orange px-3 py-1.5 text-xs font-black">🎤 Đọc</button>
+              </div>
+            </div>
 
-              <div class="bilingual-speech-row">
-                <div class="bilingual-text-group">
-                  <div class="en-text-bold">Japan</div>
-                  <div class="vi-text-sub">nước Nhật Bản</div>
+            <!-- Thailand -->
+            <div class="toy-sub-card p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="flag-container bg-white mb-2.5 relative">
+                  <svg viewBox="0 0 900 600">
+                    <rect width="900" height="600" fill="#a51931"/>
+                    <rect y="100" width="900" height="400" fill="#f4f5f8"/>
+                    <rect y="200" width="900" height="200" fill="#2d2a4a"/>
+                  </svg>
                 </div>
-                <div class="audio-action-group">
-                  <button class="action-circle-btn btn-listen" onclick="speak('Japan')">🔊</button>
-                  <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Japan')">🎤</button>
+                <div class="text-center">
+                  <h4 class="text-xl font-black text-slate-800 font-fun">Thailand</h4>
+                  <p class="text-xs font-extrabold text-sky-700 mt-0.5">nước Thái Lan</p>
                 </div>
+              </div>
+              <div class="flex items-center gap-2 mt-3.5 pt-2 border-t border-sky-100">
+                <button onclick="speakAudio('Thailand')" class="btn-3d btn-blue flex-1 py-1.5 text-xs font-black">🔊 Nghe</button>
+                <button onclick="recordKidVoice(this, 'Thailand')" class="btn-3d btn-orange px-3 py-1.5 text-xs font-black">🎤 Đọc</button>
+              </div>
+            </div>
+
+            <!-- Japan -->
+            <div class="toy-sub-card p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="flag-container bg-white mb-2.5 relative">
+                  <svg viewBox="0 0 900 600">
+                    <rect width="900" height="600" fill="#ffffff"/>
+                    <circle cx="450" cy="300" r="180" fill="#bc002d"/>
+                  </svg>
+                </div>
+                <div class="text-center">
+                  <h4 class="text-xl font-black text-slate-800 font-fun">Japan</h4>
+                  <p class="text-xs font-extrabold text-sky-700 mt-0.5">nước Nhật Bản</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 mt-3.5 pt-2 border-t border-sky-100">
+                <button onclick="speakAudio('Japan')" class="btn-3d btn-blue flex-1 py-1.5 text-xs font-black">🔊 Nghe</button>
+                <button onclick="recordKidVoice(this, 'Japan')" class="btn-3d btn-orange px-3 py-1.5 text-xs font-black">🎤 Đọc</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 2. Speaking (Pastel Warm Orange/Coral Background) -->
+        <section class="skill-card-speaking p-4 sm:p-5 space-y-3">
+          <h3 class="text-base sm:text-lg font-black text-amber-900 flex items-center gap-2 font-fun">
+            <span class="w-8 h-8 rounded-xl bg-orange-200 text-orange-800 flex items-center justify-center text-sm shadow-sm">🗣️</span>
+            2. Speaking (Mẫu câu hỏi về người khác: He / She)
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <!-- Girl (She) -->
+            <div class="toy-sub-card p-4 flex items-center justify-between gap-3">
+              <div>
+                <span class="text-[11px] font-black text-pink-700 uppercase bg-pink-100 px-2.5 py-0.5 rounded-md">Bạn nữ (She):</span>
+                <p class="text-base sm:text-lg font-black text-slate-800 mt-1">Where's she from? — She's from Japan.</p>
+                <p class="text-xs font-extrabold text-slate-500">Bạn ấy đến từ đâu? — Bạn ấy đến từ Nhật Bản.</p>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="speakAudio('Where is she from? She is from Japan.')" class="w-10 h-10 rounded-xl bg-pink-50 text-pink-700 border-2 border-pink-200 flex items-center justify-center text-base hover:bg-pink-100 transition shadow-sm">🔊</button>
+                <button onclick="recordKidVoice(this, 'She is from Japan')" class="w-10 h-10 rounded-xl bg-pink-50 text-pink-700 border-2 border-pink-200 flex items-center justify-center text-base hover:bg-pink-100 transition shadow-sm">🎤</button>
+              </div>
+            </div>
+
+            <!-- Boy (He) -->
+            <div class="toy-sub-card p-4 flex items-center justify-between gap-3">
+              <div>
+                <span class="text-[11px] font-black text-blue-700 uppercase bg-blue-100 px-2.5 py-0.5 rounded-md">Bạn nam (He):</span>
+                <p class="text-base sm:text-lg font-black text-slate-800 mt-1">Where's he from? — He's from Singapore.</p>
+                <p class="text-xs font-extrabold text-slate-500">Cậu ấy đến từ đâu? — Cậu ấy đến từ Xin-ga-po.</p>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="speakAudio('Where is he from? He is from Singapore.')" class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 border-2 border-blue-200 flex items-center justify-center text-base hover:bg-blue-100 transition shadow-sm">🔊</button>
+                <button onclick="recordKidVoice(this, 'He is from Singapore')" class="w-10 h-10 rounded-xl bg-pink-50 text-pink-700 border-2 border-pink-200 flex items-center justify-center text-base hover:bg-pink-100 transition shadow-sm">🎤</button>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- 2. SPEAKING L2: 2 CỘT CÂN ĐỐI, GỌN GÀNG -->
-        <div class="skill-block">
-          <div class="skill-badge-title speaking">🗣️ 2. Speaking (Mẫu câu ngôi thứ ba)</div>
-          <div class="compact-grid-2col">
-            <div class="bilingual-speech-row">
-              <div class="bilingual-text-group">
-                <div class="en-text-bold">Where's she from? — She's from Japan.</div>
-                <div class="vi-text-sub">Bạn ấy đến từ đâu? — Bạn ấy đến từ Nhật Bản.</div>
-              </div>
-              <div class="audio-action-group">
-                <button class="action-circle-btn btn-listen" onclick="speak('Where is she from? She is from Japan.')">🔊</button>
-                <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Where is she from? She is from Japan.')">🎤</button>
-              </div>
-            </div>
-
-            <div class="bilingual-speech-row">
-              <div class="bilingual-text-group">
-                <div class="en-text-bold">Where's he from? — He's from Singapore.</div>
-                <div class="vi-text-sub">Cậu ấy đến từ đâu? — Cậu ấy đến từ Xin-ga-po.</div>
-              </div>
-              <div class="audio-action-group">
-                <button class="action-circle-btn btn-listen" onclick="speak('Where is he from? He is from Singapore.')">🔊</button>
-                <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Where is he from? He is from Singapore.')">🎤</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
 
       </div>
 
-      <!-- ================= VIEW 3: LESSON 3 ================= -->
-      <div id="box-lesson-3" style="display:none;">
+      <!-- ================= TAB 3: LESSON 3 ================= -->
+      <div id="section-lesson-3" class="space-y-6 hidden">
+        
+        <!-- 1. Listening & Chant (Pastel Sky Blue Background) -->
+        <section class="skill-card-listening p-4 sm:p-5 space-y-3">
+          <h3 class="text-base sm:text-lg font-black text-sky-900 flex items-center gap-2 font-fun">
+            <span class="w-8 h-8 rounded-xl bg-sky-200 text-sky-800 flex items-center justify-center text-sm shadow-sm">🎵</span>
+            1. Listening & Chant (Bài vè ngữ âm)
+          </h3>
 
-        <div class="skill-block">
-          <div class="skill-badge-title listening">🎧 1. Listening & Chant (Bài vè ngữ âm)</div>
-          <div class="bilingual-speech-row">
-            <div class="bilingual-text-group">
-              <div class="en-text-bold">America, America. Mary's from America.</div>
-              <div class="vi-text-sub">Nước Mỹ, nước Mỹ. Mary đến từ nước Mỹ.</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <!-- Chant A -->
+            <div class="toy-sub-card p-4 flex items-center justify-between gap-3">
+              <div>
+                <span class="text-[11px] font-black text-sky-800 uppercase bg-sky-100 px-2.5 py-0.5 rounded-md">Ngữ âm /ə/:</span>
+                <p class="text-base font-black text-slate-800 mt-1">America, America. Mary's from America.</p>
+                <p class="text-xs font-extrabold text-slate-500">Nước Mỹ, nước Mỹ. Mary đến từ nước Mỹ.</p>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="speakAudio('America, America. Mary is from America.')" class="w-9 h-9 rounded-xl bg-sky-50 border-2 border-sky-300 text-sky-700 flex items-center justify-center">🔊</button>
+                <button onclick="recordKidVoice(this, 'Mary is from America')" class="w-9 h-9 rounded-xl bg-pink-50 border-2 border-pink-300 text-pink-700 flex items-center justify-center">🎤</button>
+              </div>
             </div>
-            <div class="audio-action-group">
-              <button class="action-circle-btn btn-listen" onclick="speak('America, America. Mary is from America.')">🔊</button>
-              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Mary is from America')">🎤</button>
+
+            <!-- Chant B -->
+            <div class="toy-sub-card p-4 flex items-center justify-between gap-3">
+              <div>
+                <span class="text-[11px] font-black text-teal-800 uppercase bg-teal-100 px-2.5 py-0.5 rounded-md">Ngữ âm /iə/:</span>
+                <p class="text-base font-black text-slate-800 mt-1">Australia, Australia. Ben's from Australia.</p>
+                <p class="text-xs font-extrabold text-slate-500">Nước Úc, nước Úc. Ben đến từ nước Úc.</p>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="speakAudio('Australia, Australia. Ben is from Australia.')" class="w-9 h-9 rounded-xl bg-teal-50 border-2 border-teal-300 text-teal-700 flex items-center justify-center">🔊</button>
+                <button onclick="recordKidVoice(this, 'Ben is from Australia')" class="w-9 h-9 rounded-xl bg-pink-50 border-2 border-pink-300 text-pink-700 flex items-center justify-center">🎤</button>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="bilingual-speech-row">
-            <div class="bilingual-text-group">
-              <div class="en-text-bold">Australia, Australia. Ben's from Australia.</div>
-              <div class="vi-text-sub">Nước Úc, nước Úc. Ben đến từ nước Úc.</div>
-            </div>
-            <div class="audio-action-group">
-              <button class="action-circle-btn btn-listen" onclick="speak('Australia, Australia. Ben is from Australia.')">🔊</button>
-              <button class="action-circle-btn btn-mic" onclick="startSpeechPractice(this, 'Ben is from Australia')">🎤</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="skill-block">
-          <div class="skill-badge-title reading">
-            <span>📖 3. Reading (Đọc đoạn văn)</span>
-            <button class="action-circle-btn btn-listen" style="margin-left:auto;" onclick="speak('Hello. I am Minh. I am from Viet Nam. I have two new friends, Tony and Laura. Tony is from America. Laura is from Australia.')">🔊</button>
+        <!-- 2. Reading (Pastel Mint Green Background) -->
+        <section class="skill-card-reading p-4 sm:p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-black text-emerald-900 flex items-center gap-2 font-fun">
+              <span class="w-8 h-8 rounded-xl bg-emerald-200 text-emerald-800 flex items-center justify-center text-sm shadow-sm">📖</span>
+              2. Reading (Đọc đoạn văn & Tích True/False)
+            </h3>
+            <button onclick="speakAudio('Hello. I am Minh. I am from Viet Nam. I have two new friends, Tony and Laura. Tony is from America. Laura is from Australia.')" class="text-xs font-black text-emerald-800 bg-white border border-emerald-300 px-3 py-1.5 rounded-xl shadow-sm">
+              🔊 Đọc đoạn văn
+            </button>
           </div>
 
-          <div style="background:#f8fafc; border-radius:14px; padding:14px; margin-bottom:14px; font-size:15px; line-height:1.6;">
+          <div class="toy-sub-card p-4 text-sm font-extrabold text-slate-800 leading-relaxed shadow-sm">
             "Hello. I am Minh. I am from Viet Nam. I have two new friends, Tony and Laura. Tony is from America. Laura is from Australia."
           </div>
 
-          <div class="compact-grid-2col">
-            <div class="quiz-card-compact">
-              <div class="quiz-q-title-row">
-                <span>1. Minh is from Viet Nam.</span>
-              </div>
-              <div class="quiz-chips-container">
-                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'True')">True (Đúng) ✔️</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'False')">False (Sai) ❌</button>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <div class="toy-sub-card p-4 flex flex-col justify-between">
+              <span class="text-sm sm:text-base font-black text-slate-800 mb-2">1. Minh is from Viet Nam.</span>
+              <div class="flex gap-2">
+                <button onclick="checkAnswer(this, true, 'True')" class="btn-3d btn-tab-inactive flex-1 py-1.5 text-xs font-black">TRUE (Đúng) ✔️</button>
+                <button onclick="checkAnswer(this, false, 'False')" class="btn-3d btn-tab-inactive flex-1 py-1.5 text-xs font-black">FALSE (Sai) ❌</button>
               </div>
             </div>
 
-            <div class="quiz-card-compact">
-              <div class="quiz-q-title-row">
-                <span>2. Tony is from Australia.</span>
+            <div class="toy-sub-card p-4 flex flex-col justify-between">
+              <span class="text-sm sm:text-base font-black text-slate-800 mb-2">2. Tony is from Australia.</span>
+              <div class="flex gap-2">
+                <button onclick="checkAnswer(this, false, 'True')" class="btn-3d btn-tab-inactive flex-1 py-1.5 text-xs font-black">TRUE (Đúng) ✔️</button>
+                <button onclick="checkAnswer(this, true, 'False')" class="btn-3d btn-tab-inactive flex-1 py-1.5 text-xs font-black">FALSE (Sai) ❌</button>
               </div>
-              <div class="quiz-chips-container">
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'True')">True (Đúng) ✔️</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'False')">False (Sai) ❌</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ================= TAB 4: WORKBOOK ================= -->
+      <div id="section-workbook" class="space-y-6 hidden">
+        
+        <div class="bg-gradient-to-r from-amber-400 to-orange-400 p-4 sm:p-5 rounded-2xl text-white flex items-center justify-between shadow-[0_5px_0_#c2410c]">
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider bg-black/20 px-2.5 py-0.5 rounded-full">SÁCH BÀI TẬP</span>
+            <h3 class="text-xl sm:text-2xl font-black mt-1 font-fun">Unit 1 Workbook Exercises</h3>
+            <p class="text-xs font-bold opacity-90">Bé hoàn thành bài tập ngữ âm và mẫu câu nhé!</p>
+          </div>
+          <span class="text-4xl">📚</span>
+        </div>
+
+        <!-- Section A: Phonics and Vocabulary -->
+        <section class="skill-card-listening p-4 sm:p-5 space-y-3">
+          <h4 class="text-base font-black text-sky-900 flex items-center gap-2 font-fun">
+            <span class="w-7 h-7 rounded-lg bg-sky-200 text-sky-800 flex items-center justify-center text-xs font-black">A</span>
+            Phonics and Vocabulary (Ngữ âm & Từ vựng)
+          </h4>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <div class="toy-sub-card p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-base font-black text-slate-800">1. She's from ________.</span>
+                <button onclick="speakAudio('She is from Australia')" class="w-8 h-8 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center text-xs">🔊</button>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="checkAnswer(this, true, 'Australia')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">Australia</button>
+                <button onclick="checkAnswer(this, false, 'Malaysia')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">Malaysia</button>
+                <button onclick="checkAnswer(this, false, 'America')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">America</button>
+              </div>
+            </div>
+
+            <div class="toy-sub-card p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-base font-black text-slate-800">2. He's from ________.</span>
+                <button onclick="speakAudio('He is from America')" class="w-8 h-8 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center text-xs">🔊</button>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="checkAnswer(this, false, 'Malaysia')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">Malaysia</button>
+                <button onclick="checkAnswer(this, true, 'America')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">America</button>
+                <button onclick="checkAnswer(this, false, 'Australia')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">Australia</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section B: Sentence Patterns -->
+        <section class="skill-card-speaking p-4 sm:p-5 space-y-3">
+          <h4 class="text-base font-black text-amber-900 flex items-center gap-2 font-fun">
+            <span class="w-7 h-7 rounded-lg bg-orange-200 text-orange-800 flex items-center justify-center text-xs font-black">B</span>
+            Sentence Patterns (Mẫu câu giao tiếp)
+          </h4>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <div class="toy-sub-card p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-base font-black text-slate-800">3. Where ________ you from?</span>
+                <button onclick="speakAudio('Where are you from?')" class="w-8 h-8 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center text-xs">🔊</button>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="checkAnswer(this, true, 'are')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">are</button>
+                <button onclick="checkAnswer(this, false, 'is')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">is</button>
+                <button onclick="checkAnswer(this, false, 'am')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">am</button>
+              </div>
+            </div>
+
+            <div class="toy-sub-card p-4 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-base font-black text-slate-800">4. Where's ________ from? — He's from Japan.</span>
+                <button onclick="speakAudio('Where is he from? He is from Japan.')" class="w-8 h-8 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center text-xs">🔊</button>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="checkAnswer(this, false, 'she')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">she</button>
+                <button onclick="checkAnswer(this, true, 'he')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">he</button>
+                <button onclick="checkAnswer(this, false, 'you')" class="btn-3d btn-tab-inactive px-4 py-1.5 text-sm font-black">you</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ================= TAB 5: UNIT TEST (4 KỸ NĂNG TỔNG HỢP) ================= -->
+      <div id="section-unit-test" class="space-y-6 hidden">
+        
+        <!-- Test Header -->
+        <div class="bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 p-4 sm:p-5 rounded-2xl text-slate-900 flex items-center justify-between shadow-[0_5px_0_#d97706]">
+          <div>
+            <span class="text-[11px] font-black uppercase tracking-wider bg-white/40 px-3 py-0.5 rounded-full text-amber-900">BÀI KIỂM TRA ĐÁNH GIÁ ĐỊNH KỲ</span>
+            <h3 class="text-xl sm:text-2xl font-black mt-1 font-fun text-slate-900">Unit 1 Assessment: 4-Skill Master Test</h3>
+            <p class="text-xs font-extrabold text-amber-950 opacity-90">Hoàn thành đủ 4 phần: Nghe, Nói, Đọc, Viết để nhận chứng chỉ nhé!</p>
+          </div>
+          <div class="w-14 h-14 rounded-2xl bg-white/80 border-2 border-amber-300 flex items-center justify-center text-3xl shadow-sm">
+            🏆
+          </div>
+        </div>
+
+        <!-- Skill 1: Listening Test -->
+        <div class="skill-card-listening p-4 sm:p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-base font-black text-sky-950 flex items-center gap-2 font-fun">
+              <span class="w-7 h-7 rounded-lg bg-sky-300 text-sky-900 flex items-center justify-center text-xs font-black">1</span>
+              Listening Test: Nghe và chọn đúng lá cờ quốc gia
+            </h4>
+            <span class="text-xs font-black bg-sky-200 text-sky-800 px-2.5 py-0.5 rounded-lg">25 Điểm</span>
+          </div>
+
+          <div class="toy-sub-card p-4 space-y-3">
+            <div class="flex items-center gap-3">
+              <button onclick="speakAudio('I am from Australia')" class="btn-3d btn-blue px-4 py-2 text-sm font-black">
+                🔊 Bấm để nghe câu hỏi
+              </button>
+              <span class="text-xs font-bold text-slate-500 italic">"Nghe kỹ xem bạn nhỏ nói đến từ nước nào..."</span>
+            </div>
+
+            <!-- Flag choices -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              <!-- Viet Nam -->
+              <div onclick="checkTestChoice(this, 'listening', false, 'Viet Nam')" class="test-opt-flag p-2 border-2 border-slate-200 rounded-xl bg-white hover:border-sky-400 cursor-pointer transition">
+                <div class="h-16 rounded-lg overflow-hidden bg-red-600">
+                  <svg viewBox="0 0 900 600"><rect width="900" height="600" fill="#da251d"/><polygon points="450,135 487,249 607,249 510,319 547,433 450,363 353,433 390,319 293,249 413,249" fill="#ff0"/></svg>
+                </div>
+                <p class="text-xs font-black text-center mt-2 text-slate-700">Viet Nam</p>
+              </div>
+
+              <!-- Australia (Correct) -->
+              <div onclick="checkTestChoice(this, 'listening', true, 'Australia')" class="test-opt-flag p-2 border-2 border-slate-200 rounded-xl bg-white hover:border-sky-400 cursor-pointer transition">
+                <div class="h-16 rounded-lg overflow-hidden bg-[#00008b]">
+                  <svg viewBox="0 0 1200 600"><rect width="1200" height="600" fill="#00008b"/><g clip-path="url(#au-corner-clip)"><path d="M0,0 L600,300 M600,0 L0,300" stroke="#fff" stroke-width="60"/><path d="M0,0 L600,300 M600,0 L0,300" stroke="#cf142b" stroke-width="40"/><path d="M300,0 v300 M0,150 h600" stroke="#fff" stroke-width="100"/><path d="M300,0 v300 M0,150 h600" stroke="#cf142b" stroke-width="60"/></g><polygon points="300,380 320,440 380,440 330,480 350,540 300,500 250,540 270,480 220,440 280,440" fill="#fff"/></svg>
+                </div>
+                <p class="text-xs font-black text-center mt-2 text-slate-700">Australia</p>
+              </div>
+
+              <!-- America -->
+              <div onclick="checkTestChoice(this, 'listening', false, 'America')" class="test-opt-flag p-2 border-2 border-slate-200 rounded-xl bg-white hover:border-sky-400 cursor-pointer transition">
+                <div class="h-16 rounded-lg overflow-hidden bg-white">
+                  <svg viewBox="0 0 7410 3900"><rect width="7410" height="3900" fill="#b22234"/><path d="M0,450H7410M0,1050H7410M0,1650H7410M0,2250H7410M0,2850H7410M0,3450H7410" stroke="#fff" stroke-width="300"/><rect width="2964" height="2100" fill="#3c3b6e"/></svg>
+                </div>
+                <p class="text-xs font-black text-center mt-2 text-slate-700">America</p>
+              </div>
+
+              <!-- Japan -->
+              <div onclick="checkTestChoice(this, 'listening', false, 'Japan')" class="test-opt-flag p-2 border-2 border-slate-200 rounded-xl bg-white hover:border-sky-400 cursor-pointer transition">
+                <div class="h-16 rounded-lg overflow-hidden bg-white border border-slate-200">
+                  <svg viewBox="0 0 900 600"><rect width="900" height="600" fill="#ffffff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+                </div>
+                <p class="text-xs font-black text-center mt-2 text-slate-700">Japan</p>
               </div>
             </div>
           </div>
         </div>
 
-      </div>
+        <!-- Skill 2: Speaking Test -->
+        <div class="skill-card-speaking p-4 sm:p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-base font-black text-amber-950 flex items-center gap-2 font-fun">
+              <span class="w-7 h-7 rounded-lg bg-orange-300 text-orange-900 flex items-center justify-center text-xs font-black">2</span>
+              Speaking Test: Kiểm tra phát âm qua Micro
+            </h4>
+            <span class="text-xs font-black bg-orange-200 text-orange-800 px-2.5 py-0.5 rounded-lg">25 Điểm</span>
+          </div>
 
-      <!-- ================= VIEW 4: WORKBOOK ================= -->
-      <div id="box-sbt" style="display:none;">
-
-        <div class="skill-block">
-          <div class="skill-badge-title writing">✍️ Workbook Exercises (Sách Bài Tập)</div>
-
-          <div class="compact-grid-2col">
-            <div class="quiz-card-compact">
-              <div class="quiz-q-title-row">
-                <span>1. She's from ________.</span>
-                <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('She is from Australia.')">🔊</button>
+          <div class="toy-sub-card p-4 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <p class="text-xs font-black text-orange-700 uppercase">Câu yêu cầu đọc:</p>
+                <p class="text-base sm:text-lg font-black text-slate-800 mt-0.5">"Where are you from? I'm from Viet Nam."</p>
+                <p class="text-xs text-slate-500">Bấm micro và đọc to, rõ ràng cả câu nhé!</p>
               </div>
-              <div class="quiz-chips-container">
-                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'Australia')">Australia</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'Malaysia')">Malaysia</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'America')">America</button>
+              <div class="flex items-center gap-2">
+                <button onclick="speakAudio('Where are you from? I am from Viet Nam.')" class="btn-3d btn-tab-inactive px-3 py-2 text-xs font-black">
+                  🔊 Nghe mẫu
+                </button>
+                <button onclick="recordTestSpeaking(this, 'Where are you from I am from Viet Nam')" class="btn-3d btn-orange px-4 py-2 text-sm font-black">
+                  🎤 Bấm để đọc
+                </button>
+              </div>
+            </div>
+            <div id="speaking-test-feedback" class="text-xs font-bold text-slate-500 hidden pt-2 border-t border-orange-100"></div>
+          </div>
+        </div>
+
+        <!-- Skill 3: Reading Test -->
+        <div class="skill-card-reading p-4 sm:p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-base font-black text-emerald-950 flex items-center gap-2 font-fun">
+              <span class="w-7 h-7 rounded-lg bg-emerald-300 text-emerald-900 flex items-center justify-center text-xs font-black">3</span>
+              Reading Test: Đọc Thẻ Học Sinh & Trả Lời
+            </h4>
+            <span class="text-xs font-black bg-emerald-200 text-emerald-800 px-2.5 py-0.5 rounded-lg">25 Điểm</span>
+          </div>
+
+          <div class="toy-sub-card p-4 space-y-3">
+            <!-- Student Profile Badge -->
+            <div class="bg-emerald-100/70 border-2 border-emerald-300 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <span class="text-[10px] font-black text-emerald-800 uppercase bg-white px-2 py-0.5 rounded">PUPIL PROFILE CARD</span>
+                <p class="text-base font-black text-emerald-950 mt-1">Name: Akiko</p>
+                <p class="text-xs font-extrabold text-emerald-800">Age: 9 | Hometown: Tokyo, Japan 🇯🇵</p>
+              </div>
+              <div class="h-12 w-20 rounded-lg overflow-hidden border border-emerald-300 bg-white">
+                <svg viewBox="0 0 900 600"><rect width="900" height="600" fill="#ffffff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
               </div>
             </div>
 
-            <div class="quiz-card-compact">
-              <div class="quiz-q-title-row">
-                <span>2. He's from ________.</span>
-                <button class="action-circle-btn btn-listen" title="Nghe" onclick="speak('He is from America.')">🔊</button>
-              </div>
-              <div class="quiz-chips-container">
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'Malaysia')">Malaysia</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, true, 'America')">America</button>
-                <button class="quiz-chip-btn" onclick="checkChip(this, false, 'Australia')">Australia</button>
+            <!-- Reading Question -->
+            <div class="space-y-2">
+              <p class="text-sm sm:text-base font-black text-slate-800">Where is Akiko from?</p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <button onclick="checkTestReading(this, false, 'America')" class="btn-3d btn-tab-inactive py-2 text-xs sm:text-sm font-black">She's from America.</button>
+                <button onclick="checkTestReading(this, true, 'Japan')" class="btn-3d btn-tab-inactive py-2 text-xs sm:text-sm font-black">She's from Japan.</button>
+                <button onclick="checkTestReading(this, false, 'Singapore')" class="btn-3d btn-tab-inactive py-2 text-xs sm:text-sm font-black">She's from Singapore.</button>
               </div>
             </div>
           </div>
+        </div>
 
+        <!-- Skill 4: Writing Test (Sentence Unscramble) -->
+        <div class="skill-card-writing p-4 sm:p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-base font-black text-purple-950 flex items-center gap-2 font-fun">
+              <span class="w-7 h-7 rounded-lg bg-purple-300 text-purple-900 flex items-center justify-center text-xs font-black">4</span>
+              Writing Test: Ghép các từ thành câu hoàn chỉnh
+            </h4>
+            <span class="text-xs font-black bg-purple-200 text-purple-800 px-2.5 py-0.5 rounded-lg">25 Điểm</span>
+          </div>
+
+          <div class="toy-sub-card p-4 space-y-3">
+            <p class="text-xs font-black text-purple-700 uppercase">Bé bấm lần lượt các từ bên dưới để ghép câu:</p>
+            
+            <!-- Result Box -->
+            <div id="unscramble-result" class="min-h-12 bg-purple-50/80 border-2 border-dashed border-purple-300 rounded-xl p-2.5 flex items-center gap-2 flex-wrap text-sm font-black text-purple-950">
+              <span class="text-slate-400 font-semibold italic text-xs" id="placeholder-prompt">Chưa chọn từ nào...</span>
+            </div>
+
+            <!-- Clickable Word Pills -->
+            <div class="flex flex-wrap gap-2 pt-1" id="unscramble-bank">
+              <button onclick="pickWord(this, 'Where')" class="btn-3d btn-tab-inactive px-3.5 py-1.5 text-xs font-black">Where</button>
+              <button onclick="pickWord(this, 'is')" class="btn-3d btn-tab-inactive px-3.5 py-1.5 text-xs font-black">is</button>
+              <button onclick="pickWord(this, 'he')" class="btn-3d btn-tab-inactive px-3.5 py-1.5 text-xs font-black">he</button>
+              <button onclick="pickWord(this, 'from?')" class="btn-3d btn-tab-inactive px-3.5 py-1.5 text-xs font-black">from?</button>
+            </div>
+
+            <!-- Reset and Submit buttons -->
+            <div class="flex items-center gap-2 pt-2 border-t border-purple-100">
+              <button onclick="resetUnscramble()" class="btn-3d btn-tab-inactive px-3.5 py-1.5 text-xs font-black">🔄 Xếp lại</button>
+              <button onclick="submitWritingTest()" class="btn-3d btn-purple px-5 py-1.5 text-xs font-black">✔️ Nộp bài viết</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Test Summary & Score Report Card -->
+        <div class="skill-card-test p-5 text-center space-y-3">
+          <h4 class="text-xl font-black text-amber-950 font-fun">BẢNG KẾT QUẢ ĐÁNH GIÁ (REPORT CARD)</h4>
+          <div class="flex justify-center items-center gap-6 my-2">
+            <div class="bg-white px-5 py-3 rounded-2xl border-2 border-amber-300 shadow-sm">
+              <span class="text-xs font-extrabold text-slate-500 uppercase block">Tổng điểm đạt được</span>
+              <span id="test-total-score" class="text-3xl sm:text-4xl font-black text-amber-600 font-fun">0 / 100</span>
+            </div>
+            <div class="bg-white px-5 py-3 rounded-2xl border-2 border-amber-300 shadow-sm">
+              <span class="text-xs font-extrabold text-slate-500 uppercase block">Xếp loại</span>
+              <span id="test-badge-rank" class="text-base sm:text-lg font-black text-emerald-600 font-fun">Chưa hoàn thành</span>
+            </div>
+          </div>
+          <p id="test-congrats-text" class="text-xs font-bold text-amber-900">Hoàn thành đủ 4 phần để nhận huy chương nhé!</p>
         </div>
 
       </div>
 
     </div>
+  </main>
 
-  </div>
+  <script>
+    let trueCount = 0;
+    let falseCount = 0;
+    let soundEnabled = true;
 
-<script>
-  let trueScore = 0;
-  let falseScore = 0;
+    // Unit test score tracker (25 points each)
+    const testScores = {
+      listening: 0,
+      speaking: 0,
+      reading: 0,
+      writing: 0
+    };
 
-  // PHÁT ÂM CHUẨN
-  function speak(text) {
-    if (!('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'en-US';
-    u.rate = 0.85;
-    window.speechSynthesis.speak(u);
-  }
+    // Web Audio Synthesizer for tactile feedback
+    const SoundFx = {
+      audioCtx: null,
+      getAudio() {
+        if (!this.audioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.audioCtx = new AudioContext();
+        }
+      },
+      ding() {
+        if (!soundEnabled) return;
+        try {
+          this.getAudio();
+          if (!this.audioCtx) return;
+          const t = this.audioCtx.currentTime;
+          const osc = this.audioCtx.createOscillator();
+          const gain = this.audioCtx.createGain();
+          osc.connect(gain);
+          gain.connect(this.audioCtx.destination);
 
-  // THU ÂM VÀ CHẤM ĐIỂM
-  function startSpeechPractice(btn, targetText) {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert("Trình duyệt chưa hỗ trợ ghi âm trực tiếp. Hãy mở trên Google Chrome nhé!");
-      return;
-    }
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, t);
+          osc.frequency.setValueAtTime(659.25, t + 0.08);
+          osc.frequency.setValueAtTime(783.99, t + 0.16);
 
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
+          gain.gain.setValueAtTime(0.25, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
 
-    btn.classList.add('recording');
+          osc.start(t);
+          osc.stop(t + 0.45);
+        } catch (e) {}
+      },
+      buzz() {
+        if (!soundEnabled) return;
+        try {
+          this.getAudio();
+          if (!this.audioCtx) return;
+          const t = this.audioCtx.currentTime;
+          const osc = this.audioCtx.createOscillator();
+          const gain = this.audioCtx.createGain();
+          osc.connect(gain);
+          gain.connect(this.audioCtx.destination);
 
-    recognition.onresult = function(event) {
-      btn.classList.remove('recording');
-      const spokenText = event.results[0][0].transcript.toLowerCase();
-      const cleanTarget = targetText.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(160, t);
+          osc.frequency.linearRampToValueAtTime(110, t + 0.2);
 
-      if (spokenText.includes(cleanTarget) || cleanTarget.includes(spokenText)) {
-        speak("Excellent!");
-        confetti({ particleCount: 35, spread: 60, origin: { y: 0.8 } });
-        btn.textContent = "⭐";
-      } else {
-        speak("Try again!");
-        btn.textContent = "🔄";
+          gain.gain.setValueAtTime(0.18, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+
+          osc.start(t);
+          osc.stop(t + 0.2);
+        } catch (e) {}
       }
-      setTimeout(() => { btn.textContent = "🎤"; }, 2500);
     };
 
-    recognition.onerror = function() {
-      btn.classList.remove('recording');
-    };
-
-    recognition.onend = function() {
-      btn.classList.remove('recording');
-    };
-
-    recognition.start();
-  }
-
-  // CHỌN ĐÁP ÁN DẠNG CHIP
-  function checkChip(el, isCorrect, speechText) {
-    speak(speechText);
-    if (isCorrect) {
-      el.classList.add('correct');
-      trueScore++;
-      document.getElementById('score-true-num').textContent = trueScore;
-      confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 } });
-    } else {
-      el.classList.add('wrong');
-      falseScore++;
-      document.getElementById('score-false-num').textContent = falseScore;
-      setTimeout(() => el.classList.remove('wrong'), 800);
+    // Text to Speech
+    function speakAudio(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = 0.85;
+      window.speechSynthesis.speak(u);
     }
-  }
 
-  // CHUYỂN BÀI ĐỘC LẬP
-  function selectTab(tabKey) {
-    ['l1', 'l2', 'l3', 'sbt'].forEach(k => {
-      document.getElementById('tab-btn-' + k).classList.toggle('active', k === tabKey);
-    });
+    // Microphone speech recognition for kids practice
+    function recordKidVoice(btn, targetWord) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Bé hãy mở trên Google Chrome để dùng micro luyện nói nhé!");
+        return;
+      }
 
-    document.getElementById('box-lesson-1').style.display = 'none';
-    document.getElementById('box-lesson-2').style.display = 'none';
-    document.getElementById('box-lesson-3').style.display = 'none';
-    document.getElementById('box-sbt').style.display = 'none';
+      const rec = new SpeechRecognition();
+      rec.lang = 'en-US';
+      rec.interimResults = false;
 
-    const titleMap = {
-      'l1': 'Lesson 1',
-      'l2': 'Lesson 2',
-      'l3': 'Lesson 3',
-      'sbt': 'Workbook'
-    };
-    document.getElementById('lesson-screen-title').textContent = titleMap[tabKey];
+      btn.classList.add('mic-recording');
+      btn.textContent = "🎙️ Đang nghe...";
 
-    if (tabKey === 'l1') document.getElementById('box-lesson-1').style.display = 'block';
-    if (tabKey === 'l2') document.getElementById('box-lesson-2').style.display = 'block';
-    if (tabKey === 'l3') document.getElementById('box-lesson-3').style.display = 'block';
-    if (tabKey === 'sbt') document.getElementById('box-sbt').style.display = 'block';
-  }
-</script>
+      rec.onresult = function(e) {
+        btn.classList.remove('mic-recording');
+        const userSpoke = e.results[0][0].transcript.toLowerCase();
+        const clean = targetWord.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+
+        if (userSpoke.includes(clean) || clean.includes(userSpoke)) {
+          SoundFx.ding();
+          speakAudio("Excellent!");
+          btn.textContent = "⭐ Giỏi quá!";
+          btn.classList.remove('btn-orange');
+          btn.classList.add('btn-green');
+
+          trueCount++;
+          document.getElementById('score-true-val').textContent = trueCount;
+          confettiEffect();
+        } else {
+          SoundFx.buzz();
+          speakAudio("Try again!");
+          btn.textContent = "🔄 Thử lại";
+        }
+
+        setTimeout(() => {
+          btn.textContent = "🎤 Đọc";
+          btn.classList.remove('btn-green');
+          btn.classList.add('btn-orange');
+        }, 2200);
+      };
+
+      rec.onerror = function() {
+        btn.classList.remove('mic-recording');
+        btn.textContent = "🎤 Đọc";
+      };
+
+      rec.onend = function() {
+        btn.classList.remove('mic-recording');
+      };
+
+      rec.start();
+    }
+
+    // Standard Chip Answer Checker
+    function checkAnswer(chipBtn, isCorrect, speakText) {
+      speakAudio(speakText);
+      const container = chipBtn.parentElement;
+      const allChips = container.querySelectorAll('button');
+
+      if (isCorrect) {
+        SoundFx.ding();
+        allChips.forEach(b => b.disabled = true);
+        chipBtn.classList.remove('btn-tab-inactive');
+        chipBtn.classList.add('btn-green');
+
+        trueCount++;
+        document.getElementById('score-true-val').textContent = trueCount;
+        confettiEffect();
+      } else {
+        SoundFx.buzz();
+        chipBtn.classList.add('border-rose-400', 'bg-rose-50', 'text-rose-600');
+        falseCount++;
+        document.getElementById('score-false-val').textContent = falseCount;
+        setTimeout(() => {
+          chipBtn.classList.remove('border-rose-400', 'bg-rose-50', 'text-rose-600');
+        }, 800);
+      }
+    }
+
+    // Unit Test: Skill 1 (Listening)
+    function checkTestChoice(card, skill, isCorrect, countryName) {
+      speakAudio(countryName);
+      const parent = card.parentElement;
+      parent.querySelectorAll('.test-opt-flag').forEach(el => el.style.pointerEvents = 'none');
+
+      if (isCorrect) {
+        SoundFx.ding();
+        card.classList.add('border-emerald-500', 'bg-emerald-50', 'ring-2', 'ring-emerald-400');
+        testScores.listening = 25;
+        confettiEffect();
+      } else {
+        SoundFx.buzz();
+        card.classList.add('border-rose-500', 'bg-rose-50');
+        testScores.listening = 0;
+      }
+      updateTestReport();
+    }
+
+    // Unit Test: Skill 2 (Speaking)
+    function recordTestSpeaking(btn, targetPhrase) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Bé hãy mở trên Google Chrome để làm bài kiểm tra nói nhé!");
+        return;
+      }
+
+      const rec = new SpeechRecognition();
+      rec.lang = 'en-US';
+      rec.interimResults = false;
+
+      btn.classList.add('mic-recording');
+      btn.textContent = "🎙️ Đang nghe...";
+      const fb = document.getElementById('speaking-test-feedback');
+      fb.classList.remove('hidden');
+      fb.textContent = "Đang nhận diện giọng nói của bé...";
+
+      rec.onresult = function(e) {
+        btn.classList.remove('mic-recording');
+        const transcript = e.results[0][0].transcript.toLowerCase();
+        const cleanTarget = targetPhrase.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+
+        if (transcript.includes("where") || transcript.includes("from") || transcript.includes("viet nam")) {
+          SoundFx.ding();
+          speakAudio("Great job!");
+          btn.textContent = "⭐ Đạt 25/25 Điểm";
+          btn.classList.remove('btn-orange');
+          btn.classList.add('btn-green');
+          btn.disabled = true;
+
+          fb.textContent = `Bé đã nói: "${transcript}" — Phát âm rất chuẩn! (+25 điểm)`;
+          fb.className = "text-xs font-black text-emerald-700 pt-2 border-t border-orange-100";
+          testScores.speaking = 25;
+          confettiEffect();
+        } else {
+          SoundFx.buzz();
+          speakAudio("Try again!");
+          btn.textContent = "🔄 Đọc lại";
+          fb.textContent = `Bé đã nói: "${transcript}" — Chưa rõ lắm, bé bấm đọc lại nhé!`;
+          fb.className = "text-xs font-bold text-rose-600 pt-2 border-t border-orange-100";
+          testScores.speaking = 10; // Partial encouragement
+        }
+        updateTestReport();
+      };
+
+      rec.onerror = function() {
+        btn.classList.remove('mic-recording');
+        btn.textContent = "🎤 Bấm để đọc";
+      };
+      rec.onend = function() {
+        btn.classList.remove('mic-recording');
+      };
+      rec.start();
+    }
+
+    // Unit Test: Skill 3 (Reading)
+    function checkTestReading(btn, isCorrect, targetWord) {
+      speakAudio(targetWord);
+      const parent = btn.parentElement;
+      parent.querySelectorAll('button').forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        SoundFx.ding();
+        btn.classList.remove('btn-tab-inactive');
+        btn.classList.add('btn-green');
+        testScores.reading = 25;
+        confettiEffect();
+      } else {
+        SoundFx.buzz();
+        btn.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-700');
+        testScores.reading = 0;
+      }
+      updateTestReport();
+    }
+
+    // Unit Test: Skill 4 (Writing: Word Unscramble)
+    let selectedWords = [];
+    function pickWord(btn, word) {
+      SoundFx.ding();
+      selectedWords.push(word);
+      btn.style.display = 'none';
+
+      const box = document.getElementById('unscramble-result');
+      const placeholder = document.getElementById('placeholder-prompt');
+      if (placeholder) placeholder.remove();
+
+      const span = document.createElement('span');
+      span.className = "bg-white border-2 border-purple-300 text-purple-900 px-3 py-1 rounded-lg shadow-sm";
+      span.textContent = word;
+      box.appendChild(span);
+    }
+
+    function resetUnscramble() {
+      selectedWords = [];
+      const box = document.getElementById('unscramble-result');
+      box.innerHTML = '<span class="text-slate-400 font-semibold italic text-xs" id="placeholder-prompt">Chưa chọn từ nào...</span>';
+      const bank = document.getElementById('unscramble-bank');
+      bank.querySelectorAll('button').forEach(b => b.style.display = 'inline-flex');
+    }
+
+    function submitWritingTest() {
+      const sentence = selectedWords.join(' ');
+      if (sentence === "Where is he from?") {
+        SoundFx.ding();
+        speakAudio("Correct! Where is he from?");
+        testScores.writing = 25;
+        document.getElementById('unscramble-result').className = "min-h-12 bg-emerald-100 border-2 border-emerald-400 rounded-xl p-2.5 flex items-center gap-2 flex-wrap text-sm font-black text-emerald-950";
+        confettiEffect();
+      } else {
+        SoundFx.buzz();
+        speakAudio("Incorrect. Try again!");
+        testScores.writing = 0;
+        alert("Câu chưa chính xác rồi, bé bấm 'Xếp lại' để thử lại nhé!");
+      }
+      updateTestReport();
+    }
+
+    // Update Report Card
+    function updateTestReport() {
+      const total = testScores.listening + testScores.speaking + testScores.reading + testScores.writing;
+      document.getElementById('test-total-score').textContent = `${total} / 100`;
+
+      const rankBadge = document.getElementById('test-badge-rank');
+      const congrats = document.getElementById('test-congrats-text');
+
+      if (total >= 90) {
+        rankBadge.textContent = "Xuất sắc (A+) 🌟";
+        rankBadge.className = "text-base sm:text-lg font-black text-amber-600 font-fun";
+        congrats.textContent = "Chúc mừng bé đạt danh hiệu Đại Sứ Tiếng Anh Lớp 4!";
+      } else if (total >= 70) {
+        rankBadge.textContent = "Giỏi (A) 🎖️";
+        rankBadge.className = "text-base sm:text-lg font-black text-emerald-600 font-fun";
+        congrats.textContent = "Bé làm bài rất tốt! Tiếp tục phát huy nhé!";
+      } else if (total >= 50) {
+        rankBadge.textContent = "Khá (B) 👍";
+        rankBadge.className = "text-base sm:text-lg font-black text-sky-600 font-fun";
+        congrats.textContent = "Bé đã vượt qua bài test! Hãy luyện tập thêm để đạt 100 điểm nhé!";
+      } else {
+        rankBadge.textContent = "Cần cố gắng (C) 📚";
+        rankBadge.className = "text-base sm:text-lg font-black text-orange-600 font-fun";
+      }
+    }
+
+    // Confetti particles
+    function confettiEffect() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 40,
+          spread: 60,
+          origin: { y: 0.75 }
+        });
+      }
+    }
+
+    // Toggle SFX
+    function toggleAudio() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('btn-sound-switch').textContent = soundEnabled ? "🔊" : "🔇";
+    }
+
+    // Strict Lesson Isolation Switcher
+    function switchTab(tabId) {
+      const allTabs = ['l1', 'l2', 'l3', 'wb', 'exam'];
+      allTabs.forEach(id => {
+        const btn = document.getElementById('tab-nav-' + id);
+        let section = null;
+
+        if (id === 'wb') section = document.getElementById('section-workbook');
+        else if (id === 'exam') section = document.getElementById('section-unit-test');
+        else section = document.getElementById('section-lesson-' + id.replace('l', ''));
+
+        if (id === tabId) {
+          if (id === 'exam') {
+            btn.className = "btn-3d btn-orange px-3.5 sm:px-5 py-2 text-xs sm:text-sm";
+          } else {
+            btn.className = "btn-3d btn-blue px-3.5 sm:px-5 py-2 text-xs sm:text-sm";
+          }
+          section.classList.remove('hidden');
+        } else {
+          btn.className = "btn-3d btn-tab-inactive px-3.5 sm:px-5 py-2 text-xs sm:text-sm";
+          section.classList.add('hidden');
+        }
+      });
+
+      const titles = {
+        'l1': 'Lesson 1: Countries & Flags',
+        'l2': 'Lesson 2: Asian Flags & He / She Patterns',
+        'l3': 'Lesson 3: Phonics & Reading Practice',
+        'wb': 'Workbook Practice & Quizzes',
+        'exam': 'Unit 1 Comprehensive Assessment (4 Skills Test)'
+      };
+      document.getElementById('lesson-screen-heading').textContent = titles[tabId];
+    }
+  </script>
 </body>
 </html>
