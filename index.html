@@ -253,14 +253,15 @@
     flex-direction: column;
   }
   .en-word-bold {
-    font-size: 16px;
+    font-size: 15.5px;
     font-weight: 800;
     color: #0f172a;
   }
-  .vi-phonics-sub {
-    font-size: 13px;
+  .en-answer-sub {
+    font-size: 14px;
     font-weight: 700;
-    color: #64748b;
+    color: #0284c7;
+    margin-top: 2px;
   }
 
   .action-audio-btns {
@@ -285,6 +286,12 @@
   .btn-audio-listen:hover { background: #0284c7; color: #fff; transform: scale(1.08); }
   .btn-audio-mic { background: #fce7f3; color: #db2777; }
   .btn-audio-mic:hover { background: #db2777; color: #fff; transform: scale(1.08); }
+  .btn-audio-mic.recording {
+    background: #ef4444;
+    color: #fff;
+    animation: pulse 1s infinite alternate;
+  }
+  @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
 
   .quiz-single-card {
     background: #ffffff;
@@ -340,6 +347,23 @@
     justify-content: space-between;
     font-weight: 800;
   }
+
+  /* BẢNG DỮ LIỆU ĐỌC HIỂU (SBT Trang 7) */
+  .data-table-wrap {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .data-table-wrap th, .data-table-wrap td {
+    border: 1.5px solid #e2e8f0;
+    padding: 8px 12px;
+    text-align: center;
+    font-weight: 700;
+  }
+  .data-table-wrap th { background: #f1f5f9; color: #334155; }
 </style>
 </head>
 <body>
@@ -351,9 +375,10 @@
         <img class="header-rooster-thumb" src="rooster.png" alt="Chú gà">
         <span>Tiếng Anh 4 (Global Success)</span>
       </div>
-      <button class="nav-pill-btn active">Lessons</button>
-      <button class="nav-pill-btn" onclick="switchLesson('sbt')">Workbook (A-F)</button>
-      <button class="nav-pill-btn" onclick="switchLesson('test')">Unit Test 🌟</button>
+      <button class="nav-pill-btn active" id="btn-top-lessons" onclick="switchLesson('l1')">Lessons</button>
+      <button class="nav-pill-btn" id="btn-top-sbt" onclick="switchLesson('sbt')">Workbook (A-F)</button>
+      <button class="nav-pill-btn" id="btn-top-adv" onclick="switchLesson('adv')">Luyện tập thêm 🚀</button>
+      <button class="nav-pill-btn" id="btn-top-test" onclick="switchLesson('test')">Unit Test 🌟</button>
     </div>
 
     <div class="header-score-box">
@@ -390,6 +415,7 @@
         <button class="tab-pill-btn" id="btn-tab-l2" onclick="switchLesson('l2')">Lesson 2</button>
         <button class="tab-pill-btn" id="btn-tab-l3" onclick="switchLesson('l3')">Lesson 3</button>
         <button class="tab-pill-btn" id="btn-tab-sbt" onclick="switchLesson('sbt')">Workbook (A-F)</button>
+        <button class="tab-pill-btn" id="btn-tab-adv" onclick="switchLesson('adv')">Luyện tập thêm 🚀</button>
         <button class="tab-pill-btn" id="btn-tab-test" onclick="switchLesson('test')">Unit Test 🌟</button>
       </div>
     </div>
@@ -397,38 +423,80 @@
     <!-- ================= VIEW 1: LESSON 1 ================= -->
     <div id="content-lesson-1">
 
-      <!-- 1. Look, listen and repeat -->
+      <!-- 1. Look, listen and repeat (Trang 10 SGK) -->
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;">🎧 1. Look, listen and repeat (Trang 10)</div>
         <div class="grid-2col">
           <div class="speech-card-row">
             <div class="text-stack">
-              <div class="en-word-bold">a. Minh: Hello. I'm Minh.</div>
-              <div class="vi-phonics-sub">Mary: Hello, Minh. I'm Mary.</div>
+              <div class="en-word-bold">a. Minh: Hello. I'm Minh. I'm from Viet Nam. Where are you from?</div>
+              <div class="en-answer-sub">Mary: Hello, Minh. I'm Mary. I'm from America.</div>
             </div>
             <div class="action-audio-btns">
-              <button class="circle-btn btn-audio-listen" onclick="speak('Hello. I am Minh. Hello, Minh. I am Mary.')">🔊</button>
-              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Hello. I am Minh.')">🎤</button>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Hello. I am Minh. I am from Viet Nam. Where are you from? Hello, Minh. I am Mary. I am from America.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Hello, Minh. I am Mary. I am from America.')">🎤</button>
             </div>
           </div>
 
           <div class="speech-card-row">
             <div class="text-stack">
-              <div class="en-word-bold">b. Minh: Where are you from?</div>
-              <div class="vi-phonics-sub">Mary: I'm from America.</div>
+              <div class="en-word-bold">b. Lucy: Hi. I'm Lucy. I'm from Britain. Where are you from?</div>
+              <div class="en-answer-sub">Ben: Hi, Lucy. I'm Ben. I'm from Australia.</div>
             </div>
             <div class="action-audio-btns">
-              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from? I am from America.')">🔊</button>
-              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from America.')">🎤</button>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Hi. I am Lucy. I am from Britain. Where are you from? Hi, Lucy. I am Ben. I am from Australia.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Hi, Lucy. I am Ben. I am from Australia.')">🎤</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2. Listen, point and say (Chỉ nghe & phát âm 4 nước) -->
+      <!-- 2. Listen, point and say (Trang 10 SGK - Đầy đủ Câu hỏi & Câu trả lời) -->
       <div class="skill-block theme-orange">
-        <div class="skill-badge-header" style="color:#ea580c;">🗣️ 2. Listen, point and say (Trang 10 - Nhìn cờ, nghe và đọc)</div>
+        <div class="skill-badge-header" style="color:#ea580c;">
+          <span>🗣️ 2. Listen, point and say (Trang 10: Where are you from? — I'm from...)</span>
+        </div>
         <div class="grid-2col">
+          <!-- a. Britain -->
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42">
+                <rect width="64" height="42" fill="#012169"/>
+                <path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/>
+                <path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/>
+                <path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/>
+                <path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/>
+              </svg>
+              <div class="text-stack">
+                <div class="en-word-bold">a. Britain</div>
+                <div class="en-answer-sub">Where are you from? — I'm from Britain.</div>
+              </div>
+            </div>
+            <div class="action-audio-btns">
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from? I am from Britain.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from Britain.')">🎤</button>
+            </div>
+          </div>
+
+          <!-- b. Viet Nam -->
+          <div class="speech-card-row">
+            <div class="card-flag-left">
+              <svg class="flag-svg-icon" viewBox="0 0 64 42">
+                <rect width="64" height="42" fill="#da251d"/>
+                <polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/>
+              </svg>
+              <div class="text-stack">
+                <div class="en-word-bold">b. Viet Nam</div>
+                <div class="en-answer-sub">Where are you from? — I'm from Viet Nam.</div>
+              </div>
+            </div>
+            <div class="action-audio-btns">
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from? I am from Viet Nam.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from Viet Nam.')">🎤</button>
+            </div>
+          </div>
+
+          <!-- c. America -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42">
@@ -437,14 +505,18 @@
                 <rect width="28" height="22.6" fill="#3c3b6e"/>
                 <circle cx="14" cy="11.3" r="4" fill="#fff"/>
               </svg>
-              <div class="en-word-bold">a. America</div>
+              <div class="text-stack">
+                <div class="en-word-bold">c. America</div>
+                <div class="en-answer-sub">Where are you from? — I'm from America.</div>
+              </div>
             </div>
             <div class="action-audio-btns">
-              <button class="circle-btn btn-audio-listen" onclick="speak('America')">🔊</button>
-              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'America')">🎤</button>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from? I am from America.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from America.')">🎤</button>
             </div>
           </div>
 
+          <!-- d. Australia -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42">
@@ -460,53 +532,25 @@
                 <circle cx="48" cy="28" r="2.2" fill="#fff"/>
                 <circle cx="42" cy="21" r="2.2" fill="#fff"/>
               </svg>
-              <div class="en-word-bold">b. Australia</div>
+              <div class="text-stack">
+                <div class="en-word-bold">d. Australia</div>
+                <div class="en-answer-sub">Where are you from? — I'm from Australia.</div>
+              </div>
             </div>
             <div class="action-audio-btns">
-              <button class="circle-btn btn-audio-listen" onclick="speak('Australia')">🔊</button>
-              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Australia')">🎤</button>
-            </div>
-          </div>
-
-          <div class="speech-card-row">
-            <div class="card-flag-left">
-              <svg class="flag-svg-icon" viewBox="0 0 64 42">
-                <rect width="64" height="42" fill="#012169"/>
-                <path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/>
-                <path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/>
-                <path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/>
-                <path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/>
-              </svg>
-              <div class="en-word-bold">c. Britain</div>
-            </div>
-            <div class="action-audio-btns">
-              <button class="circle-btn btn-audio-listen" onclick="speak('Britain')">🔊</button>
-              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Britain')">🎤</button>
-            </div>
-          </div>
-
-          <div class="speech-card-row">
-            <div class="card-flag-left">
-              <svg class="flag-svg-icon" viewBox="0 0 64 42">
-                <rect width="64" height="42" fill="#da251d"/>
-                <polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/>
-              </svg>
-              <div class="en-word-bold">d. Viet Nam</div>
-            </div>
-            <div class="action-audio-btns">
-              <button class="circle-btn btn-audio-listen" onclick="speak('Viet Nam')">🔊</button>
-              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Viet Nam')">🎤</button>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from? I am from Australia.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from Australia.')">🎤</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 3. Let's talk -->
+      <!-- 3. Let's talk (Trang 10 SGK) -->
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;">💬 3. Let's talk (Trang 10)</div>
         <div class="speech-card-row" style="max-width:580px;">
           <div class="text-stack">
-            <div class="en-word-bold" style="font-size:17px;">Where are you from? — I'm from _______.</div>
+            <div class="en-word-bold" style="font-size:16px;">Where are you from? — I'm from _______.</div>
           </div>
           <div class="action-audio-btns">
             <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from? I am from Viet Nam.')">🔊</button>
@@ -515,43 +559,40 @@
         </div>
       </div>
 
-      <!-- 4. Listen and number (Đúng chuẩn SGK Mục 4) -->
+      <!-- 4. Listen and number (Trang 11 SGK) -->
       <div class="skill-block theme-purple">
-        <div class="skill-badge-header" style="color:#9333ea;">🔢 4. Listen and number (Trang 11 - Nghe và điền số 1-4)</div>
-        <p style="font-size:14px; color:#475569; margin-bottom:12px;">Bé bấm loa để nghe từng đoạn hội thoại rồi chọn số thứ tự đúng cho từng tranh:</p>
+        <div class="skill-badge-header" style="color:#9333ea;">🔢 4. Listen and number (Trang 11 SGK: 4 hình Minh, Mary, Lucy, Ben)</div>
         <div class="grid-2col">
           <div class="quiz-single-card">
             <div class="q-title-line">
-              <span>Đoạn nghe 1:</span>
-              <button class="circle-btn btn-audio-listen" onclick="speak('Hi. Where are you from? — Hi. I am from Australia.')">🔊 Nghe</button>
+              <span>Đoạn 1:</span>
+              <button class="circle-btn btn-audio-listen" onclick="speak('1. Hello. I am Minh. I am from Viet Nam.')">🔊 Nghe</button>
             </div>
             <div class="chips-options-row">
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Tranh Australia')">Tranh Australia 🇦🇺 (Đúng)</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Tranh khác')">Tranh khác</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Minh, Viet Nam')">a. Minh (Viet Nam 🇻🇳)</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Ben')">b. Ben (Australia 🇦🇺)</button>
             </div>
           </div>
 
           <div class="quiz-single-card">
             <div class="q-title-line">
-              <span>Đoạn nghe 2:</span>
-              <button class="circle-btn btn-audio-listen" onclick="speak('Hello. Where are you from? — Hi. I am from Britain.')">🔊 Nghe</button>
+              <span>Đoạn 2:</span>
+              <button class="circle-btn btn-audio-listen" onclick="speak('2. Hi, I am Mary. I am from America.')">🔊 Nghe</button>
             </div>
             <div class="chips-options-row">
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Tranh Britain')">Tranh Britain 🇬🇧 (Đúng)</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Tranh khác')">Tranh khác</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Mary, America')">c. Mary (America 🇺🇸)</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Lucy')">d. Lucy (Britain 🇬🇧)</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 5. Look, complete and read -->
+      <!-- 5. Look, complete and read (Trang 11 SGK) -->
       <div class="skill-block theme-blue">
-        <div class="skill-badge-header" style="color:#0284c7;">✍️ 5. Look, complete and read (Trang 11)</div>
+        <div class="skill-badge-header" style="color:#0284c7;">✍️ 5. Look, complete and read (Trang 11 SGK)</div>
         <div class="grid-2col">
           <div class="quiz-single-card">
-            <div class="q-title-line">
-              <span>1. I'm Minh. I'm from ________. 🇻🇳</span>
-            </div>
+            <div class="q-title-line"><span>1. I'm Minh. I'm from ________. 🇻🇳</span></div>
             <div class="chips-options-row">
               <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Viet Nam')">Viet Nam</button>
               <button class="chip-option-btn" onclick="checkAnswer(this, false, 'America')">America</button>
@@ -559,22 +600,36 @@
           </div>
 
           <div class="quiz-single-card">
-            <div class="q-title-line">
-              <span>2. I'm Mary. I'm ________. 🇺🇸</span>
-            </div>
+            <div class="q-title-line"><span>2. I'm Mary. I'm ________. 🇺🇸</span></div>
             <div class="chips-options-row">
               <button class="chip-option-btn" onclick="checkAnswer(this, true, 'from America')">from America</button>
               <button class="chip-option-btn" onclick="checkAnswer(this, false, 'America')">America</button>
             </div>
           </div>
+
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>3. A: Where are you from? — B: I'm from ________. 🇬🇧</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Britain')">Britain</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Australia')">Australia</button>
+            </div>
+          </div>
+
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>4. A: Where are you ________? — B: I'm from Australia. 🇦🇺</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'from')">from</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'in')">in</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 6. Let's sing: Where are you from? (Chuẩn 100% SGK Trang 11) -->
+      <!-- 6. Let's sing (Trang 11 SGK: Where are you from?) -->
       <div class="skill-block theme-yellow">
         <div class="skill-badge-header" style="color:#b45309;">
           <span>🎵 6. Let's sing: Where are you from? (Trang 11)</span>
-          <button class="circle-btn btn-audio-listen" style="margin-left:auto; width:auto; padding:6px 14px; border-radius:20px; gap:6px; display:inline-flex;" onclick="playFullSingSong()">
+          <button class="circle-btn btn-audio-listen" style="margin-left:auto; width:auto; padding:6px 14px; border-radius:20px; gap:6px; display:inline-flex;" onclick="playSingSongL1()">
             ▶️ Hát toàn bài
           </button>
         </div>
@@ -604,47 +659,59 @@
     <!-- ================= VIEW 2: LESSON 2 ================= -->
     <div id="content-lesson-2" style="display:none;">
 
-      <!-- 1. Look, listen and repeat -->
+      <!-- 1. Look, listen and repeat (Trang 12 SGK) -->
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;">🎧 1. Look, listen and repeat (Trang 12)</div>
         <div class="grid-2col">
           <div class="speech-card-row">
             <div class="text-stack">
-              <div class="en-word-bold">a. Where's he from? — He's from Singapore.</div>
+              <div class="en-word-bold">a. Who's that? — It's my new friend.</div>
+              <div class="en-answer-sub">Where's she from? — She's from Japan.</div>
             </div>
             <div class="action-audio-btns">
-              <button class="circle-btn btn-audio-listen" onclick="speak('Where is he from? He is from Singapore.')">🔊</button>
-              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Where is he from? He is from Singapore.')">🎤</button>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Who is that? It is my new friend. Where is she from? She is from Japan.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Where is she from? She is from Japan.')">🎤</button>
             </div>
           </div>
 
           <div class="speech-card-row">
             <div class="text-stack">
-              <div class="en-word-bold">b. Where's she from? — She's from Japan.</div>
+              <div class="en-word-bold">b. Who's that? — It's my new friend.</div>
+              <div class="en-answer-sub">Where's he from? — He's from Singapore.</div>
             </div>
             <div class="action-audio-btns">
-              <button class="circle-btn btn-audio-listen" onclick="speak('Where is she from? She is from Japan.')">🔊</button>
-              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Where is she from? She is from Japan.')">🎤</button>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Who is that? It is my new friend. Where is he from? He is from Singapore.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'Where is he from? He is from Singapore.')">🎤</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2. Listen, point and say -->
+      <!-- 2. Listen, point and say (Trang 12 SGK - Cả Câu hỏi & Câu trả lời) -->
       <div class="skill-block theme-orange">
-        <div class="skill-badge-header" style="color:#ea580c;">🗣️ 2. Listen, point and say (Trang 12)</div>
+        <div class="skill-badge-header" style="color:#ea580c;">
+          <span>🗣️ 2. Listen, point and say (Trang 12: Where's he / she from? — He's / She's from...)</span>
+        </div>
         <div class="grid-2col">
+          <!-- a. Singapore -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42">
                 <rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/>
                 <circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/>
               </svg>
-              <div class="en-word-bold">a. Singapore</div>
+              <div class="text-stack">
+                <div class="en-word-bold">a. Singapore (cậu bé)</div>
+                <div class="en-answer-sub">Where's he from? — He's from Singapore.</div>
+              </div>
             </div>
-            <button class="circle-btn btn-audio-listen" onclick="speak('Singapore')">🔊</button>
+            <div class="action-audio-btns">
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where is he from? He is from Singapore.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'He is from Singapore.')">🎤</button>
+            </div>
           </div>
 
+          <!-- b. Malaysia -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42">
@@ -653,11 +720,18 @@
                 <rect width="32" height="24" fill="#000066"/>
                 <circle cx="16" cy="12" r="7" fill="#ffcc00"/>
               </svg>
-              <div class="en-word-bold">b. Malaysia</div>
+              <div class="text-stack">
+                <div class="en-word-bold">b. Malaysia (cậu bé áo vàng)</div>
+                <div class="en-answer-sub">Where's he from? — He's from Malaysia.</div>
+              </div>
             </div>
-            <button class="circle-btn btn-audio-listen" onclick="speak('Malaysia')">🔊</button>
+            <div class="action-audio-btns">
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where is he from? He is from Malaysia.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'He is from Malaysia.')">🎤</button>
+            </div>
           </div>
 
+          <!-- c. Thailand -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42">
@@ -665,25 +739,38 @@
                 <rect y="7" width="64" height="28" fill="#fff"/>
                 <rect y="14" width="64" height="14" fill="#2d2a4a"/>
               </svg>
-              <div class="en-word-bold">c. Thailand</div>
+              <div class="text-stack">
+                <div class="en-word-bold">c. Thailand (cô bé áo xanh)</div>
+                <div class="en-answer-sub">Where's she from? — She's from Thailand.</div>
+              </div>
             </div>
-            <button class="circle-btn btn-audio-listen" onclick="speak('Thailand')">🔊</button>
+            <div class="action-audio-btns">
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where is she from? She is from Thailand.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'She is from Thailand.')">🎤</button>
+            </div>
           </div>
 
+          <!-- d. Japan -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42">
                 <rect width="64" height="42" fill="#fff"/>
                 <circle cx="32" cy="21" r="12" fill="#bc002d"/>
               </svg>
-              <div class="en-word-bold">d. Japan</div>
+              <div class="text-stack">
+                <div class="en-word-bold">d. Japan (cô bé áo thủy thủ)</div>
+                <div class="en-answer-sub">Where's she from? — She's from Japan.</div>
+              </div>
             </div>
-            <button class="circle-btn btn-audio-listen" onclick="speak('Japan')">🔊</button>
+            <div class="action-audio-btns">
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where is she from? She is from Japan.')">🔊</button>
+              <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'She is from Japan.')">🎤</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 3. Let's talk -->
+      <!-- 3. Let's talk (Trang 12 SGK) -->
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;">💬 3. Let's talk (Trang 12)</div>
         <div class="speech-card-row" style="max-width:580px;">
@@ -699,56 +786,80 @@
 
       <!-- 4. Listen and tick (Trang 13 SGK) -->
       <div class="skill-block theme-purple">
-        <div class="skill-badge-header" style="color:#9333ea;">✅ 4. Listen and tick (Trang 13)</div>
+        <div class="skill-badge-header" style="color:#9333ea;">✅ 4. Listen and tick (Trang 13 SGK)</div>
         <div class="grid-2col">
           <div class="quiz-single-card">
             <div class="q-title-line">
-              <span>Đoạn 1:</span>
+              <span>1. Nghe đoạn 1:</span>
               <button class="circle-btn btn-audio-listen" onclick="speak('Where is he from? He is from Malaysia.')">🔊 Nghe</button>
             </div>
             <div class="chips-options-row">
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Malaysia')">a. Malaysia 🇲🇾</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Thailand')">b. Thailand 🇹🇭</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Malaysia')">a. Malaysia 🇲🇾 (Đúng)</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Singapore')">b. Singapore 🇸🇬</button>
             </div>
           </div>
 
           <div class="quiz-single-card">
             <div class="q-title-line">
-              <span>Đoạn 2:</span>
+              <span>2. Nghe đoạn 2:</span>
               <button class="circle-btn btn-audio-listen" onclick="speak('Where is she from? She is from Japan.')">🔊 Nghe</button>
             </div>
             <div class="chips-options-row">
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Singapore')">a. Singapore 🇸🇬</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Japan')">b. Japan 🇯🇵</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Thailand')">a. Thailand 🇹🇭</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Japan')">b. Japan 🇯🇵 (Đúng)</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 5. Look, complete and read -->
+      <!-- 5. Look, complete and read (Trang 13 SGK) -->
       <div class="skill-block theme-blue">
-        <div class="skill-badge-header" style="color:#0284c7;">✍️ 5. Look, complete and read (Trang 13)</div>
-        <div class="quiz-single-card" style="max-width:580px;">
-          <div class="q-title-line">
-            <span>This is Ken. He's ________ Japan. 🇯🇵</span>
+        <div class="skill-badge-header" style="color:#0284c7;">✍️ 5. Look, complete and read (Trang 13 SGK)</div>
+        <div class="grid-2col">
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>1. A: Where's she from? — B: She's from ________. 🇯🇵</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Japan')">Japan</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Thailand')">Thailand</button>
+            </div>
           </div>
-          <div class="chips-options-row">
-            <button class="chip-option-btn" onclick="checkAnswer(this, true, 'from')">from</button>
-            <button class="chip-option-btn" onclick="checkAnswer(this, false, 'in')">in</button>
+
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>2. A: Where's he from? — B: He's ________. 🇸🇬</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'from Singapore')">from Singapore</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Singapore')">Singapore</button>
+            </div>
+          </div>
+
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>3. A: ________ she from? — B: She's from Thailand. 🇹🇭</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Where is')">Where's</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'What is')">What's</button>
+            </div>
+          </div>
+
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>4. A: Where's he from? — B: ________ Malaysia. 🇲🇾</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'He is from')">He's from</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'She is from')">She's from</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 6. Let's play: Guess who (Trang 13 SGK) -->
+      <!-- 6. Let's play: Find someone who is from... (Trang 13 SGK) -->
       <div class="skill-block theme-yellow">
-        <div class="skill-badge-header" style="color:#b45309;">🎮 6. Let's play: Guess who (Trang 13)</div>
+        <div class="skill-badge-header" style="color:#b45309;">🎮 6. Let's play: Find someone who is from... (Trang 13)</div>
         <div style="text-align:center; padding:10px;">
           <p style="font-size:16px; font-weight:800; color:#334155; margin-bottom:12px;">
-            "She's from Singapore. Who is she?"
+            "Where are you from? — I'm from America."
           </p>
           <div class="chips-options-row" style="justify-content:center;">
-            <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Maria')">Maria 🇸🇬</button>
-            <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Akiko')">Akiko 🇯🇵</button>
+            <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Mary')">Mary (America) 🇺🇸</button>
+            <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Minh')">Minh (Viet Nam) 🇻🇳</button>
           </div>
         </div>
       </div>
@@ -758,70 +869,99 @@
     <!-- ================= VIEW 3: LESSON 3 ================= -->
     <div id="content-lesson-3" style="display:none;">
 
-      <!-- 1. Listen and repeat -->
+      <!-- 1. Listen and repeat (Trang 14 SGK) -->
       <div class="skill-block theme-blue">
-        <div class="skill-badge-header" style="color:#0284c7;">🎧 1. Listen and repeat (Trang 14 - Ngữ âm)</div>
+        <div class="skill-badge-header" style="color:#0284c7;">🎧 1. Listen and repeat (Trang 14 - Ngữ âm 'a' và 'ia')</div>
         <div class="grid-2col">
           <div class="speech-card-row">
             <div class="text-stack">
-              <div class="en-word-bold">/ə/ — America</div>
-              <div class="vi-phonics-sub">Mary's from America.</div>
+              <div class="en-word-bold">a — America</div>
+              <div class="en-answer-sub">I'm from America.</div>
             </div>
-            <button class="circle-btn btn-audio-listen" onclick="speak('America. Mary is from America.')">🔊</button>
+            <button class="circle-btn btn-audio-listen" onclick="speak('a. America. I am from America.')">🔊</button>
           </div>
 
           <div class="speech-card-row">
             <div class="text-stack">
-              <div class="en-word-bold">/iə/ — Australia</div>
-              <div class="vi-phonics-sub">Ben's from Australia.</div>
+              <div class="en-word-bold">ia — Australia</div>
+              <div class="en-answer-sub">She's from Australia.</div>
             </div>
-            <button class="circle-btn btn-audio-listen" onclick="speak('Australia. Ben is from Australia.')">🔊</button>
+            <button class="circle-btn btn-audio-listen" onclick="speak('ia. Australia. She is from Australia.')">🔊</button>
           </div>
         </div>
       </div>
 
-      <!-- 2. Listen and circle -->
+      <!-- 2. Listen and circle (Trang 14 SGK) -->
       <div class="skill-block theme-purple">
-        <div class="skill-badge-header" style="color:#9333ea;">⭕ 2. Listen and circle (Trang 14)</div>
-        <div class="quiz-single-card" style="max-width:580px;">
-          <div class="q-title-line">
-            <span>Nghe và khoanh tròn từ đúng:</span>
-            <button class="circle-btn btn-audio-listen" onclick="speak('Laura is from Australia.')">🔊 Nghe</button>
+        <div class="skill-badge-header" style="color:#9333ea;">⭕ 2. Listen and circle (Trang 14 SGK)</div>
+        <div class="grid-2col">
+          <div class="quiz-single-card">
+            <div class="q-title-line">
+              <span>1. I'm from:</span>
+              <button class="circle-btn btn-audio-listen" onclick="speak('I am from America.')">🔊 Nghe</button>
+            </div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'America')">a. America</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Australia')">b. Australia</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Malaysia')">c. Malaysia</button>
+            </div>
           </div>
-          <div class="chips-options-row">
-            <button class="chip-option-btn" onclick="checkAnswer(this, false, 'America')">a. America</button>
-            <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Australia')">b. Australia</button>
+
+          <div class="quiz-single-card">
+            <div class="q-title-line">
+              <span>2. He's from:</span>
+              <button class="circle-btn btn-audio-listen" onclick="speak('He is from Australia.')">🔊 Nghe</button>
+            </div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Canada')">a. Canada</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Australia')">b. Australia</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'America')">c. America</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 3. Let's chant -->
+      <!-- 3. Let's chant (Trang 14 SGK) -->
       <div class="skill-block theme-orange">
         <div class="skill-badge-header" style="color:#ea580c;">🎵 3. Let's chant (Trang 14)</div>
         <div class="speech-card-row">
           <div class="text-stack">
-            <div class="en-word-bold">"America, America. Mary's from America. Australia, Australia. Ben's from Australia."</div>
+            <div class="en-word-bold">"America, America. Mary's from America. She's from America. Australia, Australia. Ben's from Australia. He's from Australia."</div>
           </div>
-          <button class="circle-btn btn-audio-listen" onclick="speak('America, America. Mary is from America. Australia, Australia. Ben is from Australia.')">🔊</button>
+          <button class="circle-btn btn-audio-listen" onclick="speak('America, America. Mary is from America. She is from America. Australia, Australia. Ben is from Australia. He is from Australia.')">🔊</button>
         </div>
       </div>
 
-      <!-- 4. Read and tick True or False -->
+      <!-- 4. Read and tick True or False (Trang 15 SGK) -->
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;">📖 4. Read and tick True or False (Trang 15)</div>
         <div style="background:#fff; border:2px solid #bbf7d0; border-radius:16px; padding:14px; margin-bottom:14px; line-height:1.6; font-size:15px;">
-          "Hi! My name is Minh. I am from Viet Nam. I have three friends. Mary is from America. Ben is from Australia. Akiko is from Japan."
+          "Hello. I am Minh. I am nine years old. I am from Viet Nam. I have two new friends, Tony and Laura. Tony is from America. Laura is from Australia. They are friendly."
         </div>
         <div class="grid-2col">
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>1. Minh is from Viet Nam.</span></div>
+            <div class="q-title-line"><span>1. Minh is nine years old.</span></div>
             <div class="chips-options-row">
               <button class="chip-option-btn" onclick="checkAnswer(this, true, 'True')">True (Đúng) ✔️</button>
               <button class="chip-option-btn" onclick="checkAnswer(this, false, 'False')">False (Sai) ❌</button>
             </div>
           </div>
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>2. Mary is from Australia.</span></div>
+            <div class="q-title-line"><span>2. Minh is from Viet Nam.</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'True')">True (Đúng) ✔️</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'False')">False (Sai) ❌</button>
+            </div>
+          </div>
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>3. Tony is from Australia.</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'True')">True (Đúng) ✔️</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'False')">False (Sai) ❌</button>
+            </div>
+          </div>
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>4. Laura is from America.</span></div>
             <div class="chips-options-row">
               <button class="chip-option-btn" onclick="checkAnswer(this, false, 'True')">True (Đúng) ✔️</button>
               <button class="chip-option-btn" onclick="checkAnswer(this, true, 'False')">False (Sai) ❌</button>
@@ -830,15 +970,15 @@
         </div>
       </div>
 
-      <!-- 5 & 6. Let's write & Project -->
+      <!-- 5 & 6. Let's write & Project (Trang 15 SGK) -->
       <div class="skill-block theme-yellow">
         <div class="skill-badge-header" style="color:#b45309;">✍️ 5 & 6. Let's write & Project (Trang 15)</div>
         <div class="speech-card-row">
           <div class="text-stack">
-            <div class="en-word-bold">My name is ________. I am from ________.</div>
-            <div class="vi-phonics-sub">Em hãy luyện nói giới thiệu bản thân mình nhé!</div>
+            <div class="en-word-bold">Hi. My name is Minh. I am nine years old. I am from Viet Nam.</div>
+            <div class="en-answer-sub">Em hãy bấm mic để luyện nói giới thiệu bản thân mình nhé!</div>
           </div>
-          <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from Viet Nam.')">🎤</button>
+          <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'My name is Minh. I am from Viet Nam.')">🎤</button>
         </div>
       </div>
 
@@ -848,90 +988,147 @@
     <div id="content-workbook" style="display:none;">
 
       <div class="skill-block theme-purple">
-        <div class="skill-badge-header" style="color:#9333ea;">📚 Sách Bài Tập (Workbook Unit 1: A, B, C, D, E, F)</div>
+        <div class="skill-badge-header" style="color:#9333ea;">📚 Sách Bài Tập (Workbook Unit 1 - Trang 4 đến 7)</div>
 
-        <!-- A. Phonics and Vocabulary -->
-        <p style="font-weight:900; color:#3b82f6; margin-bottom:8px;">A. Phonics and Vocabulary</p>
-        <div class="grid-2col" style="margin-bottom:16px;">
+        <!-- A. PHONICS AND VOCABULARY -->
+        <p style="font-weight:900; color:#0284c7; margin: 12px 0 6px;">A. PHONICS AND VOCABULARY (Trang 4 SBT)</p>
+        <div class="grid-2col" style="margin-bottom:14px;">
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>1. Điền từ: Americ_</span></div>
+            <div class="q-title-line"><span>1. Complete: Americ_ (Điền ia hoặc a)</span></div>
             <div class="chips-options-row">
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'a')">-a (America)</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'an')">-an</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'America')">-a (America)</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'ia')">-ia</button>
             </div>
           </div>
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>2. Điền từ: Austral_</span></div>
+            <div class="q-title-line"><span>2. Complete: Austral_</span></div>
             <div class="chips-options-row">
               <button class="chip-option-btn" onclick="checkAnswer(this, false, 'a')">-a</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'ia')">-ia (Australia)</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- B. Sentence patterns -->
-        <p style="font-weight:900; color:#ea580c; margin-bottom:8px;">B. Sentence patterns</p>
-        <div class="grid-2col" style="margin-bottom:16px;">
-          <div class="quiz-single-card">
-            <div class="q-title-line"><span>Where ________ you from?</span></div>
-            <div class="chips-options-row">
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'are')">are</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'is')">is</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Australia')">-ia (Australia)</button>
             </div>
           </div>
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>Where's ________ from? — She's from Japan.</span></div>
+            <div class="q-title-line"><span>3. Complete: Malays__</span></div>
             <div class="chips-options-row">
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'he')">he</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'she')">she</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Malaysia')">-ia (Malaysia)</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'a')">-a</button>
             </div>
           </div>
         </div>
 
-        <!-- C. Listening -->
-        <p style="font-weight:900; color:#0284c7; margin-bottom:8px;">C. Listening</p>
-        <div class="quiz-single-card" style="margin-bottom:16px;">
-          <div class="q-title-line">
-            <span>Nghe và chọn câu đúng:</span>
-            <button class="circle-btn btn-audio-listen" onclick="speak('She is from Britain.')">🔊 Nghe</button>
+        <!-- B. SENTENCE PATTERNS -->
+        <p style="font-weight:900; color:#ea580c; margin: 12px 0 6px;">B. SENTENCE PATTERNS (Trang 5 SBT)</p>
+        <div class="grid-2col" style="margin-bottom:14px;">
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>1. Where are you ________?</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'from')">from</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Australia')">Australia</button>
+            </div>
           </div>
-          <div class="chips-options-row">
-            <button class="chip-option-btn" onclick="checkAnswer(this, true, 'She is from Britain.')">She's from Britain. 🇬🇧</button>
-            <button class="chip-option-btn" onclick="checkAnswer(this, false, 'He is from Britain.')">He's from Britain. 🇬🇧</button>
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>2. Where's ________?</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'he from')">he from</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'from Britain')">from Britain</button>
+            </div>
+          </div>
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>3. I'm from ________.</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Australia')">Australia</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'he from')">he from</button>
+            </div>
+          </div>
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>4. She's ________.</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'from Britain')">from Britain</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'from')">from</button>
+            </div>
           </div>
         </div>
 
-        <!-- D. Speaking -->
-        <p style="font-weight:900; color:#16a34a; margin-bottom:8px;">D. Speaking</p>
-        <div class="speech-card-row" style="margin-bottom:16px;">
-          <div class="text-stack">
-            <div class="en-word-bold">"Where are you from?" — Bé bấm mic để trả lời:</div>
+        <!-- C. LISTENING -->
+        <p style="font-weight:900; color:#0284c7; margin: 12px 0 6px;">C. LISTENING (Trang 5 SBT - Listen and match)</p>
+        <div class="grid-2col" style="margin-bottom:14px;">
+          <div class="quiz-single-card">
+            <div class="q-title-line">
+              <span>Đoạn 1 (Cô bé):</span>
+              <button class="circle-btn btn-audio-listen" onclick="speak('1. Where is she from? She is from Malaysia.')">🔊 Nghe</button>
+            </div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Malaysia')">Malaysia 🇲🇾 (Đúng)</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'America')">America 🇺🇸</button>
+            </div>
           </div>
-          <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from Viet Nam.')">🎤 Nói</button>
+          <div class="quiz-single-card">
+            <div class="q-title-line">
+              <span>Đoạn 2 (Cậu bé):</span>
+              <button class="circle-btn btn-audio-listen" onclick="speak('2. Where is he from? He is from America.')">🔊 Nghe</button>
+            </div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Malaysia')">Malaysia 🇲🇾</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'America')">America 🇺🇸 (Đúng)</button>
+            </div>
+          </div>
         </div>
 
-        <!-- E. Reading -->
-        <p style="font-weight:900; color:#9333ea; margin-bottom:8px;">E. Reading</p>
-        <div class="quiz-single-card" style="margin-bottom:16px;">
-          <div class="q-title-line"><span>"This is Laura. She's from Australia." $\rightarrow$ Where is Laura from?</span></div>
-          <div class="chips-options-row">
-            <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Australia')">Australia 🇦🇺</button>
-            <button class="chip-option-btn" onclick="checkAnswer(this, false, 'America')">America 🇺🇸</button>
+        <!-- D. SPEAKING -->
+        <p style="font-weight:900; color:#16a34a; margin: 12px 0 6px;">D. SPEAKING (Trang 6 SBT - Ask and answer)</p>
+        <div class="grid-2col" style="margin-bottom:14px;">
+          <div class="speech-card-row">
+            <div class="text-stack">
+              <div class="en-word-bold">1. Where are you from? — I'm from Viet Nam.</div>
+            </div>
+            <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'I am from Viet Nam.')">🎤</button>
+          </div>
+          <div class="speech-card-row">
+            <div class="text-stack">
+              <div class="en-word-bold">3. Where's she from? — She's from Japan.</div>
+            </div>
+            <button class="circle-btn btn-audio-mic" onclick="testMic(this, 'She is from Japan.')">🎤</button>
           </div>
         </div>
 
-        <!-- F. Writing -->
-        <p style="font-weight:900; color:#b45309; margin-bottom:8px;">F. Writing (Sắp xếp từ thành câu hoàn chỉnh)</p>
+        <!-- E. READING -->
+        <p style="font-weight:900; color:#9333ea; margin: 12px 0 6px;">E. READING (Trang 6 - 7 SBT)</p>
+        <div style="background:#fff; border:2px solid #e9d5ff; border-radius:16px; padding:14px; margin-bottom:12px; font-size:14.5px; line-height:1.6;">
+          "Hello. I am Lan. I am nine years old. I am from Viet Nam. This is my friend. Her name is Celia. She is nine years old and she is from Britain. David is my new friend. He is eight years old. He is from America."
+        </div>
+        <table class="data-table-wrap">
+          <tr><th>Name</th><th>Age</th><th>Country</th></tr>
+          <tr><td>Lan</td><td>9</td><td>Viet Nam 🇻🇳</td></tr>
+          <tr><td>Celia</td><td>9</td><td>Britain 🇬🇧</td></tr>
+          <tr><td>David</td><td>8</td><td>America 🇺🇸</td></tr>
+        </table>
+
+        <!-- F. WRITING -->
+        <p style="font-weight:900; color:#b45309; margin: 12px 0 6px;">F. WRITING (Trang 7 SBT - Sắp xếp từ thành câu)</p>
         <div class="grid-2col">
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>(america / She / from / is / .)</span></div>
+            <div class="q-title-line"><span>1. (America / She is / from)</span></div>
             <div class="chips-options-row">
               <button class="chip-option-btn" onclick="checkAnswer(this, true, 'She is from America.')">She is from America.</button>
-              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'America she is from.')">America she is from.</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'America She is from.')">America She is from.</button>
             </div>
           </div>
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>(from / Where / you / are / ?)</span></div>
+            <div class="q-title-line"><span>2. (He / from Thailand / is)</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'He is from Thailand.')">He is from Thailand.</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'From Thailand he is.')">From Thailand he is.</button>
+            </div>
+          </div>
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>3. (from / Where is / she / ?)</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Where is she from?')">Where is she from?</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Where she is from?')">Where she is from?</button>
+            </div>
+          </div>
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>4. (are / from / Where / you / ?)</span></div>
             <div class="chips-options-row">
               <button class="chip-option-btn" onclick="checkAnswer(this, true, 'Where are you from?')">Where are you from?</button>
               <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Where you are from?')">Where you are from?</button>
@@ -943,7 +1140,52 @@
 
     </div>
 
-    <!-- ================= VIEW 5: UNIT TEST 4 KỸ NĂNG ================= -->
+    <!-- ================= VIEW 5: BÀI TẬP BỔ TRỢ NÂNG CAO ================= -->
+    <div id="content-advanced" style="display:none;">
+
+      <div class="skill-block theme-green">
+        <div class="skill-badge-header" style="color:#16a34a;">
+          <span>🚀 Bài tập bổ trợ nâng cao Unit 1 (Phản xạ & Mở rộng)</span>
+        </div>
+
+        <div class="grid-2col">
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>1. Is Mary from Viet Nam?</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Yes, she is.')">Yes, she is.</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'No, she is not. She is from America.')">No, she isn't. She's from America. ✔️</button>
+            </div>
+          </div>
+
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>2. Are you from Australia?</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'No, I am not. I am from Viet Nam.')">No, I'm not. I'm from Viet Nam. ✔️</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'Yes, I do.')">Yes, I do.</button>
+            </div>
+          </div>
+
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>3. Sửa lỗi sai: "He are from Singapore."</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'He is from Singapore.')">He is from Singapore. ✔️</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'He am from Singapore.')">He am from Singapore.</button>
+            </div>
+          </div>
+
+          <div class="quiz-single-card">
+            <div class="q-title-line"><span>4. What colour is the flag of Viet Nam?</span></div>
+            <div class="chips-options-row">
+              <button class="chip-option-btn" onclick="checkAnswer(this, true, 'It is red and yellow.')">It's red and yellow. ✔️</button>
+              <button class="chip-option-btn" onclick="checkAnswer(this, false, 'It is blue.')">It's blue.</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= VIEW 6: UNIT TEST 4 KỸ NĂNG ================= -->
     <div id="content-test" style="display:none;">
 
       <div class="skill-block theme-yellow">
@@ -952,7 +1194,7 @@
           <span style="background:#f59e0b; color:#fff; padding:4px 12px; border-radius:14px; font-size:13px; margin-left:auto;">Thang điểm: 100</span>
         </div>
 
-        <!-- Listening Test -->
+        <!-- 1. Listening Test -->
         <div class="quiz-single-card" style="margin-bottom:14px;">
           <div class="q-title-line">
             <span>🎧 Kỹ năng 1: Nghe và chọn lá cờ đúng (25 điểm)</span>
@@ -964,7 +1206,7 @@
           </div>
         </div>
 
-        <!-- Reading Test -->
+        <!-- 2. Reading Test -->
         <div class="quiz-single-card" style="margin-bottom:14px;">
           <div class="q-title-line">
             <span>📖 Kỹ năng 2: Đọc hiểu và chọn đáp án (25 điểm)</span>
@@ -976,7 +1218,7 @@
           </div>
         </div>
 
-        <!-- Writing Test -->
+        <!-- 3. Writing Test -->
         <div class="quiz-single-card" style="margin-bottom:14px;">
           <div class="q-title-line">
             <span>✍️ Kỹ năng 3: Sắp xếp trật tự từ thành câu (25 điểm)</span>
@@ -988,7 +1230,7 @@
           </div>
         </div>
 
-        <!-- Speaking Test -->
+        <!-- 4. Speaking Test -->
         <div class="quiz-single-card">
           <div class="q-title-line">
             <span>🗣️ Kỹ năng 4: Phát âm qua Micro (25 điểm)</span>
@@ -1028,7 +1270,9 @@
     }
     const rec = new SpeechRec();
     rec.lang = 'en-US';
+    btn.classList.add('recording');
     rec.onresult = function(e) {
+      btn.classList.remove('recording');
       const val = e.results[0][0].transcript.toLowerCase();
       const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       if (val.includes(clean) || clean.includes(val)) {
@@ -1041,6 +1285,7 @@
       }
       setTimeout(() => { btn.textContent = "🎤"; }, 2000);
     };
+    rec.onerror = () => btn.classList.remove('recording');
     rec.start();
   }
 
@@ -1059,7 +1304,7 @@
     }
   }
 
-  function playFullSingSong() {
+  function playSingSongL1() {
     const lyrics = [
       "Hello. I'm Minh. I'm from Viet Nam.",
       "Hello, Lucy. Where are you from? I'm from Britain.",
@@ -1089,7 +1334,7 @@
   }
 
   function switchLesson(key) {
-    ['l1', 'l2', 'l3', 'sbt', 'test'].forEach(k => {
+    ['l1', 'l2', 'l3', 'sbt', 'adv', 'test'].forEach(k => {
       const b = document.getElementById('btn-tab-' + k);
       if (b) b.classList.toggle('active', k === key);
     });
@@ -1098,6 +1343,7 @@
     document.getElementById('content-lesson-2').style.display = 'none';
     document.getElementById('content-lesson-3').style.display = 'none';
     document.getElementById('content-workbook').style.display = 'none';
+    document.getElementById('content-advanced').style.display = 'none';
     document.getElementById('content-test').style.display = 'none';
 
     const titleMap = {
@@ -1105,6 +1351,7 @@
       'l2': 'Lesson 2 (Trang 12 - 13 SGK)',
       'l3': 'Lesson 3 (Trang 14 - 15 SGK)',
       'sbt': 'Workbook (SBT Unit 1: A-F)',
+      'adv': 'Bài tập bổ trợ nâng cao 🚀',
       'test': 'Unit Test (4 Kỹ năng) 🌟'
     };
     document.getElementById('current-lesson-label').textContent = titleMap[key];
@@ -1113,6 +1360,7 @@
     if (key === 'l2') document.getElementById('content-lesson-2').style.display = 'block';
     if (key === 'l3') document.getElementById('content-lesson-3').style.display = 'block';
     if (key === 'sbt') document.getElementById('content-workbook').style.display = 'block';
+    if (key === 'adv') document.getElementById('content-advanced').style.display = 'block';
     if (key === 'test') document.getElementById('content-test').style.display = 'block';
   }
 </script>
