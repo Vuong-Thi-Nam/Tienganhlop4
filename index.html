@@ -108,30 +108,6 @@
   .banner-title-text { font-size: 20px; font-weight: 900; color: #c026d3; line-height: 1.1; }
   .banner-tag-badge { background: #d946ef; color: #fff; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 800; display: inline-block; }
 
-  /* UNIT SELECTOR ROW */
-  .unit-selector-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  @media(max-width: 600px) { .unit-selector-row { grid-template-columns: repeat(2, 1fr); } }
-  .unit-card-btn {
-    background: #ffffff;
-    border: 2px solid #e2e8f0;
-    border-radius: 14px;
-    padding: 8px 10px;
-    text-align: left;
-    cursor: pointer;
-    box-shadow: var(--card-shadow);
-    position: relative;
-  }
-  .unit-card-btn.active { border-color: #d946ef; background: #fdf4ff; }
-  .unit-card-btn.locked { opacity: 0.65; background: #f8fafc; cursor: not-allowed; }
-  .unit-card-num { font-size: 11px; font-weight: 800; color: #64748b; }
-  .unit-card-title { font-size: 13px; font-weight: 900; color: #1e293b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .lock-badge { position: absolute; right: 8px; top: 8px; font-size: 12px; }
-
   /* TABS SCROLLABLE */
   .lesson-nav-card {
     background: #ffffff;
@@ -354,7 +330,27 @@
   .slot-input-number.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
   .slot-input-number.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
 
-  /* INPUT FIELDS TỰ VIẾT BÀI 5 & 6 */
+  /* KHUNG HÌNH MINH HỌA ĐỊA DANH / NHÂN VẬT (LESSON 1 - BÀI 5) */
+  .illustration-card-header {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .illustration-avatar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    font-size: 13px;
+    color: #0369a1;
+  }
+
+  /* INPUT FIELDS */
   .student-text-input {
     border: none;
     border-bottom: 2px dashed #0284c7;
@@ -400,7 +396,7 @@
   }
   .data-table-wrap th { background: #f1f5f9; color: #334155; }
 
-  /* CHANT 6 HÀNG RIÊNG BIỆT */
+  /* CHANT */
   .chant-box {
     background: #fff;
     border: 2px solid #fed7aa;
@@ -419,7 +415,7 @@
   }
   .chant-row-line:hover { background: #fff7ed; }
 
-  /* MINI GAME CARDS SẠCH */
+  /* MINI GAME CARDS: CHỈ CỜ HOẶC CHỈ TÊN */
   .memory-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -433,10 +429,9 @@
     border: 2px solid #bae6fd;
     border-radius: 12px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 900;
     cursor: pointer;
     padding: 4px;
@@ -476,29 +471,6 @@
       </div>
     </div>
 
-    <!-- UNIT SELECTOR ROW -->
-    <div class="unit-selector-row">
-      <div class="unit-card-btn active" onclick="switchLesson('l1')">
-        <div class="unit-card-num">Unit 1</div>
-        <div class="unit-card-title">My Friends</div>
-      </div>
-      <div class="unit-card-btn locked" id="unit-2-card" onclick="alertLockedUnit2()">
-        <div class="unit-card-num">Unit 2</div>
-        <div class="unit-card-title">Time & Routines</div>
-        <span class="lock-badge" id="unit-2-lock-icon">🔒</span>
-      </div>
-      <div class="unit-card-btn locked" onclick="alert('Bé hãy vượt qua Unit 1 và Unit 2 trước nhé!')">
-        <div class="unit-card-num">Unit 3</div>
-        <div class="unit-card-title">My week</div>
-        <span class="lock-badge">🔒</span>
-      </div>
-      <div class="unit-card-btn locked" onclick="alert('Bé hãy vượt qua các bài học trước nhé!')">
-        <div class="unit-card-num">Unit 4</div>
-        <div class="unit-card-title">Birthday party</div>
-        <span class="lock-badge">🔒</span>
-      </div>
-    </div>
-
     <!-- THANH TABS CUỘN NGANG -->
     <div class="lesson-nav-card">
       <div class="tabs-group">
@@ -514,6 +486,7 @@
 
     <!-- ================= VIEW 1: LESSON 1 ================= -->
     <div id="content-lesson-1">
+      <!-- 1. Look, listen and repeat -->
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;"><span>🎧 1. Look, listen and repeat</span></div>
         <div class="speech-card-row">
@@ -538,6 +511,7 @@
         </div>
       </div>
 
+      <!-- 2. Listen, point and say -->
       <div class="skill-block theme-orange">
         <div class="skill-badge-header" style="color:#ea580c;"><span>🗣️ 2. Listen, point and say</span></div>
         <div class="model-qa-banner">
@@ -613,7 +587,7 @@
         <div class="model-qa-banner">
           <div>
             <div class="model-qa-title">Where are you from? — I'm from _______.</div>
-            <div class="model-qa-sub">Click a friend to practice speaking:</div>
+            <div class="model-qa-sub">Click speaker to hear question, then answer:</div>
           </div>
         </div>
         <div class="grid-2col">
@@ -682,17 +656,60 @@
         </div>
       </div>
 
-      <!-- 5. Look, complete and read -->
+      <!-- 5. Look, complete and read (ĐẦY ĐỦ HÌNH MINH HỌA NHÂN VẬT & DANH LAM THẮNG CẢNH THEO SGK) -->
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;"><span>✍️ 5. Look, complete and read</span></div>
         <div class="grid-2col">
+          <!-- Picture 1: Minh, Ho Guom, Viet Nam -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>1. I'm Minh. I'm from ________.</span><button class="circle-btn btn-audio-listen" onclick="speak('I am Minh. I am from Viet Nam.')">🔊</button></div>
+            <div class="illustration-card-header">
+              <div class="illustration-avatar">
+                <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg>
+                <span>Minh (Hồ Gươm / Tháp Rùa)</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('I am Minh. I am from Viet Nam.')">🔊</button>
+            </div>
+            <div class="q-title-line"><span>1. I'm Minh. I'm from ________.</span></div>
             <div class="chips-options-row"><button class="chip-option-btn" onclick="checkAnswer(this, true, 'Viet Nam')">Viet Nam</button><button class="chip-option-btn" onclick="checkAnswer(this, false, 'America')">America</button></div>
           </div>
+
+          <!-- Picture 2: Mary, Golden Gate, America -->
           <div class="quiz-single-card">
-            <div class="q-title-line"><span>2. I'm Mary. I'm ________.</span><button class="circle-btn btn-audio-listen" onclick="speak('I am Mary. I am from America.')">🔊</button></div>
+            <div class="illustration-card-header">
+              <div class="illustration-avatar">
+                <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="3.2" fill="#b22234"/><rect y="6.4" width="64" height="3.2" fill="#b22234"/><rect y="12.8" width="64" height="3.2" fill="#b22234"/><rect y="19.2" width="64" height="3.2" fill="#b22234"/><rect y="25.6" width="64" height="3.2" fill="#b22234"/><rect y="32" width="64" height="3.2" fill="#b22234"/><rect y="38.4" width="64" height="3.2" fill="#b22234"/><rect width="28" height="22.6" fill="#3c3b6e"/><circle cx="14" cy="11.3" r="4" fill="#fff"/></svg>
+                <span>Mary (Golden Gate Bridge)</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('I am Mary. I am from America.')">🔊</button>
+            </div>
+            <div class="q-title-line"><span>2. I'm Mary. I'm ________.</span></div>
             <div class="chips-options-row"><button class="chip-option-btn" onclick="checkAnswer(this, true, 'from America')">from America</button><button class="chip-option-btn" onclick="checkAnswer(this, false, 'America')">America</button></div>
+          </div>
+
+          <!-- Picture 3: Lucy, Big Ben, Britain -->
+          <div class="quiz-single-card">
+            <div class="illustration-card-header">
+              <div class="illustration-avatar">
+                <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#012169"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/><path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/><path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/></svg>
+                <span>Lucy (Big Ben)</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from? I am from Britain.')">🔊</button>
+            </div>
+            <div class="q-title-line"><span>3. A: Where are you from? — B: I'm from ________.</span></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="checkAnswer(this, true, 'Britain')">Britain</button><button class="chip-option-btn" onclick="checkAnswer(this, false, 'Australia')">Australia</button></div>
+          </div>
+
+          <!-- Picture 4: Ben, Sydney Opera House, Australia -->
+          <div class="quiz-single-card">
+            <div class="illustration-card-header">
+              <div class="illustration-avatar">
+                <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#00008b"/><rect width="32" height="21" fill="#012169"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#fff" stroke-width="3.5"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#c8102e" stroke-width="1.5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#fff" stroke-width="5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#c8102e" stroke-width="3"/><polygon points="16,25 17,29 21,29 18,31 19,35 16,33 13,35 14,31 11,29 15,29" fill="#fff"/><circle cx="48" cy="14" r="2.2" fill="#fff"/><circle cx="54" cy="21" r="2.2" fill="#fff"/><circle cx="48" cy="28" r="2.2" fill="#fff"/><circle cx="42" cy="21" r="2.2" fill="#fff"/></svg>
+                <span>Ben (Sydney Opera House)</span>
+              </div>
+              <button class="circle-btn btn-audio-listen" onclick="speak('Where are you from? I am from Australia.')">🔊</button>
+            </div>
+            <div class="q-title-line"><span>4. A: Where are you ________? — B: I'm from Australia.</span></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="checkAnswer(this, true, 'from')">from</button><button class="chip-option-btn" onclick="checkAnswer(this, false, 'in')">in</button></div>
           </div>
         </div>
       </div>
@@ -714,6 +731,7 @@
 
     <!-- ================= VIEW 2: LESSON 2 ================= -->
     <div id="content-lesson-2" style="display:none;">
+      <!-- 1. Look, listen and repeat -->
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;"><span>🎧 1. Look, listen and repeat</span></div>
         <div class="speech-card-row">
@@ -726,7 +744,7 @@
         </div>
       </div>
 
-      <!-- 2. Listen, point and say -->
+      <!-- 2. Listen, point and say (THAY BOY/GIRL BẰNG BIỂU TƯỢNG HOẠT HÌNH 👦 / 👧) -->
       <div class="skill-block theme-orange">
         <div class="skill-badge-header" style="color:#ea580c;"><span>🗣️ 2. Listen, point and say</span></div>
         <div class="model-qa-banner">
@@ -738,11 +756,12 @@
         </div>
 
         <div class="grid-2col">
+          <!-- a. Singapore -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
               <div class="text-stack">
-                <div class="en-word-bold">a. Singapore (Boy)</div>
+                <div class="en-word-bold">👦 a. Singapore</div>
                 <div class="voice-fill-line">He's from <span class="voice-slot-blank" id="slot-l2-a">_______</span>.</div>
               </div>
             </div>
@@ -752,11 +771,12 @@
             </div>
           </div>
 
+          <!-- b. Malaysia -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>
               <div class="text-stack">
-                <div class="en-word-bold">b. Malaysia (Boy)</div>
+                <div class="en-word-bold">👦 b. Malaysia</div>
                 <div class="voice-fill-line">He's from <span class="voice-slot-blank" id="slot-l2-b">_______</span>.</div>
               </div>
             </div>
@@ -766,11 +786,12 @@
             </div>
           </div>
 
+          <!-- c. Thailand -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>
               <div class="text-stack">
-                <div class="en-word-bold">c. Thailand (Girl)</div>
+                <div class="en-word-bold">👧 c. Thailand</div>
                 <div class="voice-fill-line">She's from <span class="voice-slot-blank" id="slot-l2-c">_______</span>.</div>
               </div>
             </div>
@@ -780,11 +801,12 @@
             </div>
           </div>
 
+          <!-- d. Japan -->
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>
               <div class="text-stack">
-                <div class="en-word-bold">d. Japan (Girl)</div>
+                <div class="en-word-bold">👧 d. Japan</div>
                 <div class="voice-fill-line">She's from <span class="voice-slot-blank" id="slot-l2-d">_______</span>.</div>
               </div>
             </div>
@@ -796,41 +818,41 @@
         </div>
       </div>
 
-      <!-- 3. Let's talk (CÔ GIÁO HỎI TRƯỚC RỒI HỌC SINH MỚI TRẢ LỜI) -->
+      <!-- 3. Let's talk -->
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 3. Let's talk</span></div>
         <div class="model-qa-banner">
           <div>
             <div class="model-qa-title">Where's he / she from? — He's / She's from _______.</div>
-            <div class="model-qa-sub">Click speaker to hear teacher's question, then press mic to answer:</div>
+            <div class="model-qa-sub">Click speaker to hear question, then answer:</div>
           </div>
         </div>
         <div class="grid-2col">
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>
-              <div class="text-stack"><div class="en-word-bold">Singapore (Boy)</div></div>
+              <div class="text-stack"><div class="en-word-bold">👦 Singapore</div></div>
             </div>
             <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where is he from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'He is from Singapore.')">🎤</button></div>
           </div>
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>
-              <div class="text-stack"><div class="en-word-bold">Malaysia (Boy)</div></div>
+              <div class="text-stack"><div class="en-word-bold">👦 Malaysia</div></div>
             </div>
             <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where is he from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'He is from Malaysia.')">🎤</button></div>
           </div>
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>
-              <div class="text-stack"><div class="en-word-bold">Thailand (Girl)</div></div>
+              <div class="text-stack"><div class="en-word-bold">👧 Thailand</div></div>
             </div>
             <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where is she from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'She is from Thailand.')">🎤</button></div>
           </div>
           <div class="speech-card-row">
             <div class="card-flag-left">
               <svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>
-              <div class="text-stack"><div class="en-word-bold">Japan (Girl)</div></div>
+              <div class="text-stack"><div class="en-word-bold">👧 Japan</div></div>
             </div>
             <div class="action-audio-btns"><button class="circle-btn btn-audio-listen" onclick="speak('Where is she from?')">🔊</button><button class="circle-btn btn-audio-mic" onclick="testMic(this, 'She is from Japan.')">🎤</button></div>
           </div>
@@ -900,7 +922,7 @@
         </div>
       </div>
 
-      <!-- 6. Let's play: ĐÚNG CHUẨN 3 THẺ TÊN NƯỚC ĐƯỢC LẬT RA THEO SGK -->
+      <!-- 6. Let's play: 3 THẺ TÊN NƯỚC MỞ SẴN -->
       <div class="skill-block theme-yellow">
         <div class="skill-badge-header" style="color:#b45309;">
           <span>🎮 6. Let's play: Find someone who is from...</span>
@@ -955,7 +977,7 @@
         </div>
       </div>
 
-      <!-- 2. Listen and circle: ĐỦ 3 ĐÁP ÁN A, B, C -->
+      <!-- 2. Listen and circle -->
       <div class="skill-block theme-purple">
         <div class="skill-badge-header" style="color:#9333ea;"><span>⭕ 2. Listen and circle</span></div>
         <div class="grid-2col">
@@ -978,7 +1000,7 @@
         </div>
       </div>
 
-      <!-- 3. Let's chant: ĐỦ 6 HÀNG THƠ RIÊNG BIỆT -->
+      <!-- 3. Let's chant -->
       <div class="skill-block theme-orange">
         <div class="skill-badge-header" style="color:#ea580c;">
           <span>🎵 3. Let's chant</span>
@@ -1023,7 +1045,7 @@
         </div>
       </div>
 
-      <!-- 5. Let's write (ĐỂ KHUNG TRỐNG CHO HỌC SINH TỰ LÀM) -->
+      <!-- 5. Let's write -->
       <div class="skill-block theme-yellow">
         <div class="skill-badge-header" style="color:#b45309;">
           <span>✍️ 5. Let's write</span>
@@ -1040,7 +1062,7 @@
         </div>
       </div>
 
-      <!-- 6. Project (ĐỂ KHUNG TRỐNG PUPIL CARDS CHO HỌC SINH TỰ LÀM) -->
+      <!-- 6. Project -->
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;"><span>🎨 6. Project: Pupil cards</span></div>
         <div class="grid-2col">
@@ -1060,14 +1082,14 @@
       </div>
     </div>
 
-    <!-- ================= VIEW 4: WORKBOOK ĐẦY ĐỦ CẢ A, B, C, D, E, F ================= -->
+    <!-- ================= VIEW 4: WORKBOOK ================= -->
     <div id="content-workbook" style="display:none;">
       <div class="skill-block theme-purple">
         <div class="skill-badge-header" style="color:#9333ea;"><span>📚 Workbook Unit 1</span></div>
 
-        <!-- A. PHONICS AND VOCABULARY (ĐỦ 3 BÀI TẬP) -->
+        <!-- A. PHONICS AND VOCABULARY -->
         <p style="font-weight:900; color:#0284c7; margin: 8px 0 4px; font-size:14px;">Part A: Phonics and Vocabulary</p>
-        <div style="font-weight:800; color:#475569; font-size:13px; margin: 6px 0;">1. Complete and say (Fill 'a' or 'ia'):</div>
+        <div style="font-weight:800; color:#475569; font-size:13px; margin: 6px 0;">1. Complete and say:</div>
         <div class="word-fill-container">
           <div>
             <div class="word-fill-display" id="word-target-1">Americ<span class="slot-blank" id="slot-1">_</span></div>
@@ -1139,7 +1161,7 @@
           </div>
         </div>
 
-        <!-- B. SENTENCE PATTERNS (ĐỦ CẢ 2 BÀI) -->
+        <!-- B. SENTENCE PATTERNS -->
         <p style="font-weight:900; color:#ea580c; margin: 16px 0 4px; font-size:14px;">Part B: Sentence Patterns</p>
         <div style="font-weight:800; color:#475569; font-size:13px; margin: 6px 0;">1. Read and complete:</div>
         <div class="grid-2col">
@@ -1161,8 +1183,7 @@
           </div>
         </div>
 
-        <!-- 2. Read and match (BÀI 2 BỊ THIẾU ĐÃ ĐƯỢC BỔ SUNG) -->
-        <div style="font-weight:800; color:#475569; font-size:13px; margin: 12px 0 6px;">2. Read and match (5 questions):</div>
+        <div style="font-weight:800; color:#475569; font-size:13px; margin: 12px 0 6px;">2. Read and match:</div>
         <div class="grid-2col">
           <div class="quiz-single-card">
             <div class="q-title-line"><span>1. What's your name?</span><button class="circle-btn btn-audio-listen" onclick="speak('What is your name?')">🔊</button></div>
@@ -1199,8 +1220,8 @@
           </div>
         </div>
 
-        <!-- D. SPEAKING (ĐỦ CẢ 3 TÌNH HUỐNG/HÌNH ẢNH) -->
-        <p style="font-weight:900; color:#16a34a; margin: 16px 0 4px; font-size:14px;">Part D: Speaking (3 pictures)</p>
+        <!-- D. SPEAKING -->
+        <p style="font-weight:900; color:#16a34a; margin: 16px 0 4px; font-size:14px;">Part D: Speaking</p>
         <div class="grid-2col">
           <div class="speech-card-row">
             <div class="text-stack"><div class="en-word-bold">1. Where are you from? — I'm from Viet Nam.</div></div>
@@ -1216,9 +1237,9 @@
           </div>
         </div>
 
-        <!-- E. READING (ĐỦ CẢ BÀI 1 & BÀI 2) -->
+        <!-- E. READING -->
         <p style="font-weight:900; color:#9333ea; margin: 16px 0 4px; font-size:14px;">Part E: Reading</p>
-        <div style="font-weight:800; color:#475569; font-size:13px; margin: 6px 0;">1. Read and complete (Conversation A-B):</div>
+        <div style="font-weight:800; color:#475569; font-size:13px; margin: 6px 0;">1. Read and complete:</div>
         <div style="background:#fff; border:2px solid #e9d5ff; border-radius:14px; padding:10px 12px; margin-bottom:8px; font-size:13px; font-weight:700; line-height:1.7;">
           A: Who's that?<br>
           B: She's my new (1) <span class="voice-slot-blank filled">friend</span>.<br>
@@ -1239,7 +1260,7 @@
           <tr><td>David</td><td>8</td><td>America</td></tr>
         </table>
 
-        <!-- F. WRITING (ĐỦ CẢ BÀI 1 & BÀI 2) -->
+        <!-- F. WRITING -->
         <p style="font-weight:900; color:#b45309; margin: 16px 0 4px; font-size:14px;">Part F: Writing</p>
         <div style="font-weight:800; color:#475569; font-size:13px; margin: 6px 0;">1. Make sentences:</div>
         <div class="grid-2col">
@@ -1261,7 +1282,7 @@
           </div>
         </div>
 
-        <div style="font-weight:800; color:#475569; font-size:13px; margin: 12px 0 6px;">2. Let's write (Fill in the blanks):</div>
+        <div style="font-weight:800; color:#475569; font-size:13px; margin: 12px 0 6px;">2. Let's write:</div>
         <div style="background:#fff; border:2px solid #fed7aa; border-radius:14px; padding:12px; font-size:13.5px; font-weight:800; line-height:2;">
           Hi. My name is <input type="text" class="student-text-input" placeholder="your name" style="width:90px;">.<br>
           I am <input type="text" class="student-text-input" placeholder="age" style="width:50px;"> years old. I am from <input type="text" class="student-text-input" placeholder="country" style="width:90px;">.<br>
@@ -1293,19 +1314,19 @@
       </div>
     </div>
 
-    <!-- ================= VIEW 6: MINI GAMES ================= -->
+    <!-- ================= VIEW 6: MINI GAMES (1 Ô CHỈ CỜ, 1 Ô CHỈ TÊN NƯỚC) ================= -->
     <div id="content-games" style="display:none;">
       <div class="skill-block theme-blue">
         <div class="skill-badge-header" style="color:#0284c7;">
           <span>🎮 Memory Match: 8 Countries</span>
           <button class="tab-pill-btn" style="margin-left:auto;" onclick="initMemoryGame()">Restart 🔄</button>
         </div>
-        <p style="text-align:center; font-size:13px; font-weight:800; color:#64748b;">Lật mở và ghép đôi Quốc kỳ với Tên quốc gia:</p>
+        <p style="text-align:center; font-size:13px; font-weight:800; color:#64748b;">Match the Flag with its Country Name:</p>
         <div class="memory-grid" id="memory-board"></div>
       </div>
     </div>
 
-    <!-- ================= VIEW 7: UNIT TEST 32 CÂU ================= -->
+    <!-- ================= VIEW 7: UNIT TEST 32 CÂU (ĐÃ SẠCH 100% MÃ VÙNG) ================= -->
     <div id="content-test" style="display:none;">
       <div class="skill-block theme-yellow">
         <div class="skill-badge-header" style="color:#b45309;">
@@ -1313,42 +1334,44 @@
           <span style="background:#f59e0b; color:#fff; padding:3px 8px; border-radius:10px; font-size:11px; margin-left:auto;">Target: &ge; 80 to unlock Unit 2</span>
         </div>
 
+        <!-- 1. LISTENING (ĐÃ XÓA SẠCH VN, US, GB, AU, SG, MY, TH, JP) -->
         <p style="font-weight:900; color:#0284c7; margin: 8px 0 4px; font-size:13px;">Part 1: Listening (8 questions - 25 pts)</p>
         <div class="grid-2col">
           <div class="quiz-single-card">
             <div class="q-title-line"><span>1. "I'm from Viet Nam."</span><button class="circle-btn btn-audio-listen" onclick="speak('I am from Viet Nam.')">🔊</button></div>
-            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Viet Nam 🇻🇳</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">America 🇺🇸</button></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Viet Nam</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">America</button></div>
           </div>
           <div class="quiz-single-card">
             <div class="q-title-line"><span>2. "I'm from America."</span><button class="circle-btn btn-audio-listen" onclick="speak('I am from America.')">🔊</button></div>
-            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">America 🇺🇸</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Britain 🇬🇧</button></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">America</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Britain</button></div>
           </div>
           <div class="quiz-single-card">
             <div class="q-title-line"><span>3. "I'm from Britain."</span><button class="circle-btn btn-audio-listen" onclick="speak('I am from Britain.')">🔊</button></div>
-            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Britain 🇬🇧</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Australia 🇦🇺</button></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Britain</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Australia</button></div>
           </div>
           <div class="quiz-single-card">
             <div class="q-title-line"><span>4. "I'm from Australia."</span><button class="circle-btn btn-audio-listen" onclick="speak('I am from Australia.')">🔊</button></div>
-            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Australia 🇦🇺</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Singapore 🇸🇬</button></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Australia</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Singapore</button></div>
           </div>
           <div class="quiz-single-card">
             <div class="q-title-line"><span>5. "He's from Singapore."</span><button class="circle-btn btn-audio-listen" onclick="speak('He is from Singapore.')">🔊</button></div>
-            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Singapore 🇸🇬</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Malaysia 🇲🇾</button></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Singapore</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Malaysia</button></div>
           </div>
           <div class="quiz-single-card">
             <div class="q-title-line"><span>6. "He's from Malaysia."</span><button class="circle-btn btn-audio-listen" onclick="speak('He is from Malaysia.')">🔊</button></div>
-            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Malaysia 🇲🇾</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Thailand 🇹🇭</button></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Malaysia</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Thailand</button></div>
           </div>
           <div class="quiz-single-card">
             <div class="q-title-line"><span>7. "She's from Thailand."</span><button class="circle-btn btn-audio-listen" onclick="speak('She is from Thailand.')">🔊</button></div>
-            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Thailand 🇹🇭</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Japan 🇯🇵</button></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Thailand</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Japan</button></div>
           </div>
           <div class="quiz-single-card">
             <div class="q-title-line"><span>8. "She's from Japan."</span><button class="circle-btn btn-audio-listen" onclick="speak('She is from Japan.')">🔊</button></div>
-            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Japan 🇯🇵</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Viet Nam 🇻🇳</button></div>
+            <div class="chips-options-row"><button class="chip-option-btn" onclick="recordTestAns(this, 3.125, true)">Japan</button><button class="chip-option-btn" onclick="recordTestAns(this, 0, false)">Viet Nam</button></div>
           </div>
         </div>
 
+        <!-- 2. READING -->
         <p style="font-weight:900; color:#16a34a; margin: 12px 0 4px; font-size:13px;">Part 2: Reading (8 questions - 25 pts)</p>
         <div class="grid-2col">
           <div class="quiz-single-card">
@@ -1385,6 +1408,7 @@
           </div>
         </div>
 
+        <!-- 3. WRITING -->
         <p style="font-weight:900; color:#ea580c; margin: 12px 0 4px; font-size:13px;">Part 3: Writing (8 questions - 25 pts)</p>
         <div class="grid-2col">
           <div class="quiz-single-card">
@@ -1421,6 +1445,7 @@
           </div>
         </div>
 
+        <!-- 4. SPEAKING -->
         <p style="font-weight:900; color:#db2777; margin: 12px 0 4px; font-size:13px;">Part 4: Speaking (8 questions - 25 pts)</p>
         <div class="grid-2col">
           <div class="quiz-single-card">
@@ -1637,7 +1662,7 @@
     speak(`Hi. My name is ${name}. I am ${age} years old. I am from ${country}. This is my friend, ${f1}. He or she is from ${f1c}. And this is ${f2}. He or she is from ${f2c}.`);
   }
 
-  // TEACHER Q&A (20 CÂU ĐẦY ĐỦ)
+  // TEACHER Q&A
   const interviewData = [
     { q: "Where are you from?", a: "I'm from Viet Nam." },
     { q: "Is Mary from Britain?", a: "No, she isn't. She's from America." },
@@ -1671,24 +1696,31 @@
   }
   function testInterviewMic(btn) { testMic(btn, interviewData[curQIndex].a); }
 
-  // MINI GAME LẬT THẺ SẠCH (CỜ + TÊN TIẾNG ANH Ở DƯỚI)
+  // MINI GAME: 1 Ô CHỈ CỜ, 1 Ô CHỈ TÊN NƯỚC (SẠCH, KHÔNG GỘP CẢ HAI)
   const cleanGameCards = [
-    { name: "Viet Nam", flagSvg: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg>', key: "vietnam" },
-    { name: "Viet Nam", flagSvg: '', key: "vietnam" },
-    { name: "Britain", flagSvg: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#012169"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/><path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/><path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/></svg>', key: "britain" },
-    { name: "Britain", flagSvg: '', key: "britain" },
-    { name: "America", flagSvg: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="3.2" fill="#b22234"/><rect y="6.4" width="64" height="3.2" fill="#b22234"/><rect y="12.8" width="64" height="3.2" fill="#b22234"/><rect y="19.2" width="64" height="3.2" fill="#b22234"/><rect y="25.6" width="64" height="3.2" fill="#b22234"/><rect y="32" width="64" height="3.2" fill="#b22234"/><rect y="38.4" width="64" height="3.2" fill="#b22234"/><rect width="28" height="22.6" fill="#3c3b6e"/><circle cx="14" cy="11.3" r="4" fill="#fff"/></svg>', key: "america" },
-    { name: "America", flagSvg: '', key: "america" },
-    { name: "Australia", flagSvg: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#00008b"/><rect width="32" height="21" fill="#012169"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#fff" stroke-width="3.5"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#c8102e" stroke-width="1.5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#fff" stroke-width="5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#c8102e" stroke-width="3"/><polygon points="16,25 17,29 21,29 18,31 19,35 16,33 13,35 14,31 11,29 15,29" fill="#fff"/><circle cx="48" cy="14" r="2.2" fill="#fff"/><circle cx="54" cy="21" r="2.2" fill="#fff"/><circle cx="48" cy="28" r="2.2" fill="#fff"/><circle cx="42" cy="21" r="2.2" fill="#fff"/></svg>', key: "australia" },
-    { name: "Australia", flagSvg: '', key: "australia" },
-    { name: "Singapore", flagSvg: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>', key: "singapore" },
-    { name: "Singapore", flagSvg: '', key: "singapore" },
-    { name: "Malaysia", flagSvg: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>', key: "malaysia" },
-    { name: "Malaysia", flagSvg: '', key: "malaysia" },
-    { name: "Thailand", flagSvg: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>', key: "thailand" },
-    { name: "Thailand", flagSvg: '', key: "thailand" },
-    { name: "Japan", flagSvg: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>', key: "japan" },
-    { name: "Japan", flagSvg: '', key: "japan" }
+    { display: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg>', key: "vietnam", audio: "Viet Nam" },
+    { display: 'Viet Nam', key: "vietnam", audio: "Viet Nam" },
+
+    { display: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#012169"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#fff" stroke-width="7"/><path d="M0,0 L64,42 M64,0 L0,42" stroke="#c8102e" stroke-width="3"/><path d="M32,0 V42 M0,21 H64" stroke="#fff" stroke-width="11"/><path d="M32,0 V42 M0,21 H64" stroke="#c8102e" stroke-width="6"/></svg>', key: "britain", audio: "Britain" },
+    { display: 'Britain', key: "britain", audio: "Britain" },
+
+    { display: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="3.2" fill="#b22234"/><rect y="6.4" width="64" height="3.2" fill="#b22234"/><rect y="12.8" width="64" height="3.2" fill="#b22234"/><rect y="19.2" width="64" height="3.2" fill="#b22234"/><rect y="25.6" width="64" height="3.2" fill="#b22234"/><rect y="32" width="64" height="3.2" fill="#b22234"/><rect y="38.4" width="64" height="3.2" fill="#b22234"/><rect width="28" height="22.6" fill="#3c3b6e"/><circle cx="14" cy="11.3" r="4" fill="#fff"/></svg>', key: "america", audio: "America" },
+    { display: 'America', key: "america", audio: "America" },
+
+    { display: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#00008b"/><rect width="32" height="21" fill="#012169"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#fff" stroke-width="3.5"/><path d="M0,0 L32,21 M32,0 L0,21" stroke="#c8102e" stroke-width="1.5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#fff" stroke-width="5"/><path d="M16,0 V21 M0,10.5 H32" stroke="#c8102e" stroke-width="3"/><polygon points="16,25 17,29 21,29 18,31 19,35 16,33 13,35 14,31 11,29 15,29" fill="#fff"/><circle cx="48" cy="14" r="2.2" fill="#fff"/><circle cx="54" cy="21" r="2.2" fill="#fff"/><circle cx="48" cy="28" r="2.2" fill="#fff"/><circle cx="42" cy="21" r="2.2" fill="#fff"/></svg>', key: "australia", audio: "Australia" },
+    { display: 'Australia', key: "australia", audio: "Australia" },
+
+    { display: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg>', key: "singapore", audio: "Singapore" },
+    { display: 'Singapore', key: "singapore", audio: "Singapore" },
+
+    { display: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><rect y="0" width="64" height="6" fill="#cc0000"/><rect y="12" width="64" height="6" fill="#cc0000"/><rect y="24" width="64" height="6" fill="#cc0000"/><rect y="36" width="64" height="6" fill="#cc0000"/><rect width="32" height="24" fill="#000066"/><circle cx="16" cy="12" r="7" fill="#ffcc00"/></svg>', key: "malaysia", audio: "Malaysia" },
+    { display: 'Malaysia', key: "malaysia", audio: "Malaysia" },
+
+    { display: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#a51931"/><rect y="7" width="64" height="28" fill="#fff"/><rect y="14" width="64" height="14" fill="#2d2a4a"/></svg>', key: "thailand", audio: "Thailand" },
+    { display: 'Thailand', key: "thailand", audio: "Thailand" },
+
+    { display: '<svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#fff"/><circle cx="32" cy="21" r="12" fill="#bc002d"/></svg>', key: "japan", audio: "Japan" },
+    { display: 'Japan', key: "japan", audio: "Japan" }
   ];
   let flippedCards = [];
   function initMemoryGame() {
@@ -1700,8 +1732,8 @@
       const card = document.createElement('div');
       card.className = 'mem-card';
       card.dataset.key = c.key;
-      card.dataset.name = c.name;
-      card.dataset.flagSvg = c.flagSvg;
+      card.dataset.display = c.display;
+      card.dataset.audio = c.audio;
       card.innerHTML = '❓';
       card.onclick = () => flipCard(card);
       board.appendChild(card);
@@ -1710,12 +1742,8 @@
   function flipCard(card) {
     if (flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
     card.classList.add('flipped');
-    if (card.dataset.flagSvg) {
-      card.innerHTML = card.dataset.flagSvg + '<span style="font-size:11px; margin-top:2px;">' + card.dataset.name + '</span>';
-    } else {
-      card.innerHTML = '<span style="font-size:13px; font-weight:900;">' + card.dataset.name + '</span>';
-    }
-    speak(card.dataset.name);
+    card.innerHTML = card.dataset.display;
+    speak(card.dataset.audio);
     flippedCards.push(card);
     if (flippedCards.length === 2) {
       if (flippedCards[0].dataset.key === flippedCards[1].dataset.key) {
@@ -1732,7 +1760,7 @@
     }
   }
 
-  // UNIT TEST & UNLOCK
+  // UNIT TEST
   function recordTestAns(btn, pts, isCorrect) {
     if (isCorrect) {
       btn.classList.add('correct');
