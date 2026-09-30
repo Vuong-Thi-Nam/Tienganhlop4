@@ -257,6 +257,23 @@
   @media (max-width: 520px) { .speed-btn { font-size: 12px; padding: 4px 8px; } .header-right { gap: 5px; } }
   @media (max-width: 400px) { .brand-logo-pill span { display: none; } .brand-logo-pill { padding: 3px; } }
 
+  /* Let's talk: 2 nút riêng */
+  .talk-card { flex-wrap: wrap; }
+  .talk-card .talk-left { cursor: default; min-width: 150px; }
+  .talk-btns { display: flex; gap: 6px; flex-shrink: 0; }
+  .talk-btn { border: none; border-radius: 12px; padding: 8px 12px; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; white-space: nowrap; box-shadow: 0 3px 0 rgba(0,0,0,.1); width: auto; height: auto; }
+  .talk-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,.1); }
+  .talk-ask { background: #e0f2fe; color: #0369a1; }
+  .talk-ask.speaking { background: #0284c7; color: #fff; }
+  .talk-answer { background: #fce7f3; color: #be185d; }
+  .talk-answer.recording { background: #ef4444; color: #fff; }
+  .talk-answer.awaiting-user { background: #fef08a; color: #92400e; }
+  @media (max-width: 420px) { .talk-btns { width: 100%; } .talk-btn { flex: 1; } }
+  .talk-card .status-msg:empty { display: none; }
+  .talk-card .status-msg.talk-correct { color: #15803d !important; font-size: 15px !important; font-weight: 900 !important; background: #dcfce7; padding: 3px 10px; border-radius: 10px; margin-top: 3px; display: inline-block; }
+  .said-ok { color: #15803d !important; font-weight: 900 !important; font-size: 14px !important; background: #dcfce7; padding: 3px 10px; border-radius: 10px; margin-top: 4px; display: inline-block; font-style: normal !important; }
+  .focus-vocab-chip .said-ok { font-size: 12.5px !important; padding: 2px 8px; }
+
 </style>
 </head>
 <body>
@@ -401,8 +418,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u1_teacherAskThenStudentAnswer('Where are you from?', 'I am from Viet Nam.', this)"><div class="card-flag-left"><svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg><div class="text-stack"><div class="en-word-bold">Viet Nam</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u1_teacherAskThenStudentAnswer('Where is he from?', 'He is from Singapore.', this)"><div class="card-flag-left"><svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg><div class="text-stack"><div class="en-word-bold">Singapore</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="42" fill="#da251d"/><polygon points="32,7 35.5,18 47,18 38,24.5 41.5,35 32,28.5 22.5,35 26,24.5 17,18 28.5,18" fill="#ffff00"/></svg><div class="text-stack"><div class="en-word-bold">Viet Nam</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'Where are you from?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'I am from Viet Nam.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><svg class="flag-svg-icon" viewBox="0 0 64 42"><rect width="64" height="21" fill="#ed2939"/><rect y="21" width="64" height="21" fill="#fff"/><circle cx="15" cy="10.5" r="7" fill="#fff"/><circle cx="17.5" cy="10.5" r="6" fill="#ed2939"/></svg><div class="text-stack"><div class="en-word-bold">Singapore</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'Where is he from?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'He is from Singapore.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -537,8 +554,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u2_teacherAskThenStudentAnswer('What time do you have breakfast?', 'I have breakfast at six fifteen.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🍳</div><div class="text-stack"><div class="en-word-bold">have breakfast</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u2_teacherAskThenStudentAnswer('What time do you go to bed?', 'I go to bed at nine forty-five.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🛌</div><div class="text-stack"><div class="en-word-bold">go to bed</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🍳</div><div class="text-stack"><div class="en-word-bold">have breakfast</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'What time do you have breakfast?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'I have breakfast at six fifteen.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🛌</div><div class="text-stack"><div class="en-word-bold">go to bed</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'What time do you go to bed?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'I go to bed at nine forty-five.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -670,8 +687,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u3_teacherAskThenStudentAnswer('What day is it today?', 'It is Tuesday.', this)"><div class="card-flag-left"><div class="day-chip">TUESDAY</div><div class="text-stack"><div class="en-word-bold">Tuesday</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u3_teacherAskThenStudentAnswer('What do you do on Sundays?', 'I listen to music.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🎵</div><div class="text-stack"><div class="en-word-bold">Sundays</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="day-chip">TUESDAY</div><div class="text-stack"><div class="en-word-bold">Tuesday</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'What day is it today?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'It is Tuesday.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🎵</div><div class="text-stack"><div class="en-word-bold">Sundays</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'What do you do on Sundays?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'I listen to music.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -803,8 +820,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u4_teacherAskThenStudentAnswer('What do you want to eat?', 'I want some grapes.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🍇</div><div class="text-stack"><div class="en-word-bold">grapes</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u4_teacherAskThenStudentAnswer('When is your birthday?', 'It is in April.', this)"><div class="card-flag-left"><div class="month-chip">APRIL</div><div class="text-stack"><div class="en-word-bold">April</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🍇</div><div class="text-stack"><div class="en-word-bold">grapes</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'What do you want to eat?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'I want some grapes.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="month-chip">APRIL</div><div class="text-stack"><div class="en-word-bold">April</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'When is your birthday?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'It is in April.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -916,14 +933,14 @@
         <div class="fp-speak">🔊</div>
       </div>
       <div class="focus-vocab-row">
-        <div class="focus-vocab-u5_chip" id="u5_fv-bike"><span class="fv-emoji">🚲</span><div class="fv-text"><div class="fv-en">ride a bike</div><div class="fv-vi">đạp xe</div></div><span class="fv-speak" onclick="speak('Can you ride a bike? Yes, I can.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-bike','Yes, I can.')">🎤</span></div>
-        <div class="focus-vocab-u5_chip locked-u5_chip" id="u5_fv-horse"><span class="fv-emoji">🐴</span><div class="fv-text"><div class="fv-en">ride a horse</div><div class="fv-vi">cưỡi ngựa</div></div><span class="fv-speak" onclick="speak('Can you ride a horse? No, I can not.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-horse','No, I can not.')">🔒</span></div>
-        <div class="focus-vocab-u5_chip locked-u5_chip" id="u5_fv-piano"><span class="fv-emoji">🎹</span><div class="fv-text"><div class="fv-en">play the piano</div><div class="fv-vi">chơi piano</div></div><span class="fv-speak" onclick="speak('Can you play the piano? Yes, I can.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-piano','Yes, I can.')">🔒</span></div>
-        <div class="focus-vocab-u5_chip locked-u5_chip" id="u5_fv-guitar"><span class="fv-emoji">🎸</span><div class="fv-text"><div class="fv-en">play the guitar</div><div class="fv-vi">chơi guitar</div></div><span class="fv-speak" onclick="speak('Can you play the guitar? No, I can not.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-guitar','No, I can not.')">🔒</span></div>
-        <div class="focus-vocab-u5_chip locked-u5_chip" id="u5_fv-swim"><span class="fv-emoji">🏊</span><div class="fv-text"><div class="fv-en">swim</div><div class="fv-vi">bơi</div></div><span class="fv-speak" onclick="speak('Can he swim? Yes, he can.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-swim','Yes, he can.')">🔒</span></div>
-        <div class="focus-vocab-u5_chip locked-u5_chip" id="u5_fv-skate"><span class="fv-emoji">🛼</span><div class="fv-text"><div class="fv-en">roller skate</div><div class="fv-vi">trượt patin</div></div><span class="fv-speak" onclick="speak('Can he roller skate? No, he can not, but he can swim.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-skate','No, he can not, but he can swim.')">🔒</span></div>
-        <div class="focus-vocab-u5_chip locked-u5_chip" id="u5_fv-cook"><span class="fv-emoji">🍳</span><div class="fv-text"><div class="fv-en">cook</div><div class="fv-vi">nấu ăn</div></div><span class="fv-speak" onclick="speak('Can she cook? Yes, she can.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-cook','Yes, she can.')">🔒</span></div>
-        <div class="focus-vocab-u5_chip locked-u5_chip" id="u5_fv-draw"><span class="fv-emoji">🎨</span><div class="fv-text"><div class="fv-en">draw</div><div class="fv-vi">vẽ</div></div><span class="fv-speak" onclick="speak('Can she draw? No, she can not, but she can cook.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-draw','No, she can not, but she can cook.')">🔒</span></div>
+        <div class="focus-vocab-chip" id="u5_fv-bike"><span class="fv-emoji">🚲</span><div class="fv-text"><div class="fv-en">ride a bike</div><div class="fv-vi">đạp xe</div></div><span class="fv-speak" onclick="speak('Can you ride a bike? Yes, I can.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-bike','Yes, I can.')">🎤</span></div>
+        <div class="focus-vocab-chip locked-chip" id="u5_fv-horse"><span class="fv-emoji">🐴</span><div class="fv-text"><div class="fv-en">ride a horse</div><div class="fv-vi">cưỡi ngựa</div></div><span class="fv-speak" onclick="speak('Can you ride a horse? No, I can not.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-horse','No, I can not.')">🔒</span></div>
+        <div class="focus-vocab-chip locked-chip" id="u5_fv-piano"><span class="fv-emoji">🎹</span><div class="fv-text"><div class="fv-en">play the piano</div><div class="fv-vi">chơi piano</div></div><span class="fv-speak" onclick="speak('Can you play the piano? Yes, I can.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-piano','Yes, I can.')">🔒</span></div>
+        <div class="focus-vocab-chip locked-chip" id="u5_fv-guitar"><span class="fv-emoji">🎸</span><div class="fv-text"><div class="fv-en">play the guitar</div><div class="fv-vi">chơi guitar</div></div><span class="fv-speak" onclick="speak('Can you play the guitar? No, I can not.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-guitar','No, I can not.')">🔒</span></div>
+        <div class="focus-vocab-chip locked-chip" id="u5_fv-swim"><span class="fv-emoji">🏊</span><div class="fv-text"><div class="fv-en">swim</div><div class="fv-vi">bơi</div></div><span class="fv-speak" onclick="speak('Can he swim? Yes, he can.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-swim','Yes, he can.')">🔒</span></div>
+        <div class="focus-vocab-chip locked-chip" id="u5_fv-skate"><span class="fv-emoji">🛼</span><div class="fv-text"><div class="fv-en">roller skate</div><div class="fv-vi">trượt patin</div></div><span class="fv-speak" onclick="speak('Can he roller skate? No, he can not, but he can swim.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-skate','No, he can not, but he can swim.')">🔒</span></div>
+        <div class="focus-vocab-chip locked-chip" id="u5_fv-cook"><span class="fv-emoji">🍳</span><div class="fv-text"><div class="fv-en">cook</div><div class="fv-vi">nấu ăn</div></div><span class="fv-speak" onclick="speak('Can she cook? Yes, she can.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-cook','Yes, she can.')">🔒</span></div>
+        <div class="focus-vocab-chip locked-chip" id="u5_fv-draw"><span class="fv-emoji">🎨</span><div class="fv-text"><div class="fv-en">draw</div><div class="fv-vi">vẽ</div></div><span class="fv-speak" onclick="speak('Can she draw? No, she can not, but she can cook.')">🔊</span><span class="fv-mic" onclick="u5_masterFocusMic(this,'u5_fv-draw','No, she can not, but she can cook.')">🔒</span></div>
       </div>
       <div class="focus-progress" id="u5_mastery-progress">🎤 Đã thuộc: <span id="u5_mastery-count">0</span>/8 — Nói đúng để mở từ tiếp theo!</div>
     </div>
@@ -950,8 +967,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u5_teacherAskThenStudentAnswer('Can you ride a bike?', 'Yes, I can.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🚲</div><div class="text-stack"><div class="en-word-bold">ride a bike</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u5_teacherAskThenStudentAnswer('Can he play the piano?', 'Yes, he can.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🎹</div><div class="text-stack"><div class="en-word-bold">play the piano</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🚲</div><div class="text-stack"><div class="en-word-bold">ride a bike</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'Can you ride a bike?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'Yes, I can.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🎹</div><div class="text-stack"><div class="en-word-bold">play the piano</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'Can he play the piano?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'Yes, he can.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -968,8 +985,8 @@
       <div class="skill-block theme-purple">
         <div class="skill-badge-header" style="color:#9333ea;"><span>⭕ Listen and circle</span></div>
         <div class="grid-2col">
-          <div class="quiz-single-card"><div class="q-title-line"><span>1. Can he swim?</span><button class="circle-btn btn-audio-listen" onclick="speak('Can he swim? Yes, he can.')">🔊</button></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="checkAnswer(this, true, 'Yes, he can')">a. Yes, he can.</button><button class="u5_chip-option-btn" onclick="checkAnswer(this, false, 'No, he cant')">b. No, he can't.</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><span>2. Can they draw?</span><button class="circle-btn btn-audio-listen" onclick="speak('Can they draw? No, they can not.')">🔊</button></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="checkAnswer(this, false, 'Yes, they can')">a. Yes, they can.</button><button class="u5_chip-option-btn" onclick="checkAnswer(this, true, 'No, they cant')">b. No, they can't.</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>1. Can he swim?</span><button class="circle-btn btn-audio-listen" onclick="speak('Can he swim? Yes, he can.')">🔊</button></div><div class="chips-options-row"><button class="chip-option-btn" onclick="checkAnswer(this, true, 'Yes, he can')">a. Yes, he can.</button><button class="chip-option-btn" onclick="checkAnswer(this, false, 'No, he cant')">b. No, he can't.</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>2. Can they draw?</span><button class="circle-btn btn-audio-listen" onclick="speak('Can they draw? No, they can not.')">🔊</button></div><div class="chips-options-row"><button class="chip-option-btn" onclick="checkAnswer(this, false, 'Yes, they can')">a. Yes, they can.</button><button class="chip-option-btn" onclick="checkAnswer(this, true, 'No, they cant')">b. No, they can't.</button></div></div>
         </div>
       </div>
       <div class="skill-block theme-orange">
@@ -987,10 +1004,10 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>✍️ Điền câu đúng</span></div>
         <div class="grid-2col">
-          <div class="quiz-single-card"><div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;"><div class="activity-emoji-icon">🚲</div></div><div class="q-title-line"><span>1. A: Can you ride a bike? — B: <span class="voice-u5_slot-blank" id="u5_s1">____</span>.</span><button class="circle-btn btn-audio-listen" onclick="speak('Yes, I can.')">🔊</button></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="fillInlineBlank('u5_s1', 'Yes, I can', true, this)">Yes, I can</button><button class="u5_chip-option-btn" onclick="fillInlineBlank('u5_s1', 'Yes, I do', false, this)">Yes, I do</button></div></div>
-          <div class="quiz-single-card"><div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;"><div class="activity-emoji-icon">🛼</div></div><div class="q-title-line"><span>2. A: Can he roller skate? — B: No, he can't, <span class="voice-u5_slot-blank" id="u5_s2">____</span> he can swim.</span><button class="circle-btn btn-audio-listen" onclick="speak('No, he can not, but he can swim.')">🔊</button></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="fillInlineBlank('u5_s2', 'but', true, this)">but</button><button class="u5_chip-option-btn" onclick="fillInlineBlank('u5_s2', 'and', false, this)">and</button></div></div>
-          <div class="quiz-single-card"><div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;"><div class="activity-emoji-icon">🎨</div></div><div class="q-title-line"><span>3. A: <span class="voice-u5_slot-blank" id="u5_s3">____</span> she draw? — B: No, she can't.</span><button class="circle-btn btn-audio-listen" onclick="speak('Can she draw? No, she can not.')">🔊</button></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="fillInlineBlank('u5_s3', 'Can', true, this)">Can</button><button class="u5_chip-option-btn" onclick="fillInlineBlank('u5_s3', 'Does', false, this)">Does</button></div></div>
-          <div class="quiz-single-card"><div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;"><div class="activity-emoji-icon">🍳</div></div><div class="q-title-line"><span>4. A: Can she cook? — B: <span class="voice-u5_slot-blank" id="u5_s4">____</span>.</span><button class="circle-btn btn-audio-listen" onclick="speak('Yes, she can.')">🔊</button></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="fillInlineBlank('u5_s4', 'Yes, she can', true, this)">Yes, she can</button><button class="u5_chip-option-btn" onclick="fillInlineBlank('u5_s4', 'Yes, she does', false, this)">Yes, she does</button></div></div>
+          <div class="quiz-single-card"><div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;"><div class="activity-emoji-icon">🚲</div></div><div class="q-title-line"><span>1. A: Can you ride a bike? — B: <span class="voice-u5_slot-blank" id="u5_s1">____</span>.</span><button class="circle-btn btn-audio-listen" onclick="speak('Yes, I can.')">🔊</button></div><div class="chips-options-row"><button class="chip-option-btn" onclick="fillInlineBlank('u5_s1', 'Yes, I can', true, this)">Yes, I can</button><button class="chip-option-btn" onclick="fillInlineBlank('u5_s1', 'Yes, I do', false, this)">Yes, I do</button></div></div>
+          <div class="quiz-single-card"><div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;"><div class="activity-emoji-icon">🛼</div></div><div class="q-title-line"><span>2. A: Can he roller skate? — B: No, he can't, <span class="voice-u5_slot-blank" id="u5_s2">____</span> he can swim.</span><button class="circle-btn btn-audio-listen" onclick="speak('No, he can not, but he can swim.')">🔊</button></div><div class="chips-options-row"><button class="chip-option-btn" onclick="fillInlineBlank('u5_s2', 'but', true, this)">but</button><button class="chip-option-btn" onclick="fillInlineBlank('u5_s2', 'and', false, this)">and</button></div></div>
+          <div class="quiz-single-card"><div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;"><div class="activity-emoji-icon">🎨</div></div><div class="q-title-line"><span>3. A: <span class="voice-u5_slot-blank" id="u5_s3">____</span> she draw? — B: No, she can't.</span><button class="circle-btn btn-audio-listen" onclick="speak('Can she draw? No, she can not.')">🔊</button></div><div class="chips-options-row"><button class="chip-option-btn" onclick="fillInlineBlank('u5_s3', 'Can', true, this)">Can</button><button class="chip-option-btn" onclick="fillInlineBlank('u5_s3', 'Does', false, this)">Does</button></div></div>
+          <div class="quiz-single-card"><div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;"><div class="activity-emoji-icon">🍳</div></div><div class="q-title-line"><span>4. A: Can she cook? — B: <span class="voice-u5_slot-blank" id="u5_s4">____</span>.</span><button class="circle-btn btn-audio-listen" onclick="speak('Yes, she can.')">🔊</button></div><div class="chips-options-row"><button class="chip-option-btn" onclick="fillInlineBlank('u5_s4', 'Yes, she can', true, this)">Yes, she can</button><button class="chip-option-btn" onclick="fillInlineBlank('u5_s4', 'Yes, she does', false, this)">Yes, she does</button></div></div>
         </div>
       </div>
 
@@ -1005,8 +1022,8 @@
         <div style="background:#fff; border:2px solid #fde68a; border-radius:12px; padding:8px 10px; margin-bottom:8px; font-size:13px; font-weight:700; line-height:1.5;">"My name is Mai. I can swim and I can cook. I can't ride a horse, but I can ride a bike. My brother can play the piano, but he can't play the guitar."</div>
         <div class="trans-content-panel" id="u5_trans-read">Mình tên là Mai. Mình biết bơi và biết nấu ăn. Mình không cưỡi ngựa được, nhưng mình đi xe đạp được. Anh mình chơi được piano, nhưng không chơi được guitar.</div>
         <div class="grid-2col" style="margin-top:8px;">
-          <div class="quiz-single-card"><div class="q-title-line"><span>1. Can Mai swim?</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="checkAnswer(this, true, 'Yes she can')">Yes, she can.</button><button class="u5_chip-option-btn" onclick="checkAnswer(this, false, 'No she cant')">No, she can't.</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><span>2. Can her brother play the guitar?</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="checkAnswer(this, false, 'Yes he can')">Yes, he can.</button><button class="u5_chip-option-btn" onclick="checkAnswer(this, true, 'No he cant')">No, he can't.</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>1. Can Mai swim?</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="checkAnswer(this, true, 'Yes she can')">Yes, she can.</button><button class="chip-option-btn" onclick="checkAnswer(this, false, 'No she cant')">No, she can't.</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>2. Can her brother play the guitar?</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="checkAnswer(this, false, 'Yes he can')">Yes, he can.</button><button class="chip-option-btn" onclick="checkAnswer(this, true, 'No he cant')">No, he can't.</button></div></div>
         </div>
       </div>
     </div>
@@ -1028,22 +1045,22 @@
 
         <p style="font-weight:900; color:#16a34a; margin: 10px 0 4px; font-size:13px;">Phần 2: Đọc (Reading - 6 câu)</p>
         <div class="grid-2col">
-          <div class="quiz-single-card"><div class="q-title-line"><span>7. ____ you swim?</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">Can</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">Does</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><span>8. Yes, I ____.</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">can</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">do</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><span>9. No, he can't, ____ he can swim.</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">but</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">so</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><span>10. Can she ____ the guitar?</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">play</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">ride</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><span>11. Can they ____ a bike?</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">ride</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">play</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><span>12. Find the mistake: "She can draws."</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">draws → draw</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">can → cans</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>7. ____ you swim?</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">Can</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">Does</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>8. Yes, I ____.</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">can</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">do</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>9. No, he can't, ____ he can swim.</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">but</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">so</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>10. Can she ____ the guitar?</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">play</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">ride</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>11. Can they ____ a bike?</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">ride</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">play</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>12. Find the mistake: "She can draws."</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">draws → draw</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">can → cans</button></div></div>
         </div>
 
         <p style="font-weight:900; color:#ea580c; margin: 10px 0 4px; font-size:13px;">Phần 3: Viết (Writing - 6 câu)</p>
         <div class="grid-2col">
-          <div class="quiz-single-card"><div class="q-title-line"><span>13. (bike / ride / you / a / Can)</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">Can you ride a bike?</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">You can ride a bike?</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><span>14. (can / I / swim)</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">I can swim.</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">I swim can.</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><div style="display:flex; align-items:center; gap:6px;"><div class="activity-emoji-icon">🎹</div><span>15. He can ________.</span></div></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">play the piano</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">plays piano</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><div style="display:flex; align-items:center; gap:6px;"><div class="activity-emoji-icon">🛼</div><span>16. She can ________.</span></div></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">roller skate</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">roller skates</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><span>17. (can't / He / but / swim / cook / , / he / can)</span></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">He can't swim, but he can cook.</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">He can swim, but can't cook.</button></div></div>
-          <div class="quiz-single-card"><div class="q-title-line"><div style="display:flex; align-items:center; gap:6px;"><div class="activity-emoji-icon">🐴</div><span>18. Can you ________?</span></div></div><div class="chips-options-row"><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">ride a horse</button><button class="u5_chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">rides horse</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>13. (bike / ride / you / a / Can)</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">Can you ride a bike?</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">You can ride a bike?</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>14. (can / I / swim)</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">I can swim.</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">I swim can.</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><div style="display:flex; align-items:center; gap:6px;"><div class="activity-emoji-icon">🎹</div><span>15. He can ________.</span></div></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">play the piano</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">plays piano</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><div style="display:flex; align-items:center; gap:6px;"><div class="activity-emoji-icon">🛼</div><span>16. She can ________.</span></div></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">roller skate</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">roller skates</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><span>17. (can't / He / but / swim / cook / , / he / can)</span></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">He can't swim, but he can cook.</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">He can swim, but can't cook.</button></div></div>
+          <div class="quiz-single-card"><div class="q-title-line"><div style="display:flex; align-items:center; gap:6px;"><div class="activity-emoji-icon">🐴</div><span>18. Can you ________?</span></div></div><div class="chips-options-row"><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 4.17, true)">ride a horse</button><button class="chip-option-btn" onclick="u5_recordTestChoice(this, 0, false)">rides horse</button></div></div>
         </div>
 
         <p style="font-weight:900; color:#db2777; margin: 10px 0 4px; font-size:13px;">Phần 4: Nói (Speaking - 6 câu)</p>
@@ -1102,8 +1119,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u6_teacherAskThenStudentAnswer('Where is your school?', 'It is in the village.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🏘️</div><div class="text-stack"><div class="en-word-bold">village</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u6_teacherAskThenStudentAnswer('How many playgrounds are there at your school?', 'There is one.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">⚽</div><div class="text-stack"><div class="en-word-bold">playground</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🏘️</div><div class="text-stack"><div class="en-word-bold">village</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'Where is your school?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'It is in the village.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">⚽</div><div class="text-stack"><div class="en-word-bold">playground</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'How many playgrounds are there at your school?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'There is one.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -1235,8 +1252,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u7_teacherAskThenStudentAnswer('What subjects do you have today?', 'I have science.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🔬</div><div class="text-stack"><div class="en-word-bold">science</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u7_teacherAskThenStudentAnswer('When do you have art?', 'I have it on Monday.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🎨</div><div class="text-stack"><div class="en-word-bold">art</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🔬</div><div class="text-stack"><div class="en-word-bold">science</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'What subjects do you have today?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'I have science.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🎨</div><div class="text-stack"><div class="en-word-bold">art</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'When do you have art?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'I have it on Monday.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -1368,8 +1385,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u8_teacherAskThenStudentAnswer('What is your favourite subject?', 'It is music.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🎵</div><div class="text-stack"><div class="en-word-bold">music</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u8_teacherAskThenStudentAnswer('Why do you like art?', 'Because I want to be a painter.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🖌️</div><div class="text-stack"><div class="en-word-bold">painter</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🎵</div><div class="text-stack"><div class="en-word-bold">music</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'What is your favourite subject?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'It is music.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🖌️</div><div class="text-stack"><div class="en-word-bold">painter</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'Why do you like art?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'Because I want to be a painter.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -1501,8 +1518,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u9_teacherAskThenStudentAnswer('Is your sports day in June?', 'Yes, it is.', this)"><div class="card-flag-left"><div class="month-chip">JUNE</div><div class="text-stack"><div class="en-word-bold">June</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u9_teacherAskThenStudentAnswer('When is your sports day?', 'It is in November.', this)"><div class="card-flag-left"><div class="month-chip">NOVEMBER</div><div class="text-stack"><div class="en-word-bold">November</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="month-chip">JUNE</div><div class="text-stack"><div class="en-word-bold">June</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'Is your sports day in June?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'Yes, it is.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="month-chip">NOVEMBER</div><div class="text-stack"><div class="en-word-bold">November</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'When is your sports day?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'It is in November.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -1634,8 +1651,8 @@
       <div class="skill-block theme-green">
         <div class="skill-badge-header" style="color:#16a34a;"><span>💬 Let's talk — Hỏi đáp tự do</span></div>
         <div class="grid-2col">
-          <div class="speech-card-row" onclick="u10_teacherAskThenStudentAnswer('Were you on the beach last weekend?', 'Yes, I was.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🏖️</div><div class="text-stack"><div class="en-word-bold">on the beach</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
-          <div class="speech-card-row" onclick="u10_teacherAskThenStudentAnswer('Where were you last summer?', 'I was in Sydney.', this)"><div class="card-flag-left"><div class="activity-emoji-icon">🏛️</div><div class="text-stack"><div class="en-word-bold">Sydney</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg">Chạm để cô hỏi</div></div></div><div class="action-audio-btns"><button class="circle-btn btn-audio-mic">🎤</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🏖️</div><div class="text-stack"><div class="en-word-bold">on the beach</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'Were you on the beach last weekend?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'Yes, I was.')">🎤 Con trả lời</button></div></div>
+          <div class="speech-card-row talk-card"><div class="card-flag-left talk-left"><div class="activity-emoji-icon">🏛️</div><div class="text-stack"><div class="en-word-bold">Sydney</div><div style="font-size:12px; font-weight:800; color:#0284c7;" class="status-msg"></div></div></div><div class="talk-btns"><button class="talk-btn talk-ask" onclick="talkAsk(this, 'Where were you last summer?')">🔊 Cô hỏi</button><button class="talk-btn talk-answer btn-audio-mic" onclick="talkAnswer(this, 'I was in Sydney.')">🎤 Con trả lời</button></div></div>
         </div>
       </div>
     </div>
@@ -1961,6 +1978,8 @@
   <div id="mic-heard-toast"></div>
 
 <script>
+  // Nếu mạng chặn thư viện pháo giấy thì trang vẫn chạy bình thường
+  if (typeof window.confetti !== 'function') window.confetti = function() {};
 
   function goHome() {
     document.querySelectorAll('.chapter-page').forEach(el => el.style.display = 'none');
@@ -2062,10 +2081,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -2208,10 +2227,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -2347,10 +2366,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -2486,10 +2505,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -2631,10 +2650,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -2651,14 +2670,14 @@
       if (ok) {
         micEl.classList.add('mastered'); micEl.textContent = '✅';
         const u5_chip = document.getElementById(chipId);
-        u5_chip.classList.add('mastered-u5_chip');
+        u5_chip.classList.add('mastered-chip');
         u5_masteredCount++;
         document.getElementById('u5_mastery-count').textContent = u5_masteredCount;
 
         const idx = u5_masteryOrder.indexOf(chipId);
         if (idx > -1 && idx + 1 < u5_masteryOrder.length) {
           const nextChip = document.getElementById(u5_masteryOrder[idx + 1]);
-          nextChip.classList.remove('locked-u5_chip');
+          nextChip.classList.remove('locked-chip');
           const u5_nextMic = nextChip.querySelector('.fv-mic');
           u5_nextMic.textContent = '🎤';
           speak('Great job! Next word.');
@@ -2790,10 +2809,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -2929,10 +2948,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -3068,10 +3087,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -3207,10 +3226,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -3346,10 +3365,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = "🎤"; }, 1600);
@@ -3478,10 +3497,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { btn.textContent = "🎤"; }, 1600);
@@ -3540,10 +3559,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { btn.textContent = "🎤"; }, 1600);
@@ -3602,10 +3621,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { btn.textContent = "🎤"; }, 1600);
@@ -3664,10 +3683,10 @@
       const val = e.results[0][0].transcript.toLowerCase(); const clean = target.toLowerCase().replace(/[^a-z0-9 ]/g, '');
       const valClean = val.replace(/[^a-z0-9 ]/g, '');
       if (valClean.includes(clean) || clean.includes(valClean)) {
-        showHeardToast(val, true, target);
+        showHeardToast(val, true, prettyEn(target));
         speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
       } else {
-        showHeardToast(val, false, target);
+        showHeardToast(val, false, prettyEn(target));
         speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
       }
       setTimeout(() => { btn.textContent = "🎤"; }, 1600);
@@ -3702,6 +3721,106 @@
     if (score >= 80) { document.getElementById('tck_unlock-status-msg').innerHTML = "🏆🎉 <b>CHÚC MỪNG! Con đã hoàn thành xuất sắc cả Học kỳ 1!</b> 🎉🏆"; document.getElementById('tck_unlock-status-msg').style.color = "#16a34a"; confetti({ particleCount: 200, spread: 140 }); }
   }
   window.onload = function() { loadBestTeacherVoice(); };
+
+  // ===== Let's talk: tách riêng nút "Cô hỏi" và nút "Con trả lời" =====
+  function talkSetActive(btn) {
+    const card = btn.closest('.talk-card');
+    document.querySelectorAll('.speech-card-row').forEach(c => c.classList.remove('talking-active'));
+    if (card) card.classList.add('talking-active');
+    return card;
+  }
+  function talkAsk(btn, question) {
+    const card = talkSetActive(btn); const st = card && card.querySelector('.status-msg');
+    btn.classList.add('speaking');
+    speak(question, function() {
+      btn.classList.remove('speaking');
+      const mic = card && card.querySelector('.talk-answer'); if (mic) mic.classList.add('awaiting-user');
+    });
+  }
+  function talkAnswer(btn, answer) {
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    const card = talkSetActive(btn); const st = card && card.querySelector('.status-msg');
+    btn.classList.remove('awaiting-user');
+    testMic(btn, answer);
+  }
+
+
+  // Viết câu tiếng Anh theo cách nói tự nhiên: I am -> I'm, It is -> It's, can not -> can't...
+  function prettyEn(t) {
+    t = (t || '').trim();
+    const W = '(?=\\s+[A-Za-z])';   // chỉ viết tắt khi phía sau còn chữ (Yes, it is. -> giữ nguyên)
+    const rules = [['\\bI am'+W,"I'm"],['\\b([Ii])t is'+W,"$1t's"],['\\b([Hh])e is'+W,"$1e's"],['\\b([Ss])he is'+W,"$1he's"],['\\b([Tt])here is'+W,"$1here's"],['\\b([Ww])hat is'+W,"$1hat's"],['\\b([Ww])here is'+W,"$1here's"],['\\b([Ll])et us\\b',"$1et's"],['\\bcan not\\b',"can't"],['\\bcant\\b',"can't"],['\\bdo not\\b',"don't"],['\\bdont\\b',"don't"],['\\bo ?clock\\b',"o'clock"],['^(Yes|No) (?=[a-z]|I\\b)','$1, ']];
+    rules.forEach(r => { t = t.replace(new RegExp(r[0], 'g'), r[1]); });
+    t = t.replace(/ (but|and) /g, (m, w) => w === 'but' ? ', but ' : m).replace(/,,/g, ',');
+    if (t) t = t.charAt(0).toUpperCase() + t.slice(1);
+    if (t && !/[.?!]$/.test(t)) t += '.';
+    return t;
+  }
+
+
+  // Nói đúng -> hiện câu đúng màu xanh ngay tại chỗ (áp dụng cho MỌI nút micro)
+  function showCorrectInline(btn, target) {
+    const text = '✅ ' + prettyEn(target);
+    const talk = btn.closest('.talk-card');
+    if (talk) { const st = talk.querySelector('.status-msg'); if (st) { st.textContent = text; st.classList.add('talk-correct'); } return; }
+    const chip = btn.closest('.focus-vocab-chip');
+    if (chip) { const box = chip.querySelector('.fv-text') || chip; let d = box.querySelector('.said-ok'); if (!d) { d = document.createElement('div'); d.className = 'said-ok'; box.appendChild(d); } d.textContent = text; return; }
+    const row = btn.parentElement;
+    const hint = row && row.querySelector(':scope > span');
+    if (hint && btn.closest('.quiz-single-card')) {
+      const m = hint.textContent.match(/"([^"]+)"/);   // dùng đúng câu mẫu đã in trên đề nếu có
+      hint.textContent = m && /[a-z]/i.test(m[1]) && !/\?$/.test(m[1]) ? '✅ ' + prettyEn(m[1]) : text;
+      hint.classList.add('said-ok'); return; }
+    const card = btn.closest('.quiz-single-card, .speech-card-row') || row;
+    if (card) { let d = card.querySelector('.said-ok'); if (!d) { d = document.createElement('div'); d.className = 'said-ok'; card.appendChild(d); } d.textContent = text; }
+  }
+  // ===== Chấm phát âm dễ hơn: hiểu I'm = I am, 6:15 = six fifteen, Vietnam = Viet Nam... =====
+  const NUM_WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+  const TENS = ['', '', 'twenty','thirty','forty','fifty'];
+  function numToWords(n) { n = +n; if (n < 20) return NUM_WORDS[n]; if (n < 60) return TENS[Math.floor(n/10)] + (n%10 ? ' ' + NUM_WORDS[n%10] : ''); return String(n); }
+  function normSpeech(t) {
+    t = (t || '').toLowerCase().replace(/[’‘`]/g, "'");
+    t = t.replace(/(\d{1,2}):(\d{2})/g, (m, h, mm) => numToWords(h) + (+mm === 0 ? " o'clock" : ' ' + numToWords(mm)));
+    t = t.replace(/\b\d{1,2}\b/g, d => numToWords(d));
+    const map = { "i'm":'i am', "it's":'it is', "he's":'he is', "she's":'she is', "what's":'what is', "where's":'where is', "there's":'there is', "that's":'that is', "let's":'let us', "can't":'can not', 'cannot':'can not', "don't":'do not', "doesn't":'does not', "isn't":'is not', "aren't":'are not', "wasn't":'was not', "weren't":'were not', "you're":'you are', "we're":'we are', "they're":'they are', "o'clock":'oclock', 'o clock':'oclock' };
+    Object.keys(map).forEach(k => { t = t.split(k).join(map[k]); });
+    t = t.replace(/-/g, ' ').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+    return t;
+  }
+  function speechMatches(heard, target) {
+    const h = normSpeech(heard), t = normSpeech(target);
+    if (!h) return false;
+    const hs = h.replace(/ /g, ''), ts = t.replace(/ /g, '');
+    if (hs.includes(ts)) return true;
+    const hw = h.split(' '), tw = t.split(' ');
+    const has = w => hw.includes(w) || (w.length > 4 && hw.some(x => x.length > 4 && x.slice(0, 5) === w.slice(0, 5)));
+    const STOP = ['i','am','is','are','was','were','it','a','an','the','at','in','on','from','to','some','you','he','she','we','they','my','your','do','there'];
+    const keys = tw.filter(w => !STOP.includes(w));
+    const hit = tw.filter(has).length;
+    return keys.every(has) && hit / tw.length >= 0.6;
+  }
+  function testMic(btn, target, cb) {
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRec) { alert("Máy/trình duyệt này chưa hỗ trợ micro. Hãy mở bằng Chrome hoặc Safari mới nhất nhé!"); return; }
+    const oldText = btn.textContent;
+    const rec = new SpeechRec(); rec.lang = 'en-US'; rec.maxAlternatives = 5; btn.classList.add('recording');
+    rec.onresult = function(e) {
+      btn.classList.remove('recording');
+      const alts = []; for (let i = 0; i < e.results[0].length; i++) alts.push(e.results[0][i].transcript);
+      const val = alts[0] || '';
+      const ok = alts.some(a => speechMatches(a, target));
+      if (ok) {
+        showHeardToast(val, true, prettyEn(target)); try { showCorrectInline(btn, target); } catch (e) {}
+        speak("Great!"); confetti({ particleCount: 30, spread: 50 }); btn.textContent = "⭐"; trueCount++; document.getElementById('score-true-num').textContent = trueCount; if (typeof cb === 'function') cb(true);
+      } else {
+        showHeardToast(val, false, prettyEn(target));
+        speak("Try again!"); btn.textContent = "🔄"; falseCount++; document.getElementById('score-false-num').textContent = falseCount; if (typeof cb === 'function') cb(false);
+      }
+      setTimeout(() => { if (!btn.classList.contains('mastered')) btn.textContent = oldText; }, 1600);
+    };
+    rec.onerror = () => { btn.classList.remove('recording'); showHeardToast('', false, target); if (typeof cb === 'function') cb(false); };
+    rec.start();
+  }
 </script>
 </body>
 </html>
