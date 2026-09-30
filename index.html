@@ -248,24 +248,15 @@
   }
   @media (max-width: 420px) { .hero-ribbon { white-space: nowrap; font-size: 10.5px; } .hero-text h1 { font-size: 32px; } }
 
-  /* Bỏ thanh chọn Unit — chọn Unit ở trang chủ; có nút quay về Trang chủ */
+  /* Bỏ thanh chọn Unit — chọn Unit ở trang chủ; bấm logo 'Tiếng Anh 4' để về trang chủ */
   .chapter-nav-bar { display: none !important; }
-  .header-inner { position: relative; }
-  .back-home-btn { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 15px; color: #fff; background: #f97316; border: none; border-radius: 14px; padding: 9px 16px; cursor: pointer; box-shadow: 0 3px 0 #c2410c; margin-right: auto; margin-left: 12px; }
-  .back-home-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #c2410c; }
-  body.on-home .back-home-btn { display: none; }
-  @media (max-width: 520px) {
-    body:not(.on-home) .brand-logo-pill span { display: none; }
-    body:not(.on-home) .brand-logo-pill { padding: 4px; }
-    .back-home-btn { font-size: 13px; padding: 8px 11px; margin-left: 8px; }
-  }
+  .brand-logo-pill:hover { transform: translateY(-1px); }
 
 </style>
 </head>
 <body>
   <header class="app-header"><div class="header-inner">
-    <button class="brand-logo-pill" onclick="goHome()"><img class="header-rooster-thumb" src="rooster.png" alt="" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','🐓');"><span>Tiếng Anh 4 <em>Học kỳ 1</em></span></button>
-    <button class="back-home-btn" onclick="goHome()">⬅ Trang chủ</button>
+    <button class="brand-logo-pill" onclick="goHome()" title="Về trang chủ"><img class="header-rooster-thumb" src="rooster.png" alt="" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','🐓');"><span>Tiếng Anh 4 <em>Học kỳ 1</em></span></button>
     <div class="header-score-box"><span class="tag-score-true">★ Đúng: <span id="score-true-num">0</span></span><span class="tag-score-false">★ Sai: <span id="score-false-num">0</span></span></div>
   </div></header>
 
