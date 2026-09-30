@@ -1988,27 +1988,30 @@
   let trueCount = 0, falseCount = 0, u1_testScore = 0, bestTeacherVoice = null, u1_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
+  // ===== Giọng đọc: ưu tiên TUYỆT ĐỐI giọng Anh-Mỹ (en-US), không lấy giọng Anh-Anh/Ấn/Úc =====
+  function isUSVoice(v) { return !!v && !!v.lang && v.lang.replace('_', '-').toLowerCase() === 'en-us'; }
   function loadBestTeacherVoice() {
     if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
+    const us = window.speechSynthesis.getVoices().filter(isUSVoice);
+    if (!us.length) { bestTeacherVoice = null; return; }
+    const byName = (keys) => us.find(v => keys.some(k => v.name.includes(k)));
     bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
+      byName(['Ava Online', 'Jenny Online', 'Aria Online', 'Emma Online', 'Ana Online', 'Michelle Online']) || // Edge (Natural)
+      byName(['Google US English']) ||                                    // Chrome
+      byName(['Samantha', 'Ava (', 'Allison', 'Susan', 'Nicky']) ||        // iPhone / iPad / Mac
+      byName(['Natural', 'Online']) ||
+      byName(['Microsoft Zira', 'Microsoft Jenny', 'Microsoft Aria', 'Microsoft David', 'Microsoft Mark']) ||
+      us.find(v => v.localService === false) ||
+      us.find(v => v.default) || us[0];
   }
   if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
   function speak(text, callback) {
     if (!('speechSynthesis' in window)) return;
     unlockAudioEngine(); window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
+    if (!isUSVoice(bestTeacherVoice)) loadBestTeacherVoice();
+    if (bestTeacherVoice) u.voice = bestTeacherVoice;   // chỉ gán khi chắc chắn là giọng en-US
+    u.lang = 'en-US'; u.rate = 0.85; u.pitch = 1;
     u.onend = function() { if (typeof callback === 'function') callback(); };
     u.onerror = function() { if (typeof callback === 'function') callback(); };
     window.speechSynthesis.speak(u);
@@ -2162,31 +2165,6 @@
   let u2_testScore = 0, u2_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function u2_toggleTranslation(id) { const u2_el = document.getElementById(id); if (!u2_el) return; u2_el.style.display = (u2_el.style.display === 'block') ? 'none' : 'block'; }
   function fillInlineBlank(slotId, text, isCorrect, btn) {
     speak(text);
@@ -2326,31 +2304,6 @@
   let u3_testScore = 0, u3_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function u3_toggleTranslation(id) { const u3_el = document.getElementById(id); if (!u3_el) return; u3_el.style.display = (u3_el.style.display === 'block') ? 'none' : 'block'; }
   function fillInlineBlank(slotId, text, isCorrect, btn) {
     speak(text);
@@ -2490,31 +2443,6 @@
   let u4_testScore = 0, u4_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function u4_toggleTranslation(id) { const u4_el = document.getElementById(id); if (!u4_el) return; u4_el.style.display = (u4_el.style.display === 'block') ? 'none' : 'block'; }
   function fillInlineBlank(slotId, text, isCorrect, btn) {
     speak(text);
@@ -2654,31 +2582,6 @@
   let u5_testScore = 0, u5_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function u5_toggleTranslation(id) { const u5_el = document.getElementById(id); if (!u5_el) return; u5_el.style.display = (u5_el.style.display === 'block') ? 'none' : 'block'; }
 
   function fillInlineBlank(slotId, text, isCorrect, btn) {
@@ -2844,31 +2747,6 @@
   let u6_testScore = 0, u6_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function u6_toggleTranslation(id) { const u6_el = document.getElementById(id); if (!u6_el) return; u6_el.style.display = (u6_el.style.display === 'block') ? 'none' : 'block'; }
   function fillInlineBlank(slotId, text, isCorrect, btn) {
     speak(text);
@@ -3008,31 +2886,6 @@
   let u7_testScore = 0, u7_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function u7_toggleTranslation(id) { const u7_el = document.getElementById(id); if (!u7_el) return; u7_el.style.display = (u7_el.style.display === 'block') ? 'none' : 'block'; }
   function fillInlineBlank(slotId, text, isCorrect, btn) {
     speak(text);
@@ -3172,31 +3025,6 @@
   let u8_testScore = 0, u8_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function u8_toggleTranslation(id) { const u8_el = document.getElementById(id); if (!u8_el) return; u8_el.style.display = (u8_el.style.display === 'block') ? 'none' : 'block'; }
   function fillInlineBlank(slotId, text, isCorrect, btn) {
     speak(text);
@@ -3336,31 +3164,6 @@
   let u9_testScore = 0, u9_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function u9_toggleTranslation(id) { const u9_el = document.getElementById(id); if (!u9_el) return; u9_el.style.display = (u9_el.style.display === 'block') ? 'none' : 'block'; }
   function fillInlineBlank(slotId, text, isCorrect, btn) {
     speak(text);
@@ -3500,31 +3303,6 @@
   let u10_testScore = 0, u10_masteredCount = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function u10_toggleTranslation(id) { const u10_el = document.getElementById(id); if (!u10_el) return; u10_el.style.display = (u10_el.style.display === 'block') ? 'none' : 'block'; }
   function fillInlineBlank(slotId, text, isCorrect, btn) {
     speak(text);
@@ -3664,31 +3442,6 @@
   let t9_testScore = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function showHeardToast(heardText, isCorrect, targetText) {
     const toast = document.getElementById('mic-heard-toast');
     if (!toast) return;
@@ -3751,31 +3504,6 @@
   let tgk_testScore = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function showHeardToast(heardText, isCorrect, targetText) {
     const toast = document.getElementById('mic-heard-toast');
     if (!toast) return;
@@ -3838,31 +3566,6 @@
   let t11_testScore = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function showHeardToast(heardText, isCorrect, targetText) {
     const toast = document.getElementById('mic-heard-toast');
     if (!toast) return;
@@ -3925,31 +3628,6 @@
   let tck_testScore = 0;
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
-  function loadBestTeacherVoice() {
-    if (!('speechSynthesis' in window)) return;
-    const voices = window.speechSynthesis.getVoices();
-    bestTeacherVoice =
-      voices.find(v => v.name === "Google US English") ||
-      voices.find(v => (v.name.includes("Natural") || v.name.includes("Online")) && v.lang === "en-US") ||
-      voices.find(v => v.name === "Samantha") ||
-      voices.find(v => v.name.includes("Google UK English Female")) ||
-      voices.find(v => v.name.includes("Microsoft Aria") || v.name.includes("Microsoft Jenny") || v.name.includes("Microsoft Zira")) ||
-      voices.find(v => v.lang === "en-US" && v.localService === false) ||
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang && v.lang.startsWith("en"));
-  }
-  if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = loadBestTeacherVoice; loadBestTeacherVoice(); }
-  function speak(text, callback) {
-    if (!('speechSynthesis' in window)) return;
-    unlockAudioEngine(); window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    if (!bestTeacherVoice) loadBestTeacherVoice();
-    if (bestTeacherVoice) u.voice = bestTeacherVoice;
-    u.lang = 'en-US'; u.rate = 0.9;
-    u.onend = function() { if (typeof callback === 'function') callback(); };
-    u.onerror = function() { if (typeof callback === 'function') callback(); };
-    window.speechSynthesis.speak(u);
-  }
   function showHeardToast(heardText, isCorrect, targetText) {
     const toast = document.getElementById('mic-heard-toast');
     if (!toast) return;
