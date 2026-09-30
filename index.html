@@ -251,13 +251,18 @@
   /* Bỏ thanh chọn Unit — chọn Unit ở trang chủ; bấm logo 'Tiếng Anh 4' để về trang chủ */
   .chapter-nav-bar { display: none !important; }
   .brand-logo-pill:hover { transform: translateY(-1px); }
+  .header-right { display: flex; align-items: center; gap: 8px; }
+  .speed-btn { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 14px; background: #ecfeff; color: #0e7490; border: 2px solid #a5f3fc; border-radius: 12px; padding: 5px 12px; cursor: pointer; white-space: nowrap; box-shadow: 0 3px 0 #cffafe; }
+  .speed-btn:active { transform: translateY(2px); }
+  @media (max-width: 520px) { .speed-btn { font-size: 12px; padding: 4px 8px; } .header-right { gap: 5px; } }
+  @media (max-width: 400px) { .brand-logo-pill span { display: none; } .brand-logo-pill { padding: 3px; } }
 
 </style>
 </head>
 <body>
   <header class="app-header"><div class="header-inner">
     <button class="brand-logo-pill" onclick="goHome()" title="Về trang chủ"><img class="header-rooster-thumb" src="rooster.png" alt="" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','🐓');"><span>Tiếng Anh 4 <em>Học kỳ 1</em></span></button>
-    <div class="header-score-box"><span class="tag-score-true">★ Đúng: <span id="score-true-num">0</span></span><span class="tag-score-false">★ Sai: <span id="score-false-num">0</span></span></div>
+    <div class="header-right"><button id="speed-btn" class="speed-btn" onclick="cycleSpeed()" title="Đổi tốc độ đọc">🐢 Chậm</button><div class="header-score-box"><span class="tag-score-true">★ Đúng: <span id="score-true-num">0</span></span><span class="tag-score-false">★ Sai: <span id="score-false-num">0</span></span></div></div>
   </div></header>
 
   <nav class="chapter-nav-bar"><div class="nav-inner">
@@ -1989,6 +1994,18 @@
   function unlockAudioEngine() { if ('speechSynthesis' in window && window.speechSynthesis.paused) window.speechSynthesis.resume(); }
   document.addEventListener('click', unlockAudioEngine);
   // ===== Giọng đọc: ưu tiên TUYỆT ĐỐI giọng Anh-Mỹ (en-US), không lấy giọng Anh-Anh/Ấn/Úc =====
+  // Tốc độ đọc: 3 mức, nhớ lựa chọn trên máy. Mặc định: Chậm
+  const SPEED_LEVELS = [{r:0.6, label:'🐢 Rất chậm'}, {r:0.72, label:'🐢 Chậm'}, {r:0.88, label:'🐇 Vừa'}];
+  let speedIdx = 1;
+  try { const sv = localStorage.getItem('tts_speed_idx'); if (sv !== null && SPEED_LEVELS[+sv]) speedIdx = +sv; } catch (e) {}
+  function getSpeechRate() { return SPEED_LEVELS[speedIdx].r; }
+  function updateSpeedBtn() { const b = document.getElementById('speed-btn'); if (b) b.textContent = SPEED_LEVELS[speedIdx].label; }
+  function cycleSpeed() {
+    speedIdx = (speedIdx + 1) % SPEED_LEVELS.length;
+    try { localStorage.setItem('tts_speed_idx', speedIdx); } catch (e) {}
+    updateSpeedBtn(); speak('Hello! I am your English teacher.');
+  }
+  document.addEventListener('DOMContentLoaded', updateSpeedBtn);
   function isUSVoice(v) { return !!v && !!v.lang && v.lang.replace('_', '-').toLowerCase() === 'en-us'; }
   function loadBestTeacherVoice() {
     if (!('speechSynthesis' in window)) return;
@@ -2011,7 +2028,7 @@
     const u = new SpeechSynthesisUtterance(text);
     if (!isUSVoice(bestTeacherVoice)) loadBestTeacherVoice();
     if (bestTeacherVoice) u.voice = bestTeacherVoice;   // chỉ gán khi chắc chắn là giọng en-US
-    u.lang = 'en-US'; u.rate = 0.85; u.pitch = 1;
+    u.lang = 'en-US'; u.rate = getSpeechRate(); u.pitch = 1;
     u.onend = function() { if (typeof callback === 'function') callback(); };
     u.onerror = function() { if (typeof callback === 'function') callback(); };
     window.speechSynthesis.speak(u);
