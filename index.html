@@ -196,11 +196,76 @@
     .home-heading { font-size: 19px; margin-top: 20px; }
   }
 
+  /* ===== Responsive: điện thoại / iPad / máy tính ===== */
+  .unit-grid { grid-template-columns: repeat(5, 1fr); }
+  .test-grid { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 1099px) { .unit-grid, .test-grid { grid-template-columns: repeat(2, 1fr); } .uc-title { font-size: 20px; } }
+  @media (min-width: 1100px) { .unit-card .uc-bottom { flex-direction: column; align-items: flex-start; gap: 4px; } }
+  /* iPad & máy tính: phóng to trang bài học cho dễ đọc, dễ bấm */
+  @media (min-width: 768px) { .chapter-page { zoom: 1.12; } }
+  @media (min-width: 1300px) { .chapter-page { zoom: 1.2; } }
+  /* Điện thoại */
+  @media (max-width: 599px) {
+    #chapterHome.home-page { padding: 12px 10px 24px; }
+    .home-hero { height: 200px; border-radius: 20px; border-width: 3px; }
+    .hero-content { gap: 12px; padding: 0 12px 26px; }
+    .hero-text h1 { font-size: 36px; -webkit-text-stroke: 2px #fff; text-shadow: 0 3px 0 #9d174d; }
+    .hero-sub { font-size: 16px; }
+    .hero-ribbon { font-size: 11px; padding: 4px 10px; }
+    .hero-rooster { width: 80px; height: 80px; border-width: 4px; }
+    .scene-house { display: none; }
+    .unit-grid, .test-grid { grid-template-columns: 1fr; gap: 10px; }
+    .test-grid { grid-template-columns: repeat(2, 1fr); }
+    .unit-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 8px; padding: 10px 12px; min-height: 0; border-radius: 16px; }
+    .uc-top { grid-column: 1 / 2; }
+    .uc-icon { width: 42px; height: 42px; font-size: 22px; border-radius: 12px; }
+    .uc-title { font-size: 17px; }
+    .uc-bottom { display: contents; }
+    .uc-bottom > span { grid-column: 1 / -1; grid-row: 2; font-size: 12px; padding-left: 54px; color: #64748b; }
+    .uc-count { grid-column: 2; grid-row: 1; background: #fff; padding: 3px 9px; border-radius: 10px; font-size: 12px; }
+    .test-card { grid-template-columns: 1fr; }
+    .test-card .uc-count { display: none; }
+    .test-card .uc-bottom > span { padding-left: 0; }
+    .test-card .uc-title { font-size: 15px; }
+    .test-card .uc-icon { width: 34px; height: 34px; font-size: 18px; }
+    .home-footer { font-size: 12px; }
+    /* trang bài học */
+    .chapter-page { padding: 10px 10px 24px; }
+    .tabs-group { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; white-space: normal; overflow: visible; }
+    .tab-pill-btn { padding: 10px 6px; font-size: 12.5px; text-align: center; }
+    .lesson-nav-card { padding: 6px; }
+    .focus-banner { padding: 12px 10px; }
+    .skill-block { padding: 12px 10px; }
+    .hero-banner { padding: 8px 10px; }
+    .banner-badge-center { padding: 6px 12px 6px 6px; gap: 8px; }
+    .banner-title-text { font-size: 16px; }
+    .rooster-avatar-wrap { width: 38px; height: 38px; }
+  }
+  @media (max-width: 420px) {
+    .brand-logo-pill em { display: none; }
+    .brand-logo-pill { font-size: 15px; }
+    .tag-score-true, .tag-score-false { padding: 5px 7px; font-size: 12px; }
+  }
+  @media (max-width: 420px) { .hero-ribbon { white-space: nowrap; font-size: 10.5px; } .hero-text h1 { font-size: 32px; } }
+
+  /* Bỏ thanh chọn Unit — chọn Unit ở trang chủ; có nút quay về Trang chủ */
+  .chapter-nav-bar { display: none !important; }
+  .header-inner { position: relative; }
+  .back-home-btn { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 15px; color: #fff; background: #f97316; border: none; border-radius: 14px; padding: 9px 16px; cursor: pointer; box-shadow: 0 3px 0 #c2410c; margin-right: auto; margin-left: 12px; }
+  .back-home-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #c2410c; }
+  body.on-home .back-home-btn { display: none; }
+  @media (max-width: 520px) {
+    body:not(.on-home) .brand-logo-pill span { display: none; }
+    body:not(.on-home) .brand-logo-pill { padding: 4px; }
+    .back-home-btn { font-size: 13px; padding: 8px 11px; margin-left: 8px; }
+  }
+
 </style>
 </head>
 <body>
   <header class="app-header"><div class="header-inner">
     <button class="brand-logo-pill" onclick="goHome()"><img class="header-rooster-thumb" src="rooster.png" alt="" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','🐓');"><span>Tiếng Anh 4 <em>Học kỳ 1</em></span></button>
+    <button class="back-home-btn" onclick="goHome()">⬅ Trang chủ</button>
     <div class="header-score-box"><span class="tag-score-true">★ Đúng: <span id="score-true-num">0</span></span><span class="tag-score-false">★ Sai: <span id="score-false-num">0</span></span></div>
   </div></header>
 
@@ -227,13 +292,13 @@
     <svg class="hero-scene" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
 <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#e0f2fe"/></linearGradient></defs>
 <rect width="1200" height="300" fill="url(#sky)"/>
-<circle cx="1080" cy="70" r="46" fill="#fde047"/><circle cx="1080" cy="70" r="62" fill="#fde047" opacity=".25"/>
+<circle cx="1000" cy="62" r="40" fill="#fde047"/><circle cx="1000" cy="62" r="56" fill="#fde047" opacity=".25"/>
 <g fill="#fff" opacity=".95"><ellipse cx="180" cy="70" rx="70" ry="22"/><ellipse cx="220" cy="55" rx="45" ry="26"/><ellipse cx="760" cy="55" rx="60" ry="18"/><ellipse cx="795" cy="44" rx="36" ry="20"/><ellipse cx="470" cy="95" rx="40" ry="12"/></g>
 <path d="M0 210 Q200 150 420 200 T860 190 T1200 180 V300 H0Z" fill="#86efac"/>
 <path d="M0 245 Q260 195 520 240 T1000 230 T1200 225 V300 H0Z" fill="#4ade80"/>
 <path d="M0 275 Q300 250 600 272 T1200 265 V300 H0Z" fill="#22c55e"/>
-<g><rect x="1010" y="150" width="120" height="80" rx="6" fill="#fed7aa"/><path d="M1000 152 L1070 105 L1140 152Z" fill="#ef4444"/><rect x="1058" y="190" width="24" height="40" fill="#92400e"/><rect x="1024" y="168" width="22" height="18" fill="#bae6fd"/><rect x="1094" y="168" width="22" height="18" fill="#bae6fd"/><line x1="1070" y1="105" x2="1070" y2="80" stroke="#64748b" stroke-width="3"/><path d="M1070 80 h22 l-6 7 l6 7 h-22z" fill="#dc2626"/></g>
-<g><rect x="90" y="150" width="14" height="70" fill="#a16207"/><circle cx="97" cy="140" r="42" fill="#16a34a"/><circle cx="72" cy="158" r="26" fill="#15803d"/><rect x="930" y="175" width="10" height="50" fill="#a16207"/><circle cx="935" cy="165" r="28" fill="#16a34a"/></g>
+<g class="scene-house" transform="translate(-110 0)"><rect x="1010" y="150" width="120" height="80" rx="6" fill="#fed7aa"/><path d="M1000 152 L1070 105 L1140 152Z" fill="#ef4444"/><rect x="1058" y="190" width="24" height="40" fill="#92400e"/><rect x="1024" y="168" width="22" height="18" fill="#bae6fd"/><rect x="1094" y="168" width="22" height="18" fill="#bae6fd"/><line x1="1070" y1="105" x2="1070" y2="80" stroke="#64748b" stroke-width="3"/><path d="M1070 80 h22 l-6 7 l6 7 h-22z" fill="#dc2626"/></g>
+<g><rect x="190" y="150" width="14" height="70" fill="#a16207"/><circle cx="197" cy="140" r="42" fill="#16a34a"/><circle cx="172" cy="158" r="26" fill="#15803d"/><rect x="1050" y="175" width="10" height="50" fill="#a16207"/><circle cx="1055" cy="165" r="28" fill="#16a34a"/></g>
 <g font-size="22"><text x="40" y="285">🌼</text><text x="300" y="290">🌷</text><text x="560" y="292">🌼</text><text x="820" y="288">🌷</text><text x="1150" y="285">🌼</text></g>
 </svg>
     <div class="hero-content">
@@ -279,7 +344,7 @@
   <div class="uc-bottom"><span>Kỳ nghỉ hè: đã ở đâu, làm gì</span><b class="uc-count" data-count="u10"></b></div></button>
   </div>
   <h2 class="home-heading">🏆 Bài kiểm tra</h2>
-  <div class="unit-grid">
+  <div class="unit-grid test-grid">
 <button class="unit-card test-card" onclick="goToChapter('t9')" style="--c:#f59e0b;--bg:#fef3c7;">
   <div class="uc-top"><span class="uc-icon">📝</span><span class="uc-title"><small>Bài kiểm tra</small>KT tháng 9</span></div>
   <div class="uc-bottom"><span>Ôn Unit 1 + Unit 2</span><b class="uc-count" data-count="t9"></b></div></button>
